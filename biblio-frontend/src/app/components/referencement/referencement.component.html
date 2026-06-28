@@ -1,14 +1,26 @@
+<div class="header-container">
+  <div class="header-text">
+    <h2>Espace Référencement</h2>
+    <p>Interface de saisie (Command Side) pour ajouter des ouvrages et leurs exemplaires physiques.</p>
+  </div>
+</div>
+
 <div class="forms-container">
-  
-  <mat-card>
+
+  <mat-card class="form-card">
     <mat-card-header>
-      <mat-card-title>Référencer un nouvel ouvrage</mat-card-title>
+      <div class="header-icon primary-bg" mat-card-avatar>
+        <mat-icon>menu_book</mat-icon>
+      </div>
+      <mat-card-title>Nouvel ouvrage</mat-card-title>
+      <mat-card-subtitle>Référencer un livre dans le système</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="ouvrageForm" (ngSubmit)="referencerOuvrage()" class="form-layout">
         <mat-form-field appearance="outline">
           <mat-label>ISBN</mat-label>
           <input matInput formControlName="isbn" placeholder="ex: 978-2-07-036822-8">
+          <mat-icon matSuffix>qr_code</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Titre</mat-label>
@@ -18,38 +30,51 @@
           <mat-label>Auteur</mat-label>
           <input matInput formControlName="auteur" placeholder="Auteur">
         </mat-form-field>
-        <button mat-raised-color="primary" mat-flat-button color="primary" type="submit" [disabled]="ouvrageForm.invalid">
-          Référencer
-        </button>
+        <div class="form-actions">
+          <button [disabled]="ouvrageForm.invalid" color="primary" mat-flat-button type="submit">
+            <mat-icon>add_circle</mat-icon>
+            Référencer
+          </button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
 
-  <mat-card>
+  <mat-card class="form-card">
     <mat-card-header>
-      <mat-card-title>Ajouter un exemplaire physique</mat-card-title>
+      <div class="header-icon accent-bg" mat-card-avatar>
+        <mat-icon>inventory_2</mat-icon>
+      </div>
+      <mat-card-title>Exemplaire physique</mat-card-title>
+      <mat-card-subtitle>Associer un nouvel exemplaire à un ouvrage</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="exemplaireForm" (ngSubmit)="ajouterExemplaire()" class="form-layout">
         <mat-form-field appearance="outline">
-          <mat-label>ISBN de l'ouvrage</mat-label>
-          <input matInput formControlName="isbnOuvrage" placeholder="ISBN existant">
+          <mat-label>ISBN de l'ouvrage existant</mat-label>
+          <input formControlName="isbnOuvrage" matInput placeholder="ex: 978-2-07-036822-8">
+          <mat-icon matSuffix>qr_code</mat-icon>
         </mat-form-field>
+        <div class="row-fields">
+          <mat-form-field appearance="outline" class="flex-1">
+            <mat-label>Salle</mat-label>
+            <input formControlName="salle" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="flex-1">
+            <mat-label>Étagère</mat-label>
+            <input formControlName="etagere" matInput>
+          </mat-form-field>
+        </div>
         <mat-form-field appearance="outline">
-          <mat-label>Salle</mat-label>
-          <input matInput formControlName="salle">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Étagère</mat-label>
-          <input matInput formControlName="etagere">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Position</mat-label>
+          <mat-label>Position (Optionnel)</mat-label>
           <input matInput formControlName="position">
         </mat-form-field>
-        <button mat-raised-color="accent" mat-flat-button color="accent" type="submit" [disabled]="exemplaireForm.invalid">
-          Ajouter Exemplaire
-        </button>
+        <div class="form-actions">
+          <button [disabled]="exemplaireForm.invalid" color="accent" mat-flat-button type="submit">
+            <mat-icon>playlist_add</mat-icon>
+            Ajouter l'exemplaire
+          </button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>

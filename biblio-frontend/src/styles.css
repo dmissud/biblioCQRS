@@ -1,4 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Material prebuilt theme (Indigo/Pink as base) */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --primary-color: #3f51b5;
+  --accent-color: #ff4081;
+  --bg-color: #f8fafc; /* Sleek light background */
+  --text-color: #334155;
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --border-radius: 12px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Material overrides for a more modern look */
+.mat-mdc-card {
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--card-shadow) !important;
+  border: 1px solid #e2e8f0;
+}
+
+.mat-mdc-button, .mat-mdc-unelevated-button, .mat-mdc-raised-button {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.3px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  color: #1e293b;
+}
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}

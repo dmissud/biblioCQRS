@@ -1,35 +1,42 @@
 <div class="header-container">
-  <h2>Catalogue des Ouvrages</h2>
-  <button mat-mini-fab color="primary" (click)="refresh()" matTooltip="Actualiser">
+  <div class="header-text">
+    <h2>Catalogue des Ouvrages</h2>
+    <p>Vue de lecture (Query Side) alimentée par les événements Kafka.</p>
+  </div>
+  <button (click)="refresh()" color="primary" mat-fab>
     <mat-icon>refresh</mat-icon>
   </button>
 </div>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="isbn">
-    <th mat-header-cell *matHeaderCellDef> ISBN </th>
-    <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
-  </ng-container>
+<mat-card class="table-card">
+  <mat-card-content class="no-padding">
+    <table [dataSource]="dataSource" mat-table>
+      <ng-container matColumnDef="isbn">
+        <th *matHeaderCellDef mat-header-cell> ISBN</th>
+        <td *matCellDef="let element" class="font-mono" mat-cell> {{ element.isbn }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="titre">
-    <th mat-header-cell *matHeaderCellDef> Titre </th>
-    <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
-  </ng-container>
+      <ng-container matColumnDef="titre">
+        <th *matHeaderCellDef mat-header-cell> Titre</th>
+        <td *matCellDef="let element" class="font-bold" mat-cell> {{ element.titre }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="auteur">
-    <th mat-header-cell *matHeaderCellDef> Auteur </th>
-    <td mat-cell *matCellDef="let element"> {{element.auteur}} </td>
-  </ng-container>
+      <ng-container matColumnDef="auteur">
+        <th *matHeaderCellDef mat-header-cell> Auteur</th>
+        <td *matCellDef="let element" class="text-secondary" mat-cell> {{ element.auteur }}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="nombreExemplaires">
-    <th mat-header-cell *matHeaderCellDef> Exemplaires Dispo </th>
-    <td mat-cell *matCellDef="let element">
-      <span class="badge" [class.badge-empty]="element.nombreExemplaires === 0">
-        {{element.nombreExemplaires}}
-      </span>
-    </td>
-  </ng-container>
+      <ng-container matColumnDef="nombreExemplaires">
+        <th *matHeaderCellDef class="text-center" mat-header-cell> Exemplaires</th>
+        <td *matCellDef="let element" class="text-center" mat-cell>
+          <span [class.badge-empty]="element.nombreExemplaires === 0" class="badge">
+            {{ element.nombreExemplaires }}
+          </span>
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" class="table-row" mat-row></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

@@ -1,15 +1,16 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CommandService } from '../../services/command.service';
-import { delay, concatMap, from, of } from 'rxjs';
+import {Component, inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatIconModule} from '@angular/material/icon';
+import {CommandService} from '../../services/command.service';
+import {concatMap, delay, from} from 'rxjs';
 
 @Component({
   selector: 'app-test-scenario',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatProgressBarModule],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatProgressBarModule, MatIconModule],
   templateUrl: './test-scenario.component.html',
   styleUrls: ['./test-scenario.component.css']
 })
@@ -24,7 +25,7 @@ export class TestScenarioComponent {
     this.logs = ['Démarrage du scénario d\'injection massive...'];
 
     const actions = [];
-    
+
     // 1. Référencer 5 ouvrages
     for (let i = 1; i <= 5; i++) {
       const isbn = `ISBN-TEST-${Date.now()}-${i}`;
