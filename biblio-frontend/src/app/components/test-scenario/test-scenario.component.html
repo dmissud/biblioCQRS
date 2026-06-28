@@ -1,0 +1,21 @@
+<mat-card class="scenario-card">
+  <mat-card-header>
+    <mat-card-title>Bouchon de Charge (Test CQRS)</mat-card-title>
+    <mat-card-subtitle>Injecte une série d'ouvrages et d'exemplaires pour tester le traitement asynchrone</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    
+    <div class="actions">
+      <button mat-raised-button color="warn" (click)="runScenario()" [disabled]="isRunning">
+        LANCER LE SCENARIO (15 requêtes)
+      </button>
+    </div>
+
+    <mat-progress-bar mode="indeterminate" *ngIf="isRunning"></mat-progress-bar>
+
+    <div class="console">
+      <div *ngFor="let log of logs">> {{ log }}</div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

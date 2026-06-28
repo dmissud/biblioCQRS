@@ -1,0 +1,57 @@
+<div class="forms-container">
+  
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Référencer un nouvel ouvrage</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="ouvrageForm" (ngSubmit)="referencerOuvrage()" class="form-layout">
+        <mat-form-field appearance="outline">
+          <mat-label>ISBN</mat-label>
+          <input matInput formControlName="isbn" placeholder="ex: 978-2-07-036822-8">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Titre</mat-label>
+          <input matInput formControlName="titre" placeholder="Titre du livre">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Auteur</mat-label>
+          <input matInput formControlName="auteur" placeholder="Auteur">
+        </mat-form-field>
+        <button mat-raised-color="primary" mat-flat-button color="primary" type="submit" [disabled]="ouvrageForm.invalid">
+          Référencer
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Ajouter un exemplaire physique</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="exemplaireForm" (ngSubmit)="ajouterExemplaire()" class="form-layout">
+        <mat-form-field appearance="outline">
+          <mat-label>ISBN de l'ouvrage</mat-label>
+          <input matInput formControlName="isbnOuvrage" placeholder="ISBN existant">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Salle</mat-label>
+          <input matInput formControlName="salle">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Étagère</mat-label>
+          <input matInput formControlName="etagere">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Position</mat-label>
+          <input matInput formControlName="position">
+        </mat-form-field>
+        <button mat-raised-color="accent" mat-flat-button color="accent" type="submit" [disabled]="exemplaireForm.invalid">
+          Ajouter Exemplaire
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
