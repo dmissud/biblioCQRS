@@ -1,0 +1,7 @@
+# Project exclude paths
+/biblio-command-boot/target/
+/biblio-command-domain/target/
+/biblio-command-infra/target/
+/biblio-core-events/target/
+/biblio-query-boot/target/
+/biblio-query-infra/target/
