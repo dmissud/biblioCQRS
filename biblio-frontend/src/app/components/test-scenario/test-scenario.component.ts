@@ -37,8 +37,14 @@ export class TestScenarioComponent {
       // 2. Ajouter 3 exemplaires pour chaque ouvrage
       for (let j = 1; j <= 3; j++) {
         actions.push(() => {
-          this.logs.push(`Envoi commande: Ajout exemplaire ${j} pour ${isbn}`);
-          return this.commandService.ajouterExemplaire(isbn, { salle: 'A', etagere: '1', position: `${j}` });
+          const codeBarre = `CB-${Date.now()}-${i}-${j}`;
+          this.logs.push(`Envoi commande: Ajout exemplaire ${j} pour ${isbn} (Code: ${codeBarre})`);
+          return this.commandService.ajouterExemplaire(isbn, {
+            codeBarre: codeBarre,
+            salle: 'A',
+            etagere: '1',
+            position: `${j}`
+          });
         });
       }
     }

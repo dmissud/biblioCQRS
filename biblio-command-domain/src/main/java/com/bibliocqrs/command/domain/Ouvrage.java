@@ -35,12 +35,24 @@ public class Ouvrage {
         return new Ouvrage(isbn, titre, auteur, false);
     }
 
-    public void ajouterExemplaire(LieuStockage lieu) {
-        Exemplaire exemplaire = new Exemplaire(lieu);
+    public void reconstituerExemplaire(Exemplaire exemplaire) {
+        this.exemplaires.add(exemplaire);
+    }
+
+    public void ajouterExemplaire(String codeBarre, LieuStockage lieu) {
+        boolean codeBarreExistant = this.exemplaires.stream()
+                .anyMatch(e -> e.getCodeBarre().equals(codeBarre));
+
+        if (codeBarreExistant) {
+            throw new IllegalArgumentException("Un exemplaire avec ce code-barres existe déjà pour cet ouvrage.");
+        }
+
+        Exemplaire exemplaire = new Exemplaire(codeBarre, lieu);
         this.exemplaires.add(exemplaire);
         this.domainEvents.add(new ExemplaireAjouteEvent(
                 this.isbn,
                 exemplaire.getId(),
+                codeBarre,
                 lieu.salle(),
                 lieu.etagere(),
                 lieu.position()

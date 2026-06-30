@@ -55,6 +55,18 @@
           <input formControlName="isbnOuvrage" matInput placeholder="ex: 978-2-07-036822-8">
           <mat-icon matSuffix>qr_code</mat-icon>
         </mat-form-field>
+        <div class="row-fields align-center" style="display: flex; gap: 16px; align-items: center; margin-bottom: 8px;">
+          <mat-form-field appearance="outline" style="flex: 1; margin-bottom: -1.25em;">
+            <mat-label>Code-Barres / RFID</mat-label>
+            <input formControlName="codeBarre" matInput placeholder="Saisie manuelle ou douchette">
+            <mat-icon matSuffix>barcode_reader</mat-icon>
+          </mat-form-field>
+          <button (click)="genererCodeBarre()" color="primary" mat-stroked-button matTooltip="Simuler la création d'une étiquette"
+                  type="button">
+            <mat-icon>autorenew</mat-icon>
+            Générer
+          </button>
+        </div>
         <div class="row-fields">
           <mat-form-field appearance="outline" class="flex-1">
             <mat-label>Salle</mat-label>

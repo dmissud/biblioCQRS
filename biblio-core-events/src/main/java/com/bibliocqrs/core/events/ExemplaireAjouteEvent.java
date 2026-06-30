@@ -8,11 +8,12 @@ public record ExemplaireAjouteEvent(
         Instant occurredOn,
         String isbnOuvrage,
         UUID exemplaireId,
+        String codeBarre,
         String salle,
         String etagere,
         String position
 ) implements DomainEvent {
-    public ExemplaireAjouteEvent(String isbnOuvrage, UUID exemplaireId, String salle, String etagere, String position) {
-        this(UUID.randomUUID(), Instant.now(), isbnOuvrage, exemplaireId, salle, etagere, position);
+    public ExemplaireAjouteEvent(String isbnOuvrage, UUID exemplaireId, String codeBarre, String salle, String etagere, String position) {
+        this(UUID.randomUUID(), Instant.now(), isbnOuvrage, exemplaireId, codeBarre, salle, etagere, position);
     }
 }

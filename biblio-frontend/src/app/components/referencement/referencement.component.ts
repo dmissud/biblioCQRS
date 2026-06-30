@@ -32,10 +32,16 @@ export class ReferencementComponent {
 
   exemplaireForm: FormGroup = this.fb.group({
     isbnOuvrage: ['', Validators.required],
+    codeBarre: ['', Validators.required],
     salle: ['', Validators.required],
     etagere: ['', Validators.required],
     position: ['', Validators.required]
   });
+
+  genererCodeBarre() {
+    const code = 'CB-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+    this.exemplaireForm.patchValue({codeBarre: code});
+  }
 
   referencerOuvrage() {
     if (this.ouvrageForm.valid) {
@@ -56,6 +62,7 @@ export class ReferencementComponent {
       const formValue = this.exemplaireForm.value;
       const isbn = formValue.isbnOuvrage;
       this.commandService.ajouterExemplaire(isbn, {
+        codeBarre: formValue.codeBarre,
         salle: formValue.salle,
         etagere: formValue.etagere,
         position: formValue.position

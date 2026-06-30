@@ -20,7 +20,7 @@ public class OuvrageCommandHandler {
             .orElseThrow(() -> new IllegalArgumentException("Ouvrage non trouvé."));
         
         LieuStockage lieu = new LieuStockage(command.salle(), command.etagere(), command.position());
-        ouvrage.ajouterExemplaire(lieu);
+        ouvrage.ajouterExemplaire(command.codeBarre(), lieu);
         
         repository.save(ouvrage);
     }

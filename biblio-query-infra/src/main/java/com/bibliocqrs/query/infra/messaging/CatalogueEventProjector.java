@@ -32,7 +32,7 @@ public class CatalogueEventProjector {
         Optional<CatalogueViewEntity> viewOpt = repository.findById(event.isbnOuvrage());
         if (viewOpt.isPresent()) {
             CatalogueViewEntity view = viewOpt.get();
-            view.incrementerExemplaires();
+            view.ajouterExemplaire(event.codeBarre());
             repository.save(view);
         }
     }

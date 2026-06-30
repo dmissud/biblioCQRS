@@ -9,6 +9,7 @@ export interface ReferencerOuvrageRequest {
 }
 
 export interface AjouterExemplaireRequest {
+  codeBarre: string;
   salle: string;
   etagere: string;
   position: string;

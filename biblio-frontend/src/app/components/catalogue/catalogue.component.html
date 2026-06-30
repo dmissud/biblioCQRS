@@ -29,9 +29,15 @@
       <ng-container matColumnDef="nombreExemplaires">
         <th *matHeaderCellDef class="text-center" mat-header-cell> Exemplaires</th>
         <td *matCellDef="let element" class="text-center" mat-cell>
-          <span [class.badge-empty]="element.nombreExemplaires === 0" class="badge">
+          <span [class.badge-empty]="element.nombreExemplaires === 0" class="badge"
+                style="margin-bottom: 4px; display: inline-block;">
             {{ element.nombreExemplaires }}
           </span>
+          <div *ngIf="element.codesBarres && element.codesBarres.length > 0"
+               style="display: flex; flex-direction: column; gap: 4px; align-items: center; margin-top: 4px;">
+            <span *ngFor="let cb of element.codesBarres"
+                  style="font-size: 10px; background: #eee; padding: 2px 6px; border-radius: 4px; font-family: monospace;">{{ cb }}</span>
+          </div>
         </td>
       </ng-container>
 

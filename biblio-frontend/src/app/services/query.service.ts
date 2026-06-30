@@ -7,6 +7,7 @@ export interface CatalogueView {
   titre: string;
   auteur: string;
   nombreExemplaires: number;
+  codesBarres: string[];
 }
 
 @Injectable({
