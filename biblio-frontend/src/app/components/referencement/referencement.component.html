@@ -1,0 +1,94 @@
+<div class="header-container">
+  <div class="header-text">
+    <h2>Espace Référencement</h2>
+    <p>Interface de saisie (Command Side) pour ajouter des ouvrages et leurs exemplaires physiques.</p>
+  </div>
+</div>
+
+<div class="forms-container">
+
+  <mat-card class="form-card">
+    <mat-card-header>
+      <div class="header-icon primary-bg" mat-card-avatar>
+        <mat-icon>menu_book</mat-icon>
+      </div>
+      <mat-card-title>Nouvel ouvrage</mat-card-title>
+      <mat-card-subtitle>Référencer un livre dans le système</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="ouvrageForm" (ngSubmit)="referencerOuvrage()" class="form-layout">
+        <mat-form-field appearance="outline">
+          <mat-label>ISBN</mat-label>
+          <input matInput formControlName="isbn" placeholder="ex: 978-2-07-036822-8">
+          <mat-icon matSuffix>qr_code</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Titre</mat-label>
+          <input matInput formControlName="titre" placeholder="Titre du livre">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Auteur</mat-label>
+          <input matInput formControlName="auteur" placeholder="Auteur">
+        </mat-form-field>
+        <div class="form-actions">
+          <button [disabled]="ouvrageForm.invalid" color="primary" mat-flat-button type="submit">
+            <mat-icon>add_circle</mat-icon>
+            Référencer
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="form-card">
+    <mat-card-header>
+      <div class="header-icon accent-bg" mat-card-avatar>
+        <mat-icon>inventory_2</mat-icon>
+      </div>
+      <mat-card-title>Exemplaire physique</mat-card-title>
+      <mat-card-subtitle>Associer un nouvel exemplaire à un ouvrage</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="exemplaireForm" (ngSubmit)="ajouterExemplaire()" class="form-layout">
+        <mat-form-field appearance="outline">
+          <mat-label>ISBN de l'ouvrage existant</mat-label>
+          <input formControlName="isbnOuvrage" matInput placeholder="ex: 978-2-07-036822-8">
+          <mat-icon matSuffix>qr_code</mat-icon>
+        </mat-form-field>
+        <div class="row-fields align-center" style="display: flex; gap: 16px; align-items: center; margin-bottom: 8px;">
+          <mat-form-field appearance="outline" style="flex: 1; margin-bottom: -1.25em;">
+            <mat-label>Code-Barres / RFID</mat-label>
+            <input formControlName="codeBarre" matInput placeholder="Saisie manuelle ou douchette">
+            <mat-icon matSuffix>barcode_reader</mat-icon>
+          </mat-form-field>
+          <button (click)="genererCodeBarre()" color="primary" mat-stroked-button matTooltip="Simuler la création d'une étiquette"
+                  type="button">
+            <mat-icon>autorenew</mat-icon>
+            Générer
+          </button>
+        </div>
+        <div class="row-fields">
+          <mat-form-field appearance="outline" class="flex-1">
+            <mat-label>Salle</mat-label>
+            <input formControlName="salle" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="flex-1">
+            <mat-label>Étagère</mat-label>
+            <input formControlName="etagere" matInput>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Position (Optionnel)</mat-label>
+          <input matInput formControlName="position">
+        </mat-form-field>
+        <div class="form-actions">
+          <button [disabled]="exemplaireForm.invalid" color="accent" mat-flat-button type="submit">
+            <mat-icon>playlist_add</mat-icon>
+            Ajouter l'exemplaire
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>

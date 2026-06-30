@@ -20,13 +20,13 @@ public class OuvrageCommandController {
     public ResponseEntity<Void> referencerOuvrage(@RequestBody ReferencerOuvrageRequest request) {
         ReferencerOuvrageCommand command = new ReferencerOuvrageCommand(request.isbn(), request.titre(), request.auteur());
         commandHandler.handle(command);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.accepted().build();
     }
 
     @PostMapping("/{isbn}/exemplaires")
     public ResponseEntity<Void> ajouterExemplaire(@PathVariable("isbn") String isbn, @RequestBody AjouterExemplaireRequest request) {
-        AjouterExemplaireCommand command = new AjouterExemplaireCommand(isbn, request.salle(), request.etagere(), request.position());
+        AjouterExemplaireCommand command = new AjouterExemplaireCommand(isbn, request.codeBarre(), request.salle(), request.etagere(), request.position());
         commandHandler.handle(command);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.accepted().build();
     }
 }

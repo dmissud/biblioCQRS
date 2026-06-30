@@ -1,0 +1,13 @@
+<mat-toolbar class="main-toolbar" color="primary">
+  <span class="logo">📚 BiblioCQRS</span>
+  <span class="spacer"></span>
+  <nav>
+    <a mat-button routerLink="/catalogue" routerLinkActive="active-link">Catalogue</a>
+    <a mat-button routerLink="/referencer" routerLinkActive="active-link">Référencer</a>
+    <a mat-button routerLink="/test" routerLinkActive="active-link">Test d'injection</a>
+  </nav>
+</mat-toolbar>
+
+<main class="page-container">
+  <router-outlet></router-outlet>
+</main>

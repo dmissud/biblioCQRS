@@ -83,16 +83,17 @@ public class ReferenceOuvrageSteps {
         inMemoryDb.put(isbn, o);
     }
 
-    @When("le bibliothécaire ajoute un exemplaire en {string}, {string}, {string} à l'ouvrage {string}")
-    public void le_bibliothécaire_ajoute_un_exemplaire_en_à_l_ouvrage(String salle, String etagere, String position, String isbn) {
-        AjouterExemplaireCommand command = new AjouterExemplaireCommand(isbn, salle, etagere, position);
+    @When("le bibliothécaire ajoute un exemplaire identifié par {string} en {string}, {string}, {string} à l'ouvrage {string}")
+    public void le_bibliothécaire_ajoute_un_exemplaire_identifié_par_en_à_l_ouvrage(String codeBarre, String salle, String etagere, String position, String isbn) {
+        AjouterExemplaireCommand command = new AjouterExemplaireCommand(isbn, codeBarre, salle, etagere, position);
         handler.handle(command);
     }
 
-    @Then("un nouvel exemplaire est enregistré pour cet ouvrage")
-    public void un_nouvel_exemplaire_est_enregistré_pour_cet_ouvrage() {
+    @Then("un nouvel exemplaire identifié par {string} est enregistré pour cet ouvrage")
+    public void un_nouvel_exemplaire_identifie_par_est_enregistre(String codeBarre) {
         Ouvrage ouvrage = inMemoryDb.get("978-2-07-036822-8");
         assertThat(ouvrage.getExemplaires()).hasSize(1);
+        assertThat(ouvrage.getExemplaires().get(0).getCodeBarre()).isEqualTo(codeBarre);
     }
 
     @Then("il est assigné à la {string}, {string}, {string}")

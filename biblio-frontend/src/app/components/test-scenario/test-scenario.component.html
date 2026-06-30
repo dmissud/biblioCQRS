@@ -1,0 +1,34 @@
+<div class="header-container">
+  <div class="header-text">
+    <h2>Test d'Injection de Charge</h2>
+    <p>Simulateur d'activité pour vérifier le débit et la synchronisation de bout en bout.</p>
+  </div>
+</div>
+
+<mat-card class="scenario-card">
+  <mat-card-header>
+    <div class="header-icon warn-bg" mat-card-avatar>
+      <mat-icon>rocket_launch</mat-icon>
+    </div>
+    <mat-card-title>Bouchon de Charge (Test CQRS)</mat-card-title>
+    <mat-card-subtitle>Génère 5 ouvrages et 15 exemplaires automatiquement</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="actions">
+      <button (click)="runScenario()" [disabled]="isRunning" class="huge-btn" color="warn" mat-flat-button>
+        <mat-icon>electric_bolt</mat-icon>
+        DÉMARRER LE TIR DE CHARGE
+      </button>
+    </div>
+
+    <mat-progress-bar *ngIf="isRunning" color="warn" mode="indeterminate"></mat-progress-bar>
+
+    <div class="console mat-elevation-z4">
+      <div *ngFor="let log of logs" class="log-line">
+        <span class="prompt">biblio-cqrs$</span> {{ log }}
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

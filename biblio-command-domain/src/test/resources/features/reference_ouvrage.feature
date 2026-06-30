@@ -15,6 +15,6 @@ Feature: Référencer un nouvel ouvrage
 
   Scenario: Ajouter un exemplaire physique à un ouvrage existant
     Given que l'ouvrage "1984" avec l'ISBN "978-2-07-036822-8" existe dans le catalogue
-    When le bibliothécaire ajoute un exemplaire en "Salle A", "Étagère 2", "Position 15" à l'ouvrage "978-2-07-036822-8"
-    Then un nouvel exemplaire est enregistré pour cet ouvrage
+    When le bibliothécaire ajoute un exemplaire identifié par "CBR-001" en "Salle A", "Étagère 2", "Position 15" à l'ouvrage "978-2-07-036822-8"
+    Then un nouvel exemplaire identifié par "CBR-001" est enregistré pour cet ouvrage
     And il est assigné à la "Salle A", "Étagère 2", "Position 15"

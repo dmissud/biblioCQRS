@@ -22,15 +22,21 @@ public class OuvrageRepositoryAdapter implements OuvrageRepository {
 
     @Override
     public void save(Ouvrage ouvrage) {
-        OuvrageEntity entity = new OuvrageEntity(ouvrage.getIsbn(), ouvrage.getTitre(), ouvrage.getAuteur());
+        OuvrageEntity entity = jpaRepository.findById(ouvrage.getIsbn())
+                .orElseGet(() -> new OuvrageEntity(ouvrage.getIsbn(), ouvrage.getTitre(), ouvrage.getAuteur()));
         
         for (Exemplaire ex : ouvrage.getExemplaires()) {
-            entity.getExemplaires().add(new ExemplaireEntity(
-                    ex.getId(),
-                    ex.getLieuStockage().salle(),
-                    ex.getLieuStockage().etagere(),
-                    ex.getLieuStockage().position()
-            ));
+            boolean exists = entity.getExemplaires().stream()
+                    .anyMatch(e -> e.getId().equals(ex.getId()));
+            if (!exists) {
+                entity.getExemplaires().add(new ExemplaireEntity(
+                        ex.getId(),
+                        ex.getCodeBarre(),
+                        ex.getLieuStockage().salle(),
+                        ex.getLieuStockage().etagere(),
+                        ex.getLieuStockage().position()
+                ));
+            }
         }
 
         jpaRepository.save(entity);
@@ -47,7 +53,8 @@ public class OuvrageRepositoryAdapter implements OuvrageRepository {
             
             for (ExemplaireEntity ex : entity.getExemplaires()) {
                 LieuStockage lieu = new LieuStockage(ex.getSalle(), ex.getEtagere(), ex.getPosition());
-                ouvrage.ajouterExemplaire(lieu);
+                Exemplaire exemplaire = Exemplaire.reconstituer(ex.getId(), ex.getCodeBarre(), lieu);
+                ouvrage.reconstituerExemplaire(exemplaire);
             }
             ouvrage.pullDomainEvents(); // Clear adding events
             
