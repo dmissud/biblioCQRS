@@ -1,0 +1,1342 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation du projet BiblioCQRS, une architecture CQRS et Event Sourcing pour la gestion de bibliothèque.">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Historique des Échanges - Itération 2 (Cadrage BA "Emprunt") - BiblioCQRS Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#historique-des-echanges-iteration-2-cadrage-ba-emprunt" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../.." title="BiblioCQRS Docs" class="md-header__button md-logo" aria-label="BiblioCQRS Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BiblioCQRS Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Historique des Échanges - Itération 2 (Cadrage BA "Emprunt")
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Passer au mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer au mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="Passer au mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer au mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dmissud/biblioCQRS" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dmissud/biblioCQRS
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../requirements/01_vision_contexte/" class="md-tabs__link">
+          
+  
+  
+  🎯 Exigences
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../documentation_architecture/" class="md-tabs__link">
+          
+  
+  
+  🏗 Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../adrs/0001-architecture-hexagonale-cqrs/" class="md-tabs__link">
+          
+  
+  
+  ⚖️ Décisions (ADRs)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../development/guide-dev/" class="md-tabs__link">
+          
+  
+  
+  💻 Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="BiblioCQRS Docs" class="md-nav__button md-logo" aria-label="BiblioCQRS Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BiblioCQRS Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dmissud/biblioCQRS" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dmissud/biblioCQRS
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎯 Exigences
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎯 Exigences
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/01_vision_contexte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision & Contexte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/02_glossaire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossaire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/03_scenarios_regles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scénarios métier
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/04_plan_elicitation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Élicitation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../requirements/05_backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backlog Agile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗 Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗 Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../documentation_architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Synthèse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/c4-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèle C4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/01_use_cases_crud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cas d'usage & CRUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/02_information_entities_aggregates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entités & Agrégats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/03_interfaces_and_topics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interfaces & Topics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚖️ Décisions (ADRs)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ⚖️ Décisions (ADRs)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../adrs/0001-architecture-hexagonale-cqrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0001 : Architecture Hexagonale & CQRS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../adrs/0002-utilisation-de-kafka-pour-domain-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0002 : Kafka pour les événements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 Développement
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    💻 Développement
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/guide-dev/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide développeur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-demande-initiale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 1 : Demande initiale
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-elicitation-des-regles-metier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2 : Élicitation des Règles Métier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-formalisation-et-decouverte-dincoherences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3 : Formalisation et Découverte d'Incohérences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-4-restructuration-documentaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 4 : Restructuration Documentaire
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-5-affinage-de-la-vision-et-du-contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 5 : Affinage de la Vision et du Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-6-tracabilite-arbre-des-objectifs-backlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6 : Traçabilité Arbre des Objectifs &lt;-&gt; Backlog
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-7-regle-decriture-des-user-stories-personas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 7 : Règle d'écriture des User Stories (Personas)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-8-industrialisation-via-la-creation-dun-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 8 : Industrialisation via la création d'un Skill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-9-transition-vers-la-realisation-techlead-tdd-double-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 9 : Transition vers la Réalisation (TechLead &amp; TDD Double Loop)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-10-precision-semantique-et-granularite-business-case-vs-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 10 : Précision Sémantique et Granularité (Business Case vs Use Case)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-de-latelier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion de l'atelier
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="historique-des-echanges-iteration-2-cadrage-ba-emprunt">Historique des Échanges - Itération 2 (Cadrage BA "Emprunt")</h1>
+<p>Ce document retrace la conversation et les décisions prises lors de notre atelier de cadrage pour la fonctionnalité
+d'emprunt, mené selon une approche d'ingénierie des exigences (IREB).</p>
+<h2 id="etape-1-demande-initiale">Étape 1 : Demande initiale</h2>
+<ul>
+<li><strong>Product Owner :</strong> "Je souhaite cadrer la feature d'emprunt."</li>
+<li><strong>Business Analyst (BA) :</strong> Mise en place du rôle de BA. Proposition d'un cadre d'élicitation séparant l'espace du
+  problème (métier) de l'espace de la solution (système).</li>
+</ul>
+<h2 id="etape-2-elicitation-des-regles-metier">Étape 2 : Élicitation des Règles Métier</h2>
+<ul>
+<li><strong>Product Owner :</strong> Fournit le scénario nominal. L'usager a un livre, le documentaliste enregistre l'emprunt (ID
+  exemplaire, ID adhérent).<ul>
+<li><em>Règle 1 :</em> Durée de l'emprunt de 3 semaines (gérée par le système).</li>
+<li><em>Règle 2 :</em> Quota max de 5 emprunts. Au-delà, l'emprunt est bloqué.</li>
+<li><em>Règle 3 :</em> Tolérance de retard. Si l'usager a 1 livre en retard, l'emprunt est autorisé. S'il a strictement plus
+  d'un retard (2 ou plus), l'emprunt est bloqué.</li>
+<li><em>Décision système :</em> Le système gère lui-même les adhérents (nom, prénom) et calcule automatiquement la date
+  limite sans modification manuelle.</li>
+</ul>
+</li>
+</ul>
+<h2 id="etape-3-formalisation-et-decouverte-dincoherences">Étape 3 : Formalisation et Découverte d'Incohérences</h2>
+<ul>
+<li><strong>BA :</strong> Traduction des échanges et formalisation dans 3 documents distincts au fil de l'eau :<ol>
+<li>Un artefact <strong><code>implementation_plan.md</code></strong> temporaire (Cahier des charges) pour validation.</li>
+<li>La <strong><code>documentation_fonctionnelle.md</code></strong> (mise à jour avec l'Arbre des objectifs, Cas d'utilisation, et
+   Scénarios).</li>
+<li>Un fichier <strong><code>story_mapping.md</code></strong> (pour regrouper les Epics et les User Stories).</li>
+</ol>
+</li>
+<li><strong>Product Owner :</strong> "Est-ce que ta documentation fait ressortir que actuellement les exemplaires n'ont pas d'ID
+  explicite ?"</li>
+<li><strong>BA :</strong> Reconnaissance de la lacune. Le système actuel ne permettait pas de distinguer quel exemplaire physique
+  précis était emprunté.<ul>
+<li><em>Action :</em> Ajout d'un point de vigilance dans le Plan d'Élicitation.</li>
+</ul>
+</li>
+<li><strong>Product Owner :</strong> Demande la création d'une User Story (US) spécifique pour combler cette lacune.<ul>
+<li><em>Action :</em> Création de la <code>US-CAT-03</code> : Identifier un exemplaire par un ID explicite (code-barre ou RFID) dans le
+  <code>story_mapping.md</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="etape-4-restructuration-documentaire">Étape 4 : Restructuration Documentaire</h2>
+<ul>
+<li><strong>Product Owner :</strong> Demande de décomposer la documentation, jugée trop monolithique, en plusieurs fichiers, et de
+  présenter le backlog sous forme de tableau.</li>
+<li><strong>BA :</strong> Suppression des anciens fichiers globaux (<code>documentation_fonctionnelle.md</code> et <code>story_mapping.md</code>) au profit
+  d'une approche modulaire. Découpage du savoir dans un nouveau dossier <code>docs/requirements/</code> comprenant 5 fichiers
+  spécialisés :<ol>
+<li><code>01_vision_contexte.md</code> (Périmètre et acteurs)</li>
+<li><code>02_glossaire.md</code> (Langage omniprésent / Ubiquitous Language)</li>
+<li><code>03_scenarios_regles.md</code> (Règles métier et Use Cases)</li>
+<li><code>04_plan_elicitation.md</code> (Incohérences et ateliers à venir)</li>
+<li><code>05_backlog.md</code> (Tableau des US priorisées).</li>
+</ol>
+</li>
+</ul>
+<h2 id="etape-5-affinage-de-la-vision-et-du-contexte">Étape 5 : Affinage de la Vision et du Contexte</h2>
+<ul>
+<li><strong>Product Owner :</strong> Remonte trois points d'amélioration cruciaux concernant le domaine du problème :<ol>
+<li>La carte des parties prenantes manque de relations (hiérarchie, satisfaction).</li>
+<li>Il manque les attentes, les risques et le ROI de chaque partie prenante.</li>
+<li>Le diagramme de contexte confond la Bibliothèque (système réel) avec le Système Informatique BiblioCQRS étudié.</li>
+</ol>
+</li>
+<li><strong>BA :</strong> Prise en compte immédiate. Mise à jour complète du document <code>01_vision_contexte.md</code> :<ul>
+<li>Remplacement du mindmap par un diagramme relationnel des PP (Direction -&gt; Bibliothécaire -&gt; Usager).</li>
+<li>Création d'une matrice croisant Attentes, Risques et ROI.</li>
+<li>Révision du diagramme de contexte pour délimiter strictement le <em>Système Métier</em> (la réalité physique) du
+  <em>Périmètre de la Solution</em> (le logiciel BiblioCQRS).</li>
+</ul>
+</li>
+</ul>
+<h2 id="etape-6-tracabilite-arbre-des-objectifs-backlog">Étape 6 : Traçabilité Arbre des Objectifs &lt;-&gt; Backlog</h2>
+<ul>
+<li><strong>Product Owner :</strong> Fait remarquer une rupture de traçabilité : l'arbre des objectifs n'intégrait pas la notion d'Epic
+  qui était pourtant présente dans le backlog. Recommande la bonne pratique liant Objectif Entreprise -&gt; Epic -&gt; Use
+  Case.</li>
+<li><strong>BA :</strong> Prise en compte et mise à jour de <code>03_scenarios_regles.md</code>. Les branches principales du mindmap ont été
+  renommées pour correspondre exactement aux Epics (Gestion du Catalogue, Gestion des Adhérents, Gestion des Prêts),
+  offrant ainsi une parfaite continuité visuelle jusqu'au niveau "Cas d'Utilisation".</li>
+</ul>
+<h2 id="etape-7-regle-decriture-des-user-stories-personas">Étape 7 : Règle d'écriture des User Stories (Personas)</h2>
+<ul>
+<li><strong>Product Owner :</strong> Signale une erreur méthodologique dans le backlog : le "Système" ne peut pas être le persona (
+  acteur) d'une User Story, car il ne retire aucune valeur métier. L'US doit se placer du point de vue de l'acteur
+  opérationnel.</li>
+<li><strong>BA :</strong> Correction immédiate de <code>05_backlog.md</code>. Les US de blocage (Quota et Retards) ont été réécrites sous l'angle
+  du <strong>Documentaliste</strong> qui <em>veut être empêché</em> de faire l'action, <em>afin de</em> garantir l'équité d'accès aux ressources (
+  pour le quota) et la bonne circulation (pour les retards).</li>
+</ul>
+<h2 id="etape-8-industrialisation-via-la-creation-dun-skill">Étape 8 : Industrialisation via la création d'un Skill</h2>
+<ul>
+<li><strong>Product Owner :</strong> Demande comment pérenniser toutes ces règles (pas de persona "Système", traçabilité IREB,
+  historique automatique) pour ne plus avoir à les répéter à l'avenir.</li>
+<li><strong>BA :</strong> Proposition et exécution du processus de création de "Skill". Génération du fichier <code>SKILL.md</code> (nommé
+  <code>business-analyst-ireb</code>) installé globalement sur la machine. Le comportement et les règles d'or de notre cadrage sont
+  désormais un standard encapsulé et réutilisable à la demande.</li>
+</ul>
+<h2 id="etape-9-transition-vers-la-realisation-techlead-tdd-double-loop">Étape 9 : Transition vers la Réalisation (TechLead &amp; TDD Double Loop)</h2>
+<ul>
+<li><strong>Product Owner :</strong> Déclare la fin de la phase BA. Demande d'endosser le rôle de TechLead Senior (Architecture
+  CQRS/Hexagonale, DDD, Clean Code, DRY, TDA). Impose la méthodologie stricte "BDD -&gt; TDD par scénario (YAGNI)".</li>
+<li><strong>BA / TechLead :</strong> Création du skill global <code>techlead-bdd-tdd</code>. Constat que la couche Domaine de US-CAT-01 et
+  US-CAT-02 est déjà couverte par le BDD (<code>reference_ouvrage.feature</code>) et que les tests passent. La décision est prise
+  d'appliquer le cycle TDD strict (test Junit en premier) sur la couche Infrastructure (Adaptateurs) pour boucler la
+  tranche verticale.</li>
+</ul>
+<h2 id="etape-10-precision-semantique-et-granularite-business-case-vs-use-case">Étape 10 : Précision Sémantique et Granularité (Business Case vs Use Case)</h2>
+<ul>
+<li><strong>Product Owner :</strong> Rejette l'utilisation du verbe "Gérer" (jugé trop "fourre-tout") dans la documentation des Use
+  Cases. Introduit également la nuance fondamentale entre le processus global d'un bout à l'autre (<em>Business Case</em>,
+  ex: "Opérer un prêt") et l'interaction unitaire d'un persona avec le système à un instant T (<em>Use Case</em>, ex: "Prendre
+  en compte un emprunt"). Précise enfin qu'une User Story (US) est éphémère (pour planifier), tandis que le Use Case (
+  UC) est la documentation pérenne du résultat.</li>
+<li><strong>BA :</strong> Application immédiate sur la matrice CRUD (<code>01_use_cases_crud.md</code>). Remplacement des verbes flous par des
+  verbes d'action métier précis. Décomposition du domaine des prêts en deux Use Cases temporels distincts (Prendre en
+  compte un emprunt / Effectuer une restitution). Enfin, mise à jour du skill <code>business-analyst-ireb</code> pour graver
+  définitivement cette rigueur sémantique et de modélisation dans le marbre.</li>
+</ul>
+<h2 id="conclusion-de-latelier">Conclusion de l'atelier</h2>
+<p>L'itération a permis de passer d'une idée métier à un ensemble documentaire professionnel et structuré. La distinction
+rigoureuse entre l'espace du problème (la bibliothèque réelle, ses acteurs) et l'espace de la solution (le logiciel) est
+désormais parfaitement modélisée, sécurisant ainsi l'implémentation logicielle à venir.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
