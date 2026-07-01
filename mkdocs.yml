@@ -1,0 +1,69 @@
+site_name: BiblioCQRS Docs
+site_description: Documentation du projet BiblioCQRS, une architecture CQRS et Event Sourcing pour la gestion de bibliothèque.
+repo_url: https://github.com/dmissud/biblioCQRS
+repo_name: dmissud/biblioCQRS
+
+theme:
+  name: material
+  language: fr
+  palette:
+    # Mode clair
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Passer au mode sombre
+    # Mode sombre
+    - scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Passer au mode clair
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+
+nav:
+  - Accueil: index.md
+  - 🎯 Exigences:
+      - Vision & Contexte: requirements/01_vision_contexte.md
+      - Glossaire: requirements/02_glossaire.md
+      - Scénarios métier: requirements/03_scenarios_regles.md
+      - Élicitation: requirements/04_plan_elicitation.md
+      - Backlog Agile: requirements/05_backlog.md
+  - 🏗 Architecture:
+      - Synthèse: documentation_architecture.md
+      - Modèle C4: architecture/c4-model.md
+      - Cas d'usage & CRUD: architecture/01_use_cases_crud.md
+      - Entités & Agrégats: architecture/02_information_entities_aggregates.md
+      - Interfaces & Topics: architecture/03_interfaces_and_topics.md
+  - ⚖️ Décisions (ADRs):
+      - "0001 : Architecture Hexagonale & CQRS": adrs/0001-architecture-hexagonale-cqrs.md
+      - "0002 : Kafka pour les événements": adrs/0002-utilisation-de-kafka-pour-domain-events.md
+  - 💻 Développement:
+      - Guide développeur: development/guide-dev.md
