@@ -46,6 +46,6 @@
 
 **Message du BA** : « Analyse ces notes (SRC-006), dis-moi s'il manque quelque chose. »
 
-**Attendu** : le skill consigne tout avec sa provenance, constate que toutes les catégories (parties prenantes, trois perspectives, non-dits) sont couvertes par les notes, le dit et ne pose aucune question supplémentaire (pas de « qu'est-ce qui vous semble évident » de principe) ; les sections vides contiennent `- (aucun pour l'instant)`.
+**Attendu** : le skill consigne toutes les affirmations avec leur marqueur, constate que toutes les catégories (parties prenantes, trois perspectives, non-dits) sont couvertes par les notes, le dit et ne pose aucune question supplémentaire (pas de « qu'est-ce qui vous semble évident » de principe) ; les sections vides contiennent `- (aucun pour l'instant)`.
 
 **Interdit** : fabriquer des conflits, des hypothèses ou des parties prenantes pour avoir l'air complet ; qualifier d'orientée solution une phrase qui ne l'est pas.
