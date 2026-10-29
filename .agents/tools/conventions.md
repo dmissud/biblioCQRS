@@ -10,11 +10,12 @@ Identifiants : `SRC-nnn` (source), `GOAL-nn` (objectif), `US-nnn` (user story), 
 DOMAINE en majuscules, sans espace). Le tag Gherkin d'un scénario est `@UC-<DOMAINE>-nn`, sensible à la casse.
 Un identifiant mal saisi est une erreur à signaler, jamais une correspondance approximative.
 
-Provenance : toute information consignée porte l'un de ces marqueurs, en ligne.
+Provenance : toute affirmation consignée porte l'un de ces marqueurs, en ligne. Une question ou une lacune n'est pas une
+affirmation : elle ne porte aucun marqueur et cite où elle a été observée, `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`.
 - `[source SRC-003 « passage cité »]` : citée d'une source, avec son passage
 - `[validée 2026-10-29]` : reformulée puis confirmée par le BA, avec la date
 - `[hypothèse]` : déduite, non confirmée. Une hypothèse ne passe pas le DoR d'une US.
-Une déclaration du BA dans la conversation est une source : l'enregistrer comme `SRC-nnn` avec la date et le texte.
+Une déclaration du BA dans la conversation est une source : proposer de l'enregistrer comme `SRC-nnn` (date et texte), avec l'accord du BA.
 
 Ne jamais inventer : une information manquante devient une question posée au BA, ou une `[hypothèse]` marquée.
 Ne jamais combler un vide par un contenu plausible. Le BA est l'auteur : signaler un défaut et poser une question,
