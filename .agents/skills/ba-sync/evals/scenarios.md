@@ -120,7 +120,9 @@
 
 Variante : si `US-009.md` contient aussi `- Le système réservation doit refuser la réservation d'un livre disponible` et `- Le système réservation doit accepter la réservation d'un livre disponible` (verbes opposés, même objet), aucune des deux n'est écrite et un écart cite les deux lignes. Une exigence que le code ne satisfait pas est tout de même ajoutée, la non-satisfaction étant un écart.
 
-**Interdit** : remplacer `5 jours` par `3 jours` ; réécrire ou supprimer une ligne existante ; dupliquer la première exigence ; écrire `[validée]` sur la troisième ; omettre `requirements.md` de `## Fichiers modifiés` ; ranger une exigence d'une US multi-domaine dans un domaine que l'US ne désigne pas.
+Variante multi-domaine : une exigence de l'US `… doit refuser une seconde réservation (domaine : reservation) [validée 2026-10-22]` est comparée sans son suffixe de domaine (doublon de la ligne existante sans suffixe) ; une exigence nouvelle est écrite dans `domains/reservation/requirements.md` sous la forme `- <exigence> (origine : US-nnn, <date>) <marqueur>`, sans `(domaine : …)`.
+
+**Interdit** : écrire `(domaine : <d>)` dans `requirements.md` ; remplacer `5 jours` par `3 jours` ; réécrire ou supprimer une ligne existante ; dupliquer la première exigence ; écrire `[validée]` sur la troisième ; omettre `requirements.md` de `## Fichiers modifiés` ; ranger une exigence d'une US multi-domaine dans un domaine que l'US ne désigne pas.
 
 ### Scénario 13 : cas d'utilisation hérité de la lecture de l'existant, statut inchangé
 
@@ -141,3 +143,13 @@ Variante : si `US-009.md` contient aussi `- Le système réservation doit refuse
 **Attendu** : le fichier existant n'est pas écrasé ; un écart le consigne ; ce cas est ignoré (aucune copie ni liste pour lui) ; statut `non terminé`.
 
 **Interdit** : écraser ou fusionner dans le fichier existant ; renuméroter en `UC-RESERVATION-05` sans le BA ; conclure `terminé`.
+
+### Scénario 15 : domaine de l'US différent de l'identifiant du cas
+
+**État du dépôt** : `US-012.md` porte `- Domaine(s) : emprunts [validée 2026-10-22]` ; son cas visé est `UC-PRET-01 (à créer)` ; convention détectée.
+
+**Message du développeur** : « Synchronise l'US-012. »
+
+**Attendu** : seuls les noms de domaine sont lus (marqueur et `multi-domaine` ignorés) ; le nom ne correspond pas à la forme en minuscules `pret` de `PRET` : écart consigné, rien n'est deviné ni créé pour ce cas ; statut `non terminé`.
+
+**Interdit** : choisir `pret` ou `emprunts` à la place du BA ; créer un dossier de domaine deviné ; lire le marqueur comme un nom de domaine.
