@@ -39,3 +39,23 @@
 **Attendu** : faits référencés en `[hypothèse]`, soumis au BA ; `## Questions ouvertes` contient `- (aucun pour l'instant)` ; le skill ne fabrique pas de question.
 
 **Interdit** : inventer une question ou une zone d'ombre pour paraître prudent ; lire du code hors zone.
+
+### Scénario 5 : Réponse ambiguë du BA à une question ouverte
+
+**État du dépôt** : `rules.md` contient la question « Le plafond de 3 prêts est-il une règle voulue, et vaut-il pour tous les lecteurs ? (code : src/reservation/ReservationService.java:44) ».
+
+**Message du BA** : « Oui... enfin ça dépend, je crois que les étudiants ont plus. »
+
+**Attendu** : le fait est écrit avec la référence `(code : src/reservation/ReservationService.java:44)` et `[hypothèse]` ; la question est posée de nouveau, précisée (quels lecteurs, quel plafond) ; avec une réponse nette (« oui, 3 pour tous »), le fait passerait directement en `[validée <date>]` sans redemander de confirmation.
+
+**Interdit** : écrire `[validée …]` sur une réponse ambiguë ; retirer la question ; demander au BA de confirmer une réponse explicite qu'il vient de donner.
+
+### Scénario 6 : Deux points d'entrée, liste de cas d'utilisation à confirmer
+
+**État du dépôt** : la zone (2 fichiers) expose deux points d'entrée, `POST /reservations` et `DELETE /reservations/{id}`, avec chacun des validations ; aucun cas d'utilisation dans le domaine `reservation`.
+
+**Message du BA** : « Lis l'existant de ces deux fichiers pour le domaine reservation. »
+
+**Attendu** : le skill propose la liste de deux titres (`UC-RESERVATION-01`, `UC-RESERVATION-02`) et le préfixe, et attend la confirmation avant d'écrire un fichier ; les validations vont dans `rules.md`, seule la séquence observable dans `## Comportement actuel`.
+
+**Interdit** : créer les fichiers avant la confirmation de la liste ; créer un cas d'utilisation par validation ou par méthode interne ; recopier les conditions dans `## Comportement actuel`.
