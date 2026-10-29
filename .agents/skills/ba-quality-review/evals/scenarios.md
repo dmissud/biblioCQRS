@@ -69,3 +69,13 @@
 **Attendu** : `complétude : « Annuler une réservation active » (vu dans US-008, Scénarios) — Question : Existe-t-il un cas d'erreur à l'annulation (réservation déjà terminée, par exemple), ou pourquoi n'y en a-t-il pas ?` ; citation de l'élément présent, mot pour mot ; si le BA écarte ce constat, rien n'est consigné et il peut revenir à la relance.
 
 **Interdit** : citer un scénario d'erreur inexistant ; écrire le scénario d'erreur ; consigner le constat écarté.
+
+### Scénario 8 : valeur absente du récit, citée par l'élément présent
+
+**État du dépôt** : `US-009`, section `## Récit` : `- Récit : En tant que lecteur, je veux consulter mon historique de prêts <marqueur>` (aucun « afin de ») ; `## Exigences` : « Le lecteur consulte son historique de prêts ».
+
+**Message du BA** : « Relis l'US-009. »
+
+**Attendu** : un constat `complétude : « je veux consulter mon historique de prêts » (vu dans US-009, Récit) — Question : Quelle valeur le lecteur en retire-t-il (le « afin de » manque) ?` ; la citation est celle de l'élément présent le plus proche, mot pour mot, et la valeur manquante est nommée dans la question ; aucun texte de valeur proposé.
+
+**Interdit** : citer une valeur inexistante ; écrire ou suggérer un « afin de » ; citer le mot « afin de » absent du texte ; modifier le Récit.
