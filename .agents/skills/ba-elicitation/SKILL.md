@@ -49,35 +49,41 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 
 ## Déroulement
 
-1. Vérifier `## Pré-requis absents`. Obtenir le nom de l'epic. Si `work/<epic>/elicitation.md` existe, le lire et le compléter sans supprimer ni réécrire ses lignes ; une ligne déjà présente n'est pas ajoutée une seconde fois.
-2. Lire les sources concernées et `shared/actors.md`. Ne retenir que ce qui y figure vraiment, avec le passage cité.
-3. Choisir le mode et le dire au BA : mode 1 (interview) s'il n'a pas de notes ; mode 2 (analyse de notes) s'il en fournit. En cas de doute, demander.
-4. Choisir la technique selon la situation et la proposer au BA, qui décide :
-   - interview : peu de personnes, sujet flou ou sensible ;
-   - atelier : plusieurs parties prenantes en désaccord ou à aligner ;
-   - analyse de documents : des sources existent déjà ;
-   - lecture du code : évolution d'un système existant (dans ce cas, renvoyer vers la lecture de l'existant) ;
-   - observation : gestes réels qui diffèrent de ce que l'on en dit.
-5. Parties prenantes. Poser, une question à la fois en mode 1 ; en mode 2 vérifier dans les notes : qui utilise (utilisateurs cibles) ? qui administre ? qui exploite (supervision, sauvegarde, support) ? qui décide ou paie ? qui subit le changement ? qui fournit ou reçoit des données ? Pour chaque catégorie sans réponse, écrire la question dans `## Questions ouvertes` : « partie prenante absente de la demande : exploitation ? ». Ne pas inventer de personne ni de rôle. Chaque partie prenante est consignée `- <rôle> : <intérêt> <marqueur>`.
-6. Les trois perspectives. Pour chacune, poser au moins une question et consigner les réponses dans `## Besoins` en préfixant la ligne de `[données]`, `[fonctions]` ou `[comportement]` :
-   - données : quelles informations sont manipulées, d'où viennent-elles, combien de temps vivent-elles ?
-   - fonctions : que doit pouvoir faire chaque acteur ?
-   - comportement : que se passe-t-il selon les états, les erreurs, les délais, les cas limites ?
-   Une perspective qui n'a reçu aucune réponse est notée dans `## Questions ouvertes`.
-7. Non-dits, hypothèses, conflits. Demander : « qu'est-ce qui vous semble évident mais n'est écrit nulle part ? », « qu'est-ce qui est supposé vrai sans l'avoir vérifié ? », « qui voudrait autre chose ? ». Les suppositions vont dans `## Hypothèses` (`[hypothèse]`), les désaccords dans `## Conflits` (qui veut quoi, source de chacun), les trous dans `## Questions ouvertes`.
-8. Exigences orientées solution. Une phrase qui impose un moyen (« je veux un fichier Excel », « un bouton rouge », « une table de plus ») est consignée telle quelle dans `## Besoins`, marquée `[orientée solution]`, puis creusée avec le BA :
-   - objectif : qu'essayez-vous d'obtenir avec cela ?
-   - moyen : pourquoi ce moyen plutôt qu'un autre ?
-   - mesure : comment saurez-vous que c'est réussi ?
-   - risque : que se passe-t-il si on ne le fait pas, ou si on le fait mal ?
-   Si la réponse n'est pas claire, enchaîner jusqu'à 5 « pourquoi » successifs, puis les 5 W (qui, quoi, où, quand, pourquoi). Le besoin sous-jacent est ajouté en `[hypothèse]` jusqu'à confirmation ; la formulation d'origine reste en place.
-9. Mode 2 uniquement : lire les notes, consigner chaque affirmation avec `[source SRC-nnn « passage »]` (la déclaration est enregistrée via `ba-source-intake` si les notes ne sont pas encore une source ; demander au BA de le faire ou son accord), puis lister les trous : acteur non identifié, perspective manquante, partie prenante absente, terme flou, solution imposée. Un trou est une ligne de `## Questions ouvertes`, jamais un contenu inventé.
-10. Marqueurs : ce que le BA vient d'affirmer dans la conversation est reformulé et reste `[hypothèse]` jusqu'à sa confirmation explicite. Présenter au BA les lignes à valider ; seulement après sa réponse « oui » ligne par ligne ou en bloc, remplacer par `[validée <date du jour>]`. Une reformulation corrigée par le BA redevient `[hypothèse]` jusqu'à sa nouvelle confirmation.
-11. Écrire `work/<epic>/elicitation.md` (créer le dossier au besoin). Relire : aucune ligne sans marqueur, aucun acteur ni besoin qui ne vienne ni d'une source ni du BA.
-12. Clore en annonçant : le chemin du fichier, le nombre de lignes par section, la liste numérotée des questions ouvertes et des lignes `[hypothèse]` à confirmer. Proposer ensuite le cadrage du besoin (ou le skill que le BA préfère) ; le BA confirme avant tout enchaînement.
+Règle de provenance (s'applique aux deux modes). Les marqueurs portent sur les assertions : `## Parties prenantes`, `## Besoins`, `## Hypothèses`, `## Conflits`. Une ligne de `## Questions ouvertes` n'est pas une assertion : elle ne porte aucun marqueur, mais cite où le trou a été vu, sous la forme `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`. Une ligne de `## Conflits` cite les deux camps, chacun avec son marqueur (`[source SRC-a « … »]` / `[source SRC-b « … »]`, ou `[hypothèse]` pour un camp venant de l'IA). Une ligne reprise de `shared/actors.md` garde le marqueur qu'elle y a déjà. Un trou (acteur manquant, perspective absente) est toujours une question, jamais une `[hypothèse]`.
+
+Contrôles communs (liste de référence pour les deux modes) :
+- C1 parties prenantes : utilisateurs cibles ? administration ? exploitation (supervision, sauvegarde, support) ? qui décide ou paie ? qui subit le changement ? qui fournit ou reçoit des données ?
+- C2 perspectives : données (quelles informations, d'où, quelle durée de vie), fonctions (que fait chaque acteur), comportement (états, erreurs, délais, cas limites).
+- C3 exigences orientées solution : une phrase qui impose un moyen (« un fichier Excel », « un bouton rouge »).
+- C4 non-dits : ce qui semble évident mais n'est écrit nulle part ; suppositions non vérifiées ; désaccords entre personnes.
+
+Préparation (communes)
+1. Vérifier `## Pré-requis absents`. Obtenir le nom de l'epic. Si `work/<epic>/elicitation.md` existe, le lire et le compléter sans supprimer ni réécrire ses lignes ni ajouter une ligne déjà présente.
+2. Lire les sources concernées et `shared/actors.md`.
+3. Choisir le mode et le dire : mode 1 (interview) sans notes ; mode 2 (analyse de notes) si le BA fournit des notes ou un document. En cas de doute, demander.
+4. Proposer la technique adaptée, le BA décide : interview (peu de personnes, sujet flou ou sensible) ; atelier (parties prenantes à aligner) ; analyse de documents (sources existantes) ; lecture du code (évolution d'un système existant : renvoyer vers `ba-as-is-reading`) ; observation (gestes réels différents du discours).
+
+Mode 1 : interview. Une seule question à la fois, attendre la réponse avant la suivante.
+5. Poser les questions de C1 une à une. Consigner chaque réponse `- <rôle> : <intérêt> [hypothèse]`. Une catégorie sans réponse devient une ligne de `## Questions ouvertes` (`(contrôle de l'IA)`). Ne pas inventer de personne.
+6. Poser au moins une question par perspective de C2. Consigner dans `## Besoins`, ligne préfixée `[données]`, `[fonctions]` ou `[comportement]`. Une perspective sans réponse va en `## Questions ouvertes`.
+7. C3 : consigner la phrase telle quelle dans `## Besoins` avec `[orientée solution]`, puis demander successivement l'objectif (qu'en attendez-vous ?), le moyen (pourquoi celui-ci ?), la mesure (comment saura-t-on que c'est réussi ?), le risque (que se passe-t-il sinon ?). Si c'est encore flou, jusqu'à 5 « pourquoi », puis les 5 W (qui, quoi, où, quand, pourquoi). Le besoin sous-jacent est ajouté `[hypothèse]` ; la phrase d'origine reste.
+8. C4 : demander « qu'est-ce qui vous semble évident mais n'est écrit nulle part ? », « qu'est-ce qui est supposé sans vérification ? », « qui voudrait autre chose ? ». Suppositions dans `## Hypothèses`, désaccords dans `## Conflits`, trous dans `## Questions ouvertes`.
+9. En fin d'interview, proposer d'enregistrer les réponses clés du BA comme déclaration via `ba-source-intake` (le BA décide). Sans accord, elles restent `[hypothèse]`.
+
+Mode 2 : analyse de notes
+5. Lire les notes en entier. Si elles ne sont pas encore une source `SRC-nnn`, proposer que `ba-source-intake` les enregistre, attendre l'accord du BA, et ne pas les citer en `[source …]` tant qu'aucun numéro n'existe (d'ici là, les affirmations sont `[hypothèse]`).
+6. Consigner chaque affirmation des notes dans la section qui convient, avec `[source SRC-nnn « passage cité »]`.
+7. Passer C1, C2, C3 et C4 en liste de contrôle contre les notes, sans poser de question au BA à ce stade. C3 : marquer `[orientée solution]` les besoins concernés.
+8. Lister les trous constatés : chacun est une ligne de `## Questions ouvertes` avec `(vu dans SRC-nnn)`. Si toutes les catégories sont couvertes par les notes, le dire et ne rien demander de plus (pas de question C4 « de principe »).
+9. Poser alors au BA, une à la fois, les seules questions des trous, et appliquer pour une exigence orientée solution les questions objectif / moyen / mesure / risque de l'étape 7.
+
+Clôture (communes)
+10. Les affirmations du BA dans la conversation restent `[hypothèse]` jusqu'à sa confirmation explicite. Présenter les lignes à valider ; seulement après son « oui » (ligne par ligne ou en bloc), remplacer par `[validée <date du jour>]`. Une reformulation corrigée redevient `[hypothèse]` jusqu'à nouvelle confirmation.
+11. Écrire `work/<epic>/elicitation.md` (créer le dossier au besoin). Relire : toute assertion a son marqueur, toute question sa mention `(vu dans …)` ou `(contrôle de l'IA)`, aucun acteur ni besoin ne vient de nulle part.
+12. Annoncer : le chemin, le nombre de lignes par section, la liste numérotée des questions ouvertes et des lignes `[hypothèse]` à confirmer. Proposer `ba-framing` ; le BA confirme avant tout enchaînement.
 
 ## Exemple : information manquante
 
-Notes du BA (SRC-004) : « Il faut pouvoir relancer les lecteurs en retard. » Aucun acteur n'est nommé, `shared/actors.md` est absent.
+Notes enregistrées (SRC-004) : « Il faut pouvoir relancer les lecteurs en retard. » Aucun acteur n'est nommé, `shared/actors.md` est absent.
 
-Le skill consigne le besoin avec `[source SRC-004 « relancer les lecteurs en retard »]` et pose : « Qui déclenche la relance, et qui la reçoit : un bibliothécaire, un système, le lecteur ? » Dans `## Questions ouvertes` : `- acteur qui déclenche la relance non identifié [hypothèse]`. Aucun acteur n'est écrit dans `## Parties prenantes`.
+Le skill consigne dans `## Besoins` : `- [fonctions] relancer les lecteurs en retard [source SRC-004 « relancer les lecteurs en retard »]`. Dans `## Questions ouvertes` : `- Qui déclenche la relance, et qui la reçoit ? (vu dans SRC-004)`. Aucun acteur n'est écrit dans `## Parties prenantes`, aucune `[hypothèse]` ne le remplace ; la question est posée au BA.

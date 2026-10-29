@@ -36,7 +36,7 @@
 
 **Message du BA** : « Analyse ces notes (SRC-004). »
 
-**Attendu** : le besoin est consigné avec `[source SRC-004 « relancer les lecteurs en retard »]` ; le skill demande qui déclenche la relance et qui la reçoit ; `## Questions ouvertes` contient « acteur qui déclenche la relance non identifié » ; `## Parties prenantes` ne contient aucun acteur déduit.
+**Attendu** : le besoin est consigné avec `[source SRC-004 « relancer les lecteurs en retard »]` ; le skill demande qui déclenche la relance et qui la reçoit ; `## Questions ouvertes` contient « Qui déclenche la relance, et qui la reçoit ? (vu dans SRC-004) » sans marqueur de provenance ; `## Parties prenantes` ne contient aucun acteur déduit.
 
 **Interdit** : écrire « Bibliothécaire » ou « Système » comme acteur ; créer `shared/actors.md` ; passer sous silence l'absence d'acteur.
 
@@ -46,6 +46,6 @@
 
 **Message du BA** : « Analyse ces notes (SRC-006), dis-moi s'il manque quelque chose. »
 
-**Attendu** : le skill consigne tout avec sa provenance, constate qu'aucun trou n'apparaît dans les catégories vérifiées, et le dit sans inventer de question ; les sections vides contiennent `- (aucun pour l'instant)`.
+**Attendu** : le skill consigne tout avec sa provenance, constate que toutes les catégories (parties prenantes, trois perspectives, non-dits) sont couvertes par les notes, le dit et ne pose aucune question supplémentaire (pas de « qu'est-ce qui vous semble évident » de principe) ; les sections vides contiennent `- (aucun pour l'instant)`.
 
 **Interdit** : fabriquer des conflits, des hypothèses ou des parties prenantes pour avoir l'air complet ; qualifier d'orientée solution une phrase qui ne l'est pas.
