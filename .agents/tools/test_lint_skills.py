@@ -114,3 +114,45 @@ def test_only_flag_lints_a_single_skill(tmp_path):
     assert main(base + ["--only", "demo"]) == 0
     assert main(base + ["--only", "bad"]) == 1
     assert main(base + ["--only", "missing"]) == 1
+
+
+def test_missing_skills_dir_returns_2(tmp_path, capsys):
+    _, conv = _setup(tmp_path)
+    assert main(["--skills-dir", str(tmp_path / "nope"), "--conventions", str(conv)]) == 2
+    assert "nope" in capsys.readouterr().err
+
+
+def test_frontmatter_closing_line_without_trailing_newline_is_parsed():
+    assert lint_skills.parse_frontmatter("---\nname: demo\ndescription: À utiliser x\n---") == {
+        "name": "demo", "description": "À utiliser x"}
+
+
+def test_frontmatter_only_skill_md_has_no_name_or_description_violation(tmp_path):
+    skill = make_skill(tmp_path)
+    (skill / "SKILL.md").write_text("---\nname: demo\ndescription: À utiliser pour tester.\n---", encoding="utf-8")
+    violations = lint_skill(skill, CONVENTIONS, [])
+    assert not any(v.startswith("name") or v.startswith("description") for v in violations)
+
+
+def test_local_forbidden_file_is_loaded_by_main(tmp_path, monkeypatch):
+    skills, conv = _setup(tmp_path)
+    md = skills / "demo" / "SKILL.md"
+    md.write_text(md.read_text(encoding="utf-8") + "\nParle de ZorgLub ici.\n", encoding="utf-8")
+    local = tmp_path / "local.txt"
+    local.write_text("\n  zorglub  \n\n", encoding="utf-8")
+    monkeypatch.setattr(lint_skills, "LOCAL_FORBIDDEN", local)
+    assert main(["--skills-dir", str(skills), "--conventions", str(conv)]) == 1
+
+
+def test_missing_skill_md_is_a_violation(tmp_path):
+    skill = tmp_path / "empty"
+    skill.mkdir()
+    assert lint_skill(skill, CONVENTIONS, []) == ["empty: SKILL.md introuvable"]
+
+
+def test_skill_md_without_frontmatter_reports_violations(tmp_path):
+    skill = make_skill(tmp_path)
+    (skill / "SKILL.md").write_text(CONVENTIONS + "\n", encoding="utf-8")
+    violations = lint_skill(skill, CONVENTIONS, [])
+    assert any(v.startswith("name") for v in violations)
+    assert any("description" in v for v in violations)

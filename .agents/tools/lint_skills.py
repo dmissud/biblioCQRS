@@ -16,7 +16,7 @@ MIN_SCENARIOS = 3
 
 
 def parse_frontmatter(text):
-    match = re.match(r"---\r?\n(.*?)\r?\n---\r?\n", text, re.DOTALL)
+    match = re.match(r"---\r?\n(.*?)\r?\n---(?:\r?\n|\Z)", text, re.DOTALL)
     if not match:
         return {}
     fields = {}
@@ -83,6 +83,9 @@ def main(argv):
         print(f"Erreur : fichier de conventions introuvable : {args.conventions}", file=sys.stderr)
         return 2
     conventions = args.conventions.read_text(encoding="utf-8").strip()
+    if not args.skills_dir.is_dir():
+        print(f"Erreur : dossier des skills introuvable : {args.skills_dir}", file=sys.stderr)
+        return 2
     forbidden = load_local_forbidden()
 
     if args.only:
