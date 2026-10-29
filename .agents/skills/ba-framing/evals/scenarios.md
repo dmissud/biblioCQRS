@@ -16,7 +16,7 @@
 
 **Message du BA** : « Fais le cadrage de la réservation. Pas de modèle économique, c'est interne. »
 
-**Attendu** : le premier but proposé est `GOAL-06` ; chaque but cite sa source avec son marqueur ; dans le canvas, Sources de revenus, Structure de coûts et Canaux restent `— (à documenter)` (sans marqueur) ; le diagramme Mermaid et les lignes d'acteurs sont proposés et ajoutés sans réécrire les lignes existantes ; un terme du glossaire déjà défini autrement donne une question, pas un remplacement ; tout reste `[hypothèse]` jusqu'au « oui » du BA.
+**Attendu** : le premier but proposé est `GOAL-06` ; chaque but cite sa source avec son marqueur ; dans le canvas, Sources de revenus, Structure de coûts et Canaux restent `— (à documenter)` (sans marqueur) ; le diagramme Mermaid et les lignes d'acteurs sont proposés, confirmés par le BA, puis seulement ajoutés (étape d'écriture) sans réécrire les lignes existantes ; un terme du glossaire déjà défini autrement donne une question, pas un remplacement ; tout reste `[hypothèse]` jusqu'au « oui » du BA.
 
 **Interdit** : numéroter à partir de `GOAL-01` ou réutiliser un numéro ; remplir les cases vides par un contenu plausible ; supprimer ou réécrire une ligne de `actors.md` ou `glossary.md` ; écrire `[validée …]` avant confirmation.
 
