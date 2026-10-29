@@ -2,6 +2,10 @@
 
 ## Domaines
 
+- catalogue
+- adherents
+- prets
+
 ## Sources
 
 - SRC-001 : 1. Vision et Contexte (document, 2026-10-29)
