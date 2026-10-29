@@ -54,7 +54,7 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
   - Exigences non fonctionnelles : une ligne `- <catégorie> : <exigence> <marqueur>`, ou `- Aucune exigence non fonctionnelle <marqueur>` quand le BA l'a dit.
   - DoR : `Référentiel : DoR du projet (<chemin>)` ou `Référentiel : liste par défaut (non obligatoire)`, puis une ligne par critère, `- [ ] <critère>` ou `- [x] <critère> (vérifié <date>)`.
   - Questions ouvertes : lignes sans marqueur, avec `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`.
-- Ce skill ne crée ni ne modifie aucun fichier de cas d'utilisation : il nomme le cas visé. Le fichier du cas d'utilisation et les fichiers `.feature` sont mis à jour par `ba-sync`, que l'agent du développeur utilise à l'implémentation.
+- Ce skill ne crée ni ne modifie aucun fichier de cas d'utilisation : il nomme le cas visé. Le fichier du cas d'utilisation et les fichiers `.feature` sont mis à jour par `ba-sync`, que l'agent du développeur utilise à l'implémentation. Les titres de scénarios écrits dans l'US restent inchangés quand `ba-sync` crée le `.feature` et la liste `::`. US multi-domaine : une ligne `Cas d'utilisation visé :` par domaine, et chaque scénario porte le tag du cas de son propre domaine.
 
 ## DoR par défaut (proposée, non obligatoire ; le DoR du projet, s'il existe, prime)
 
@@ -79,7 +79,7 @@ Rien n'est écrit dans un fichier avant l'étape 17. Chaque contenu est proposé
 14. Confirmation : présenter récit, exigences, scénarios, NFR, dépendances, section par section, et demander « Confirmez-vous, ou corrigez-vous, section par section ? ». Après un « oui » explicite (y compris pour la ligne `- Dépendances :`), mettre `[validée <date du jour>]` sur les lignes confirmées ; une ligne corrigée redevient `[hypothèse]`.
 15. Vérifier chaque critère du DoR retenu contre le contenu réel (hypothèse restante, scénario d'erreur présent, source citée, etc.). Cocher `[x]` avec `(vérifié <date>)` seulement ce qui est vérifié ; « dépendances connues » n'est coché que si la ligne `- Dépendances :` est `[validée]` (une réponse « aucune » validée compte) ; le critère « accord du BA » exige son accord explicite que l'US est prête, à demander (« Jugez-vous cette US prête ? »). Le reste est décoché et inscrit dans `Écart au DoR`.
 16. Mettre à jour l'état des lieux (comptes de l'étape 4 recalculés).
-17. Écrire `work/<epic>/US-nnn.md` au format de `## Entrées / Sorties`. Relire : sections et ordre, ligne `- Dépendances :` présente si et seulement si l'étape 12 a eu lieu, tags `@UC-…` identiques à `Cas d'utilisation visé`, marqueur sur chaque ligne d'affirmation, aucune case cochée sans vérification.
+17. Écrire `work/<epic>/US-nnn.md` au format de `## Entrées / Sorties`. Relire : sections et ordre, ligne `- Dépendances :` présente si et seulement si l'étape 12 a eu lieu, tags `@UC-…` identiques à `Cas d'utilisation visé` (comparés domaine par domaine pour une US multi-domaine), marqueur sur chaque ligne d'affirmation, aucune case cochée sans vérification.
 18. Annoncer : chemin écrit, cas visé, nombre de scénarios, critères DoR cochés et non cochés, questions ouvertes et lignes `[hypothèse]` restantes. Recommander `ba-quality-review` pour contrôler l'US ; `ba-sync` sera utilisé par l'agent du développeur à l'implémentation. Le BA décide et confirme avant tout enchaînement.
 
 ## Exemple : information manquante

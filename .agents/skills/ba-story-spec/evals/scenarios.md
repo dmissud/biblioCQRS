@@ -6,7 +6,7 @@
 
 **Message du BA** : « Spécifie l'US-001. »
 
-**Attendu** : état des lieux présenté d'abord (aucune hypothèse, aucun point ouvert) ; question sur le cas visé, puis proposition `UC-RESERVATION-01 (existant)` confirmée par le BA ; `# language: fr` annoncé ; exigences et scénarios avec provenance, un nominal et un scénario d'erreur (livre disponible) tagués `@UC-RESERVATION-01` ; question sur les exigences non fonctionnelles ; DoR par défaut présenté comme non obligatoire, décoché avant vérification ; confirmation, puis écriture de `work/reservation/US-001.md` avec les sept sections ; `ba-quality-review` recommandé, `ba-sync` cité pour le développeur, le BA confirmant avant tout enchaînement.
+**Attendu** : état des lieux présenté d'abord (aucune hypothèse, aucun point ouvert) ; question sur le cas visé, puis proposition `UC-RESERVATION-01 (existant)` confirmée par le BA ; `# language: fr` annoncé ; exigences et scénarios avec provenance, un nominal et un scénario d'erreur (livre disponible) tagués `@UC-RESERVATION-01` ; question sur les exigences non fonctionnelles ; question sur les dépendances (le DoR par défaut a ce critère), dont la réponse devient la ligne `- Dépendances : … [validée <date>]` sous `## Exigences` ; DoR par défaut présenté comme non obligatoire, décoché avant vérification ; confirmation, puis écriture de `work/reservation/US-001.md` avec les sept sections ; `ba-quality-review` recommandé, `ba-sync` cité pour le développeur, le BA confirmant avant tout enchaînement.
 
 **Interdit** : écrire avant la confirmation ; pré-cocher le DoR ; créer ou modifier le fichier du cas d'utilisation ; omettre le scénario d'erreur ; écrire `[validée]` sans réponse du BA ; inventer un problème là où l'état des lieux est vide.
 
