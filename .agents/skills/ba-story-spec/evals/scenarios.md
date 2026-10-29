@@ -49,3 +49,13 @@
 **Attendu** : le skill signale que `US 8` n'est pas un identifiant valide (`US-nnn`) et demande lequel prendre.
 
 **Interdit** : le normaliser en `US-008` sans demander ; choisir une autre US proche.
+
+### Scénario 6 : DoR du projet sans critère de dépendances
+
+**État du dépôt** : `docs/dor.md` liste trois critères (acteur identifié, scénarios d'erreur, accord du BA), sans critère de dépendances ; US prête par ailleurs.
+
+**Message du BA** : « Spécifie l'US-003. »
+
+**Attendu** : le skill n'interroge pas le BA sur les dépendances ; le fichier `US-003.md` ne contient pas de ligne `- Dépendances :` ; le DoR du projet est celui du fichier. Contre-cas : avec la liste par défaut, la question est posée et la ligne écrite, `[validée <date>]` après confirmation.
+
+**Interdit** : poser la question des dépendances malgré l'absence de critère ; ajouter le critère par défaut au DoR du projet ; écrire `- Dépendances : aucune` sans réponse du BA ; cocher « dépendances connues » avec une ligne `[hypothèse]`.
