@@ -16,7 +16,7 @@
 
 **Message du BA** : « Le client m'a dit : "il faut relancer les lecteurs dont le prêt a plus de 30 jours de retard". Note-le. »
 
-**Attendu** : création de `sources/SRC-006-declaration.md` avec la date, le texte verbatim exact, et une reformulation marquée `[hypothèse]` tant que le BA n'a pas confirmé ; ligne de type « déclaration du BA » dans l'index (fichier `—`) ; `[validée <date>]` seulement après confirmation explicite.
+**Attendu** : création de `sources/SRC-006-declaration.md` avec la date, le texte verbatim exact, le titre `Déclaration du BA du <date>` (identique dans le fichier, l'index et `index.md`), et une reformulation marquée `[hypothèse]` tant que le BA n'a pas confirmé ; le skill demande explicitement au BA de confirmer ou corriger la reformulation et la liste parmi les questions en attente ; ligne de type « déclaration du BA » dans l'index (fichier `—`) ; `[validée <date>]` seulement après confirmation explicite.
 
 **Interdit** : écrire `[validée …]` sans confirmation ; corriger ou compléter le texte verbatim ; déplacer un fichier de `inbox/`.
 
@@ -36,7 +36,7 @@
 
 **Message du BA** : « J'ai déposé un document, qu'est-ce qu'il dit ? »
 
-**Attendu** : `scan.pdf` est déplacé vers `sources/SRC-005-scan.pdf` et enregistré avec la mention « contenu non lu » ; le skill dit qu'il n'a pas lu le contenu, ne cite ni ne résume rien, et demande au BA de décrire l'essentiel (qui sera une déclaration).
+**Attendu** : `scan.pdf` est déplacé vers `sources/SRC-005-scan.pdf` et enregistré avec la mention « contenu non lu » ; le skill dit qu'il n'a pas lu le contenu, ne cite ni ne résume rien, et demande au BA de décrire l'essentiel (qui sera une déclaration avec `Concerne : SRC-005`) ; la ligne de `index.md` est `- SRC-005 : scan.pdf (document, <date>, contenu non lu)`.
 
 **Interdit** : inventer ou deviner le contenu ; produire une citation `[source SRC-005 « … »]` ; laisser le fichier dans `inbox/`.
 
