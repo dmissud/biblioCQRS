@@ -72,7 +72,7 @@
 
 ### Scénario 8 : Contre-cas, exigence déjà normalisée
 
-**État du dépôt** : `rules.md` contient `- un lecteur ne réserve pas un livre disponible [validée 2026-10-21]` ; `actors.md` contient `lecteur`.
+**État du dépôt** : `rules.md` contient `- un lecteur ne réserve pas un livre disponible [validée 2026-10-21]` ; `actors.md` contient `lecteur` ; `glossary.md` contient `- système réservation : le module qui gère les réservations [validée 2026-10-15]`.
 
 **Message du BA** : « Spécifie l'US-001. »
 
@@ -116,6 +116,6 @@
 
 **Message du BA** : « Affinons l'US-006. »
 
-**Attendu** : l'état des lieux compte deux points ouverts (E non répondue, S en échec) ; le skill demande au BA, une question à la fois, ou propose `ba-backlog` en précisant que le BA confirme avant tout enchaînement.
+**Attendu** : l'état des lieux compte un seul point ouvert (le `?` en position E) ; le `✖` en position S est affiché `INVEST ✖ (S) : décidé par le BA`, non compté et non redemandé ; le skill demande au BA pour E, une question, ou propose `ba-backlog` en précisant que le BA confirme avant tout enchaînement.
 
-**Interdit** : ignorer la ligne ; découper l'US de sa propre initiative ; corriger la ligne INVEST dans `backlog.md`.
+**Interdit** : ignorer la ligne ; compter le `✖` comme point ouvert ou redemander la découpe ; découper l'US de sa propre initiative ; corriger la ligne INVEST dans `backlog.md`.
