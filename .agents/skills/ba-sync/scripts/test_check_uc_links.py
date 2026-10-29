@@ -65,15 +65,15 @@ def test_listed_scenario_missing_in_code_is_a_broken_link(repo):
 def test_listed_scenario_without_tag_is_a_broken_link(repo):
     write_uc(repo / "domains", "UC-PRET-03", [("features/a.feature", "Emprunt")])
     write_feature(repo / "features" / "a.feature", "@autre", "Emprunt")
-    found = kinds(run("domains", "features"))
-    assert ("BROKEN_LINK", "UC-PRET-03") in found
+    assert kinds(run("domains", "features")) == [
+        ("BROKEN_LINK", "UC-PRET-03"), ("UC_WITHOUT_SCENARIO", "UC-PRET-03")]
 
 
 def test_tag_is_case_sensitive(repo):
     write_uc(repo / "domains", "UC-PRET-03")
     write_feature(repo / "features" / "a.feature", "@uc-pret-03", "X")
-    found = kinds(run("domains", "features"))
-    assert any(k == "SCENARIO_WITHOUT_UC" for k, _ in found)
+    assert kinds(run("domains", "features")) == [
+        ("SCENARIO_WITHOUT_UC", "uc-pret-03"), ("UC_WITHOUT_SCENARIO", "UC-PRET-03")]
 
 
 def test_uc_id_with_wrong_digits_is_not_matched(repo):
@@ -109,3 +109,37 @@ def test_cli_exit_codes(repo):
 
     missing = cli("--domains", "nope", "--features", "features")
     assert missing.returncode == 2 and "nope" in missing.stderr
+
+
+    missing_features = cli("--domains", "domains", "--features", "nofeat")
+    assert missing_features.returncode == 2 and "nofeat" in missing_features.stderr
+    assert missing_features.stdout == ""
+
+
+def test_bom_prefixed_feature_with_leading_tag_is_matched(repo):
+    write_uc(repo / "domains", "UC-PRET-03", [("features/a.feature", "Emprunt")])
+    path = repo / "features" / "a.feature"
+    path.parent.mkdir()
+    path.write_bytes("\ufeff@UC-PRET-03\nScenario: Emprunt\n  Given un livre\n".encode("utf-8"))
+    assert run("domains", "features") == []
+
+
+def test_tag_line_with_several_tags_links_each_use_case(repo):
+    write_uc(repo / "domains", "UC-A-01", [("features/a.feature", "Multi")])
+    write_uc(repo / "domains", "UC-A-02", [("features/a.feature", "Multi")])
+    write_feature(repo / "features" / "a.feature", "@UC-A-01 @UC-A-02", "Multi")
+    assert run("domains", "features") == []
+
+
+def test_scenario_name_containing_a_colon_is_matched(repo):
+    write_uc(repo / "domains", "UC-PRET-03", [("features/a.feature", "Emprunt: cas limite")])
+    write_feature(repo / "features" / "a.feature", "@UC-PRET-03", "Emprunt: cas limite")
+    assert run("domains", "features") == []
+
+
+def test_feature_level_tag_is_ignored(repo):
+    write_uc(repo / "domains", "UC-PRET-03")
+    path = repo / "features" / "a.feature"
+    path.parent.mkdir()
+    path.write_text("@UC-PRET-03\nFeature: Prêt\n\n  Scenario: Emprunt\n    Given un livre\n", encoding="utf-8")
+    assert kinds(run("domains", "features")) == [("UC_WITHOUT_SCENARIO", "UC-PRET-03")]

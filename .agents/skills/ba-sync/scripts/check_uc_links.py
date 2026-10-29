@@ -28,7 +28,7 @@ def _norm(path) -> str:
 
 
 def _read_lines(path: Path) -> list[str]:
-    return path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n").split("\n")
+    return path.read_text(encoding="utf-8-sig").replace("\r\n", "\n").replace("\r", "\n").split("\n")
 
 
 def scan_use_cases(domains_dir: Path) -> dict[str, set[tuple[str, str]]]:
@@ -95,6 +95,10 @@ def main(argv=None) -> int:
     if not args.domains.is_dir():
         print(f"Dossier --domains introuvable : {args.domains}", file=sys.stderr)
         return 2
+    for features in args.features:
+        if not features.is_dir():
+            print(f"Dossier --features introuvable : {features}", file=sys.stderr)
+            return 2
     findings = check(args.domains, args.features)
     for finding in findings:
         print("\t".join(finding))
