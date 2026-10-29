@@ -156,3 +156,12 @@ def test_skill_md_without_frontmatter_reports_violations(tmp_path):
     violations = lint_skill(skill, CONVENTIONS, [])
     assert any(v.startswith("name") for v in violations)
     assert any("description" in v for v in violations)
+
+
+def test_forbidden_terms_in_evals_are_reported(tmp_path):
+    skill = make_skill(tmp_path)
+    scenarios = skill / "evals" / "scenarios.md"
+    scenarios.write_text(scenarios.read_text(encoding="utf-8") + "\nUn zorglub et Gemini.\n", encoding="utf-8")
+    violations = lint_skill(skill, CONVENTIONS, ["zorglub"])
+    assert any("evals/scenarios.md" in v and "zorglub" in v for v in violations)
+    assert any("evals/scenarios.md" in v and "Gemini" in v for v in violations)

@@ -58,7 +58,12 @@ def lint_skill(skill_dir, conventions, forbidden):
     if not scenarios.is_file():
         violations.append("evals/scenarios.md introuvable")
     else:
-        count = len(re.findall(r"^### Scénario", scenarios.read_text(encoding="utf-8"), re.MULTILINE))
+        evals_text = scenarios.read_text(encoding="utf-8")
+        evals_lowered = evals_text.lower()
+        for term in BUILTIN_FORBIDDEN + list(forbidden):
+            if term.lower() in evals_lowered:
+                violations.append(f"evals/scenarios.md : terme interdit : {term}")
+        count = len(re.findall(r"^### Scénario", evals_text, re.MULTILINE))
         if count < MIN_SCENARIOS:
             violations.append(f"evals/scenarios.md : {count} titres '### Scénario' (minimum {MIN_SCENARIOS})")
     return violations
