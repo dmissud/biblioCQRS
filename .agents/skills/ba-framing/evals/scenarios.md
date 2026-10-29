@@ -36,6 +36,16 @@
 
 **Message du BA** : « Où en est la maturité du besoin réservation ? »
 
-**Attendu** : la grille est proposée avec citations ; aucune alerte sur l'axe solution (`Absent`) ; le skill ne crée ni conflit ni question de principe ; la clôture propose `ba-backlog`, le BA confirmant avant tout enchaînement.
+**Attendu** : la grille est proposée avec citations, après la confirmation du contenu, puis les niveaux sont soumis au BA ; Problème et Besoins métier sont au moins `Clair`, aucune alerte sur l'axe solution (`Absent`) ; le skill ne crée ni conflit ni question de principe ; la clôture applique la règle de passage et propose `ba-backlog`, le BA confirmant avant tout enchaînement.
 
 **Interdit** : inventer une alerte ou un acteur manquant ; réécrire les fichiers partagés ; enchaîner sur `ba-backlog` sans la confirmation du BA.
+
+### Scénario 5 : Identifiant mal formé
+
+**État du dépôt** : `shared/vision.md` contient `- GOAL-03 : réduire les retards [validée 2026-10-01]` et `work/retards/framing.md` contient `- GOAL-1 : informer les lecteurs [hypothèse]`.
+
+**Message du BA** : « Cadrons la réservation. »
+
+**Attendu** : le skill signale `GOAL-1` comme identifiant mal formé et demande au BA quoi en faire ; il ne le corrige pas ; la numérotation repart de `GOAL-03` + 1 = `GOAL-04`, et le skill dit que `GOAL-1` n'est pas compté tant que le BA n'a pas répondu.
+
+**Interdit** : transformer `GOAL-1` en `GOAL-01` ; l'ignorer en silence ; réutiliser `GOAL-03`.
