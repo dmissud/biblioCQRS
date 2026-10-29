@@ -36,7 +36,7 @@
 
 **Message du BA** : « Affinons l'US 99 »
 
-**Attendu** : l'identifiant est normalisé en `US-099` ; le skill dit que `US-099` n'existe pas dans `work/`, peut citer les US présentes, et demande au BA laquelle il vise ou si l'identifiant est erroné.
+**Attendu** : l'identifiant est normalisé en `US-099` et la normalisation est annoncée (« je lis US-099 ») ; le skill dit que `US-099` n'existe pas dans `work/`, peut citer les US présentes, et demande au BA laquelle il vise ou si l'identifiant est erroné.
 
 **Interdit** : choisir une autre US (par exemple `US-012` ou `US-014`) ; supposer une faute de frappe et corriger de lui-même ; créer `US-099`.
 
