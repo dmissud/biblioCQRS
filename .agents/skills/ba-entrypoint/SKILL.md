@@ -17,7 +17,10 @@ Chemins : la racine de la documentation est `<REQ_DIR>` (défaut `docs/requireme
 
 Identifiants : `SRC-nnn` (source), `GOAL-nn` (objectif), `US-nnn` (user story), `UC-<DOMAINE>-nn` (cas d'utilisation ;
 DOMAINE en majuscules, sans espace). Le tag Gherkin d'un scénario est `@UC-<DOMAINE>-nn`, sensible à la casse.
-Un identifiant mal saisi est une erreur à signaler, jamais une correspondance approximative.
+Un identifiant TAPÉ par le BA dans sa demande (`US 8`, `us-008`, `US8`) est lu sous sa forme canonique (`US-008`,
+`SRC-003`, `GOAL-02`, `UC-<DOMAINE>-nn`) : seule la FORME est normalisée (casse, séparateur, zéros initiaux), jamais le
+numéro, et la forme lue est annoncée (« je lis US-008 »). Une forme qui ne se ramène pas à préfixe + numéro est signalée
+et le BA est interrogé. Un identifiant déjà ÉCRIT dans un fichier et mal formé est signalé, jamais corrigé.
 
 Provenance : toute affirmation consignée porte l'un de ces marqueurs, en ligne. Une question ou une lacune n'est pas une
 affirmation : elle ne porte aucun marqueur et cite où elle a été observée, `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`.
@@ -52,7 +55,7 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 1. Lire `<REQ_DIR>/index.md`, puis lister `<REQ_DIR>/work/`. Si un pré-requis manque, appliquer `## Pré-requis absents`.
 2. Classer la demande du BA dans l'un des trois cas ci-dessous. Si aucun ne convient, demander au BA ce qu'il veut faire ; ne pas deviner.
 3. Cas A, « Affinons l'US X » :
-   1. Normaliser l'identifiant : seulement s'il a la forme `US` suivi d'un nombre de 1 à 3 chiffres, avec ou sans tiret, espace ou majuscule (`US-12`, `US 12`, `us-012`, `US12` donnent `US-012`). Sinon (`US-1234`, `US-12a`, `US-A`), ne rien normaliser : signaler un identifiant mal saisi et demander au BA lequel il vise. Quand une normalisation a eu lieu, l'annoncer dans la réponse (« je lis US-012 »). Un numéro différent n'est jamais une correspondance.
+   1. Normaliser l'identifiant tapé par le BA comme dans les conventions (`US 12`, `us-012`, `US12` donnent `US-012`, forme lue annoncée : « je lis US-012 »). Une forme qui ne se ramène pas à `US` + un nombre de 1 à 3 chiffres (`US-1234`, `US-12a`, `US-A`) est signalée et le BA est interrogé. Un numéro différent n'est jamais une correspondance.
    2. Chercher `US-012` dans `<REQ_DIR>/work/<epic>/` : ne retenir que le fichier dont le nom ou le titre propre est `US-012`. Le titre propre est le titre `### US-012 : <titre>` dans `backlog.md`, ou le premier titre `#` d'un fichier `US-012.md` ; un fichier nommé `US-012-<slug>.md` compte comme correspondance par le nom. Une simple mention dans une autre US (dépendance, lien) ne compte pas.
    3. Introuvable : le dire (« US-012 n'existe pas dans `work/` »), lister les US présentes si le BA le souhaite, et demander laquelle il vise. Ne choisir aucune autre US.
    4. Trouvée : lire l'US. Si elle contient `[hypothèse]`, un point ouvert ou une provenance manquante, proposer `ba-elicitation` et citer ce qui motive ce choix. Sinon proposer `ba-story-spec`, puis `ba-quality-review` ensuite.

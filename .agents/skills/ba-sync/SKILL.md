@@ -17,7 +17,10 @@ Chemins : la racine de la documentation est `<REQ_DIR>` (défaut `docs/requireme
 
 Identifiants : `SRC-nnn` (source), `GOAL-nn` (objectif), `US-nnn` (user story), `UC-<DOMAINE>-nn` (cas d'utilisation ;
 DOMAINE en majuscules, sans espace). Le tag Gherkin d'un scénario est `@UC-<DOMAINE>-nn`, sensible à la casse.
-Un identifiant mal saisi est une erreur à signaler, jamais une correspondance approximative.
+Un identifiant TAPÉ par le BA dans sa demande (`US 8`, `us-008`, `US8`) est lu sous sa forme canonique (`US-008`,
+`SRC-003`, `GOAL-02`, `UC-<DOMAINE>-nn`) : seule la FORME est normalisée (casse, séparateur, zéros initiaux), jamais le
+numéro, et la forme lue est annoncée (« je lis US-008 »). Une forme qui ne se ramène pas à préfixe + numéro est signalée
+et le BA est interrogé. Un identifiant déjà ÉCRIT dans un fichier et mal formé est signalé, jamais corrigé.
 
 Provenance : toute affirmation consignée porte l'un de ces marqueurs, en ligne. Une question ou une lacune n'est pas une
 affirmation : elle ne porte aucun marqueur et cite où elle a été observée, `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`.
@@ -40,7 +43,7 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 ## Pré-requis absents
 
 Dans tous les cas : le dire dans le compte rendu (statut `non terminé`), ne rien inventer, ne rien déplacer ni modifier. Les contrôles de `python3` et du dossier des `.feature` ont lieu à l'étape 1 ; ceux de l'US et du fichier du cas d'utilisation, à l'étape 2 ; tous avant toute écriture.
-- Aucun fichier `<REQ_DIR>/work/<epic>/US-nnn.md` pour l'identifiant donné (mal formé : `US-8`, `us-008`, le signaler sans le corriger) : proposer `ba-story-spec`, qui produit l'US.
+- Aucun fichier `<REQ_DIR>/work/<epic>/US-nnn.md` pour l'identifiant donné (identifiant tapé par le BA normalisé comme dans les conventions, forme lue annoncée ; irréductible ou trouvé mal formé dans un fichier : le signaler sans le corriger) : proposer `ba-story-spec`, qui produit l'US.
 - `python3` non exécutable : le dire ; le script n'est pas lancé ; ne jamais le remplacer par une vérification à la main présentée comme sa sortie.
 - Aucun emplacement de `.feature` détectable, ou dossier cible inexistant : voir l'exemple ci-dessous.
 - Cas d'utilisation « existant » sans fichier `<REQ_DIR>/domains/<d>/use-cases/UC-<DOMAINE>-nn.md` : ne pas le créer, le signaler et proposer `ba-as-is-reading` (le BA confirme avant tout enchaînement). Cas « à créer » : voir l'étape 2.

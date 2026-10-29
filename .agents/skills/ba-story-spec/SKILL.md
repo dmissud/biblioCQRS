@@ -17,7 +17,10 @@ Chemins : la racine de la documentation est `<REQ_DIR>` (défaut `docs/requireme
 
 Identifiants : `SRC-nnn` (source), `GOAL-nn` (objectif), `US-nnn` (user story), `UC-<DOMAINE>-nn` (cas d'utilisation ;
 DOMAINE en majuscules, sans espace). Le tag Gherkin d'un scénario est `@UC-<DOMAINE>-nn`, sensible à la casse.
-Un identifiant mal saisi est une erreur à signaler, jamais une correspondance approximative.
+Un identifiant TAPÉ par le BA dans sa demande (`US 8`, `us-008`, `US8`) est lu sous sa forme canonique (`US-008`,
+`SRC-003`, `GOAL-02`, `UC-<DOMAINE>-nn`) : seule la FORME est normalisée (casse, séparateur, zéros initiaux), jamais le
+numéro, et la forme lue est annoncée (« je lis US-008 »). Une forme qui ne se ramène pas à préfixe + numéro est signalée
+et le BA est interrogé. Un identifiant déjà ÉCRIT dans un fichier et mal formé est signalé, jamais corrigé.
 
 Provenance : toute affirmation consignée porte l'un de ces marqueurs, en ligne. Une question ou une lacune n'est pas une
 affirmation : elle ne porte aucun marqueur et cite où elle a été observée, `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`.
@@ -40,7 +43,7 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 
 - `<REQ_DIR>` absent, ou aucun `work/*/backlog.md` : le dire, proposer `ba-backlog` (ou `ba-entrypoint`), ne rien créer.
 - Aucune ligne `### US-nnn : <titre>` portant exactement l'identifiant demandé dans un `backlog.md` (une simple mention ailleurs ne compte pas) : le dire et demander l'identifiant au BA. Plusieurs backlogs avec ce titre : signaler le conflit, demander lequel garder.
-- Identifiant mal formé (`US-8`, `US-A`, `us-008`) : le signaler au BA, ne jamais le corriger ni deviner.
+- Identifiant d'US tapé par le BA : normalisé comme dans les conventions (`US 8` donne `US-008`, forme lue annoncée) ; forme irréductible (`US-A`) : la signaler et interroger le BA. Identifiant trouvé écrit dans un fichier et mal formé : le signaler, jamais le corriger.
 - Ni sources citées ni élicitation pour cette US : l'état des lieux le consigne (provenance manquante) ; ne rien déduire. Aucun cas d'utilisation dans `domains/<d>/use-cases/` : le cas visé est « à créer ».
 
 ## Entrées / Sorties

@@ -17,7 +17,10 @@ Chemins : la racine de la documentation est `<REQ_DIR>` (défaut `docs/requireme
 
 Identifiants : `SRC-nnn` (source), `GOAL-nn` (objectif), `US-nnn` (user story), `UC-<DOMAINE>-nn` (cas d'utilisation ;
 DOMAINE en majuscules, sans espace). Le tag Gherkin d'un scénario est `@UC-<DOMAINE>-nn`, sensible à la casse.
-Un identifiant mal saisi est une erreur à signaler, jamais une correspondance approximative.
+Un identifiant TAPÉ par le BA dans sa demande (`US 8`, `us-008`, `US8`) est lu sous sa forme canonique (`US-008`,
+`SRC-003`, `GOAL-02`, `UC-<DOMAINE>-nn`) : seule la FORME est normalisée (casse, séparateur, zéros initiaux), jamais le
+numéro, et la forme lue est annoncée (« je lis US-008 »). Une forme qui ne se ramène pas à préfixe + numéro est signalée
+et le BA est interrogé. Un identifiant déjà ÉCRIT dans un fichier et mal formé est signalé, jamais corrigé.
 
 Provenance : toute affirmation consignée porte l'un de ces marqueurs, en ligne. Une question ou une lacune n'est pas une
 affirmation : elle ne porte aucun marqueur et cite où elle a été observée, `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`.
@@ -39,7 +42,7 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 ## Pré-requis absents
 
 - `<REQ_DIR>` absent, ou aucun `work/<epic>/US-*.md` : le dire, proposer `ba-story-spec` (ou `ba-entrypoint`), ne rien créer.
-- Identifiant d'US mal formé (`US-8`, `us-008`) : le signaler au BA, ne jamais le corriger ni deviner. Aucun fichier `work/<epic>/US-nnn.md` portant exactement cet identifiant : le dire, proposer `ba-story-spec`, ne rien relire à la place (une ligne du backlog n'est pas une US spécifiée).
+- Identifiant d'US tapé par le BA : normalisé comme dans les conventions (`us-008` donne `US-008`, forme lue annoncée) ; forme irréductible (`US-A`) : la signaler et interroger le BA. Identifiant trouvé écrit dans un fichier et mal formé : le signaler, jamais le corriger. Aucun fichier `work/<epic>/US-nnn.md` portant exactement cet identifiant : le dire, proposer `ba-story-spec`, ne rien relire à la place (une ligne du backlog n'est pas une US spécifiée).
 - Plusieurs Epics possibles pour l'identifiant ou le nom donné : demander lequel, ne pas choisir.
 - `shared/glossary.md` absent : le dire ; le critère 4 (termes non définis) et le critère 8 (glossaire) ne sont pas contrôlables, seuls les termes définis dans l'US sont acceptés ; ne pas créer le glossaire.
 - US d'un Epic présentes dans `backlog.md` mais sans fichier : les lister comme « non revues ».
