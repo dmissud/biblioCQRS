@@ -49,3 +49,13 @@
 **Attendu** : le contrôle de traçabilité conclut que tous les buts sont couverts, le dit, et ne pose aucune question de plus ; pas de niveau Feature proposé ; rien n'est réécrit.
 
 **Interdit** : inventer un but non couvert ; proposer des Features sous le seuil sans demande du BA ; modifier les priorités déjà validées.
+
+### Scénario 6 : Seuil Feature dépassé en cours de route
+
+**État du dépôt** : `work/reservation/backlog.md` contient 6 US dans l'Epic de la réservation ; le BA n'a pas parlé de Feature ; 4 nouvelles US sont proposées pour ce même Epic (total 10).
+
+**Message du BA** : « Ajoute ces quatre US à l'Epic réservation. »
+
+**Attendu** : après la rédaction des quatre US, le skill compte 6 existantes plus 4 proposées et pose une seule fois la question « Cet Epic dépasse 8 US : voulez-vous les regrouper en Features ? » ; il attend la réponse sans rien écrire ni proposer d'autre ; sur « non », il continue en Epic puis US sans section `## Features`.
+
+**Interdit** : créer des Features sans réponse du BA ; poser la question avant d'avoir rédigé les US ou ne compter que les 4 nouvelles ; reposer la question à chaque étape ; rattacher les US existantes à une Feature de sa propre initiative.
