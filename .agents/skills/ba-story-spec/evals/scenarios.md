@@ -6,7 +6,7 @@
 
 **Message du BA** : « Spécifie l'US-001. »
 
-**Attendu** : état des lieux présenté d'abord (aucune hypothèse, aucun point ouvert) ; question sur le cas visé, puis proposition `UC-RESERVATION-01 (existant)` confirmée par le BA ; `# language: fr` annoncé ; exigences et scénarios avec provenance, un nominal et un scénario d'erreur (livre disponible) tagués `@UC-RESERVATION-01` ; exigences écrites en forme normalisée (`le système réservation doit refuser …`, un verbe, rôle de `actors.md`) ; question sur les caractéristiques ISO/IEC 25010 concernées (une réponse « aucune » donne `- Aucune exigence non fonctionnelle [validée <date>]`) ; question sur les dépendances (le DoR par défaut a ce critère), dont la réponse devient la ligne `- Dépendances : … [validée <date>]` sous `## Exigences` ; DoR par défaut présenté comme non obligatoire, décoché avant vérification ; confirmation, puis écriture de `work/reservation/US-001.md` avec les sept sections, dont la ligne `- Domaine(s) : reservation` sous le récit ; `ba-quality-review` recommandé, `ba-sync` cité pour le développeur, le BA confirmant avant tout enchaînement.
+**Attendu** : état des lieux présenté d'abord (aucune hypothèse, aucun point ouvert) ; question sur le cas visé, puis proposition `UC-RESERVATION-01 (existant)` confirmée par le BA ; `# language: fr` annoncé ; exigences et scénarios avec provenance, un nominal et un scénario d'erreur (livre disponible) tagués `@UC-RESERVATION-01` ; exigences écrites en forme normalisée (`le système réservation doit refuser …`, un verbe, rôle de `actors.md`) ; question sur les caractéristiques ISO/IEC 25010 concernées (une réponse « aucune » donne `- Aucune exigence non fonctionnelle [validée <date>]`) ; question sur les dépendances (le DoR par défaut a ce critère), dont la réponse devient la ligne `- Dépendances : … [validée <date>]` sous `## Exigences` ; DoR par défaut présenté comme non obligatoire, décoché avant vérification ; confirmation, puis écriture de `work/reservation/US-001.md` avec les sept sections, dont la ligne `- Domaine(s) : reservation [validée <date>]` sous le récit (copiée du backlog avec son marqueur, `[validée]` après la confirmation) ; `ba-quality-review` recommandé, `ba-sync` cité pour le développeur, le BA confirmant avant tout enchaînement.
 
 **Interdit** : écrire avant la confirmation ; pré-cocher le DoR ; créer ou modifier le fichier du cas d'utilisation ; omettre le scénario d'erreur ; écrire `[validée]` sans réponse du BA ; inventer un problème là où l'état des lieux est vide.
 
@@ -122,10 +122,20 @@
 
 ### Scénario 13 : Constat de revue à reprendre
 
-**État du dépôt** : `work/reservation/US-004.md` existe, avec `- Quand le livre est rendu, le système réservation doit notifier le lecteur sous 24 heures [validée 2026-10-22]` ; `work/reservation/open-questions.md` contient `- « sous 24 heures » : de quelle heure part le délai ? (vu dans US-004, ligne « notifier le lecteur »)` et un constat `(vu dans US-007, …)`.
+**État du dépôt** : `work/reservation/US-004.md` existe, avec `- Quand le livre est rendu, le système réservation doit notifier le lecteur sous 24 heures [validée 2026-10-22]` ; `work/reservation/open-questions.md` contient `- mots flous : « sous 24 heures » (vu dans US-004, Exigences) — Question : De quelle heure part le délai de 24 heures ?` et un constat `(vu dans US-007, Exigences)`.
 
 **Message du BA** : « Reprenons l'US-004. »
 
 **Attendu** : l'état des lieux compte le constat de l'US-004 comme point ouvert et ignore celui de l'US-007 ; le skill demande au BA, une question, de quelle heure part le délai ; après la réponse, la ligne d'exigence est modifiée bien qu'elle fût confirmée, redevient `[hypothèse]` jusqu'à la confirmation de l'étape 14 ; `open-questions.md` n'est pas modifié.
 
 **Interdit** : laisser la ligne confirmée inchangée malgré la réponse du BA ; marquer la ligne modifiée `[validée]` avant confirmation ; modifier ou effacer une ligne de `open-questions.md` ; reprendre le constat de l'US-007.
+
+### Scénario 14 : constat dont la citation a disparu de l'US
+
+**État du dépôt** : `work/reservation/US-004.md` ne contient plus le passage « sous 24 heures » (le BA l'a réécrit « dans les 24 heures suivant le retour, à 9 h ») ; `open-questions.md` contient `- mots flous : « sous 24 heures » (vu dans US-004, Exigences) — Question : De quelle heure part le délai de 24 heures ?`.
+
+**Message du BA** : « Reprenons l'US-004. »
+
+**Attendu** : le constat est résolu : il n'est pas compté dans les points ouverts ni redemandé ; la ligne reste dans `open-questions.md`.
+
+**Interdit** : redemander la question ; compter le constat comme point ouvert ; supprimer sa ligne.
