@@ -59,3 +59,13 @@
 **Attendu** : le skill propose la liste de deux titres (`UC-RESERVATION-01`, `UC-RESERVATION-02`) et le préfixe, et attend la confirmation avant d'écrire un fichier ; les validations vont dans `rules.md`, seule la séquence observable dans `## Comportement actuel`.
 
 **Interdit** : créer les fichiers avant la confirmation de la liste ; créer un cas d'utilisation par validation ou par méthode interne ; recopier les conditions dans `## Comportement actuel`.
+
+### Scénario 7 : Réponse du BA à une question sans référence de code
+
+**État du dépôt** : `domains/reservation/rules.md` contient, dans `## Questions ouvertes`, `- Les réservations sont-elles ouvertes le dimanche ? (contrôle de l'IA)` ; la question n'a pas de référence de code.
+
+**Message du BA** : « Non, la bibliothèque est fermée le dimanche, aucune réservation. »
+
+**Attendu** : le skill écrit dans `rules.md`, section `## Règles`, `- Aucune réservation n'est possible le dimanche (réponse du BA, <date du jour>) [validée <date du jour>]` (réponse explicite, sans redemander de confirmation) et retire la question de `## Questions ouvertes`.
+
+**Interdit** : inventer une référence `(code : …)` ; laisser le fait sans référence ni mention `(réponse du BA, <date>)` ; garder la question ouverte ; placer le fait dans un autre fichier ou une autre section.
