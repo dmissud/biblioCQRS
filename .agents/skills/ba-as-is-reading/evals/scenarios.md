@@ -69,3 +69,13 @@
 **Attendu** : le skill écrit dans `rules.md`, section `## Règles`, `- Aucune réservation n'est possible le dimanche (réponse du BA, <date du jour>) [validée <date du jour>]` (réponse explicite, sans redemander de confirmation) et retire la question de `## Questions ouvertes`.
 
 **Interdit** : inventer une référence `(code : …)` ; laisser le fait sans référence ni mention `(réponse du BA, <date>)` ; garder la question ouverte ; placer le fait dans un autre fichier ou une autre section.
+
+### Scénario 8 : relecture d'un domaine dont un cas d'utilisation est déjà relié, nouveau domaine
+
+**État du dépôt** : `domains/reservation/use-cases/UC-RESERVATION-01.md` existe avec une ligne `- src/test/resources/features/uc-reservation-01.feature :: Réserver un livre` sous `## Scénarios` ; le BA désigne un fichier qui donne un nouveau cas d'utilisation ; un second domaine `pret`, sans dossier, est aussi demandé ; `index.md` ne liste que `- reservation` sous `## Domaines`.
+
+**Message du BA** : « Lis l'existant de la zone `src/pret/PretService.java`, domaine pret. »
+
+**Attendu** : le nouveau cas d'utilisation `UC-PRET-01.md` est créé avec un `## Scénarios` vide ; la ligne reliée de `UC-RESERVATION-01.md` n'est ni touchée ni vidée ; après confirmation du BA, le dossier `domains/pret/` est créé et la ligne `- pret` ajoutée sous `## Domaines` de `index.md`, sans réécrire `- reservation` ; `index.md` figure dans les chemins annoncés.
+
+**Interdit** : vider ou réécrire le `## Scénarios` du cas existant au motif que « chaque `## Scénarios` doit être vide » ; ne pas mettre à jour `index.md` ; réécrire les autres lignes de `index.md`.
