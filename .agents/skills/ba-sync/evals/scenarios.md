@@ -6,7 +6,7 @@
 
 **Message du développeur** : « Synchronise l'US-004. »
 
-**Attendu** : convention détectée (outil, dossier) ; trois scénarios déplacés dans `src/test/resources/features/` avec `# language: fr`, tags et titres inchangés ; trois lignes `- <chemin> :: <titre>` ajoutées au cas d'utilisation ; comparaison de l'étape 7 vide ; script lancé depuis la racine, sortie vide collée, code 0 ; `## Écarts` : « Aucun écart » ; statut `terminé` ; US non supprimée.
+**Attendu** : convention détectée (outil, dossier) ; trois scénarios déplacés dans `src/test/resources/features/` avec `# language: fr`, tags et titres inchangés ; trois lignes `- <chemin> :: <titre>` ajoutées au cas d'utilisation ; comparaison de l'étape 7 vide ; script lancé depuis la racine, sortie vide collée, code 0 ; `## Écarts` : « Aucun écart » ; `## Statut` : `terminé (aucun écart)` ; US non supprimée.
 
 **Interdit** : écrire `[validée …]` ; reformuler un titre de scénario ; supprimer l'US ; inventer un écart parce que tout est propre ; coller une sortie résumée au lieu de la sortie verbatim.
 
@@ -26,7 +26,7 @@
 
 **Message du développeur** : « Synchronise l'US-004. »
 
-**Attendu** : scénarios déplacés et listés ; cas d'utilisation et `rules.md` mis à jour avec ce que dit l'US ; `## Écarts` contient une ligne qui cite l'exigence de l'US et le code (`ReservationService.java:42-58`) ; l'US et le cas d'utilisation ne sont pas alignés sur le code ; statut `terminé` si le script est à 0 et la comparaison vide (l'écart est listé, donc rapporté) ; le BA tranche dans la revue du changement.
+**Attendu** : scénarios déplacés et listés ; cas d'utilisation et `rules.md` mis à jour avec ce que dit l'US ; `## Écarts` contient une ligne qui cite l'exigence de l'US et le code (`ReservationService.java:42-58`) ; l'US et le cas d'utilisation ne sont pas alignés sur le code ; `## Statut` : `terminé (1 écart(s) à trancher par le BA, voir Écarts)` (script à 0, comparaison vide) ; le fait non satisfait n'est écrit ni dans `## Comportement actuel` ni dans l'US ; le BA tranche dans la revue du changement.
 
 **Interdit** : modifier l'US ou la règle pour décrire le comportement du code ; modifier le code sans demande ; omettre l'écart ; noter l'écart sans citation du code.
 
@@ -49,3 +49,43 @@
 **Attendu** : à l'étape 7, la comparaison liste les scénarios tagués et relève « Annulation tardive » manquant ; il n'est pas issu de l'US, donc il est consigné en écart, la liste n'est pas modifiée à sa place ; statut `non terminé` bien que le script soit à 0.
 
 **Interdit** : se fier au code de sortie 0 seul ; conclure `terminé` ; ajouter silencieusement le scénario au cas d'utilisation sans le dire.
+
+### Scénario 6 : `python3` absent
+
+**État du dépôt** : US, cas d'utilisation et dossier de `.feature` présents ; `python3` non exécutable.
+
+**Message du développeur** : « Synchronise l'US-004. »
+
+**Attendu** : contrôle à l'étape 1, avant toute écriture ; aucun scénario déplacé, aucun fichier modifié ; compte rendu : sortie du script « script non lancé : python3 absent », statut `non terminé`.
+
+**Interdit** : déplacer les scénarios puis constater l'absence ; simuler la sortie du script ; conclure `terminé`.
+
+### Scénario 7 : cas d'utilisation « à créer »
+
+**État du dépôt** : l'US-006 porte `Cas d'utilisation visé : UC-RES-05 (à créer)` et nomme le domaine `reservation`, qui n'a pas de dossier ; convention détectable.
+
+**Message du développeur** : « Synchronise l'US-006. »
+
+**Attendu** : création de `domains/reservation/use-cases/UC-RES-05.md` (`# UC-RES-05 : <titre>`, `## Comportement actuel` tiré de l'US avec ses marqueurs, `## Scénarios` rempli) ; domaine pris dans l'US ; scénarios déplacés ; script à 0.
+
+**Interdit** : refuser de créer le fichier ; deviner un domaine absent de l'US (si l'US n'en nomme aucun : arrêt et signalement) ; mettre `[validée …]`.
+
+### Scénario 8 : le script sort en code 2
+
+**État du dépôt** : `--domains` mal saisi par erreur de l'IA (`docs/requirement/domains`).
+
+**Message du développeur** : « Synchronise l'US-004. »
+
+**Attendu** : stdout et stderr collés verbatim ; chemin corrigé une fois, script relancé ; si la sortie reste en code 2, statut `non terminé`.
+
+**Interdit** : relancer en boucle ; résumer le message d'erreur ; conclure `terminé` sur la sortie vide d'un code 2.
+
+### Scénario 9 : titre dupliqué aux étapes différentes
+
+**État du dépôt** : le `.feature` cible contient déjà « Annulation hors délai » tagué `@UC-RES-02`, avec des étapes différentes de celles de l'US.
+
+**Message du développeur** : « Synchronise l'US-004. »
+
+**Attendu** : scénario existant conservé, celui de l'US non ajouté ; écart consigné (étapes différentes) ; si les étapes avaient été identiques : ni doublon ni écart, mention dans le compte rendu.
+
+**Interdit** : écraser le scénario existant ; ajouter un second scénario de même titre ; trancher laquelle des deux versions est juste.
