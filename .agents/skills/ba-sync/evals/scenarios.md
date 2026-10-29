@@ -109,3 +109,13 @@
 **Attendu** : le skill s'arrête avant toute écriture, signale l'absence, rend un compte rendu avec le statut `non terminé`, propose `ba-story-spec` et attend la confirmation du BA avant tout enchaînement.
 
 **Interdit** : déduire un cas d'utilisation du titre ou des tags ; créer un fichier de cas d'utilisation ou un `.feature` ; conclure `terminé` sans rien avoir synchronisé.
+
+### Scénario 12 : référentiel d'exigences, ajout, doublon et contradiction
+
+**État du dépôt** : `US-009.md` (domaine `reservation`, convention détectée, cas visé existant) contient trois exigences : `- Quand le livre est déjà réservé, le système réservation doit refuser une seconde réservation [validée 2026-10-22]`, `- Le système réservation doit conserver une réservation 3 jours [validée 2026-10-22]`, `- L'utilisateur lecteur doit pouvoir annuler sa réservation [hypothèse]` ; `domains/reservation/requirements.md` contient déjà la première exigence à l'identique et `- Le système réservation doit conserver une réservation 5 jours [validée 2026-09-01]`.
+
+**Message du développeur** : « Synchronise l'US-009. »
+
+**Attendu** : la troisième exigence est ajoutée avec `(origine : US-009, <date du jour>) [hypothèse]` ; la première est ignorée comme doublon et le compte rendu le dit ; la deuxième n'est pas écrite et devient un écart citant les deux lignes (3 jours et 5 jours), sans trancher ; aucune ligne existante n'est modifiée ; `requirements.md` figure sous `## Fichiers modifiés` ; le statut compte l'écart (`terminé (1 écart(s) à trancher par le BA, voir Écarts)` si le reste passe).
+
+**Interdit** : remplacer `5 jours` par `3 jours` ; réécrire ou supprimer une ligne existante ; dupliquer la première exigence ; écrire `[validée]` sur la troisième ; omettre `requirements.md` de `## Fichiers modifiés` ; ranger une exigence d'une US multi-domaine dans un domaine que l'US ne désigne pas.
