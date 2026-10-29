@@ -6,7 +6,7 @@
 
 **Message du BA** : « Spécifie l'US-001. »
 
-**Attendu** : état des lieux présenté d'abord (aucune hypothèse, aucun point ouvert) ; question sur le cas visé, puis proposition `UC-RESERVATION-01 (existant)` confirmée par le BA ; `# language: fr` annoncé ; exigences et scénarios avec provenance, un nominal et un scénario d'erreur (livre disponible) tagués `@UC-RESERVATION-01` ; exigences écrites en forme normalisée (`le système réservation doit refuser …`, un verbe, rôle de `actors.md`) ; question sur les caractéristiques ISO/IEC 25010 concernées (une réponse « aucune » donne `- Aucune exigence non fonctionnelle [validée <date>]`) ; question sur les dépendances (le DoR par défaut a ce critère), dont la réponse devient la ligne `- Dépendances : … [validée <date>]` sous `## Exigences` ; DoR par défaut présenté comme non obligatoire, décoché avant vérification ; confirmation, puis écriture de `work/reservation/US-001.md` avec les sept sections ; `ba-quality-review` recommandé, `ba-sync` cité pour le développeur, le BA confirmant avant tout enchaînement.
+**Attendu** : état des lieux présenté d'abord (aucune hypothèse, aucun point ouvert) ; question sur le cas visé, puis proposition `UC-RESERVATION-01 (existant)` confirmée par le BA ; `# language: fr` annoncé ; exigences et scénarios avec provenance, un nominal et un scénario d'erreur (livre disponible) tagués `@UC-RESERVATION-01` ; exigences écrites en forme normalisée (`le système réservation doit refuser …`, un verbe, rôle de `actors.md`) ; question sur les caractéristiques ISO/IEC 25010 concernées (une réponse « aucune » donne `- Aucune exigence non fonctionnelle [validée <date>]`) ; question sur les dépendances (le DoR par défaut a ce critère), dont la réponse devient la ligne `- Dépendances : … [validée <date>]` sous `## Exigences` ; DoR par défaut présenté comme non obligatoire, décoché avant vérification ; confirmation, puis écriture de `work/reservation/US-001.md` avec les sept sections, dont la ligne `- Domaine(s) : reservation` sous le récit ; `ba-quality-review` recommandé, `ba-sync` cité pour le développeur, le BA confirmant avant tout enchaînement.
 
 **Interdit** : écrire avant la confirmation ; pré-cocher le DoR ; créer ou modifier le fichier du cas d'utilisation ; omettre le scénario d'erreur ; écrire `[validée]` sans réponse du BA ; inventer un problème là où l'état des lieux est vide.
 
@@ -40,15 +40,15 @@
 
 **Interdit** : appliquer la liste par défaut à la place ; ajouter les critères par défaut au DoR du projet ; cocher « maquette jointe » sans l'avoir vérifié ; ne pas dire où le DoR a été trouvé.
 
-### Scénario 5 : Identifiant mal formé
+### Scénario 5 : Identifiant tapé sous une autre forme
 
 **État du dépôt** : `US-008` existe dans `work/retards/backlog.md`.
 
 **Message du BA** : « Spécifie l'US 8. »
 
-**Attendu** : le skill signale que `US 8` n'est pas un identifiant valide (`US-nnn`) et demande lequel prendre.
+**Attendu** : le skill lit `US-008` (seule la forme est normalisée), l'annonce (« je lis US-008 ») et poursuit. Contre-cas : `Spécifie l'US-A` est signalé comme irréductible à préfixe + numéro et le BA est interrogé.
 
-**Interdit** : le normaliser en `US-008` sans demander ; choisir une autre US proche.
+**Interdit** : changer le numéro (`US-008` lue `US-018`) ; ne pas annoncer la forme lue ; deviner une US pour `US-A`.
 
 ### Scénario 6 : DoR du projet sans critère de dépendances
 
@@ -119,3 +119,13 @@
 **Attendu** : l'état des lieux compte un seul point ouvert (le `?` en position E) ; le `✖` en position S est affiché `INVEST ✖ (S) : décidé par le BA`, non compté et non redemandé ; le skill demande au BA pour E, une question, ou propose `ba-backlog` en précisant que le BA confirme avant tout enchaînement.
 
 **Interdit** : ignorer la ligne ; compter le `✖` comme point ouvert ou redemander la découpe ; découper l'US de sa propre initiative ; corriger la ligne INVEST dans `backlog.md`.
+
+### Scénario 13 : Constat de revue à reprendre
+
+**État du dépôt** : `work/reservation/US-004.md` existe, avec `- Quand le livre est rendu, le système réservation doit notifier le lecteur sous 24 heures [validée 2026-10-22]` ; `work/reservation/open-questions.md` contient `- « sous 24 heures » : de quelle heure part le délai ? (vu dans US-004, ligne « notifier le lecteur »)` et un constat `(vu dans US-007, …)`.
+
+**Message du BA** : « Reprenons l'US-004. »
+
+**Attendu** : l'état des lieux compte le constat de l'US-004 comme point ouvert et ignore celui de l'US-007 ; le skill demande au BA, une question, de quelle heure part le délai ; après la réponse, la ligne d'exigence est modifiée bien qu'elle fût confirmée, redevient `[hypothèse]` jusqu'à la confirmation de l'étape 14 ; `open-questions.md` n'est pas modifié.
+
+**Interdit** : laisser la ligne confirmée inchangée malgré la réponse du BA ; marquer la ligne modifiée `[validée]` avant confirmation ; modifier ou effacer une ligne de `open-questions.md` ; reprendre le constat de l'US-007.
