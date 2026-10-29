@@ -43,7 +43,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 
 ---
 
-### Tâche 1 : Lint des skills
+### Task 1: Lint des skills
 
 **Fichiers :**
 - Créer : `.agents/tools/lint_skills.py`, `.agents/tools/test_lint_skills.py`
@@ -68,7 +68,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 4 : lancer et vérifier le succès** — même commande ; attendu : tous les tests passent.
 - [ ] **Étape 5 : ajouter `.agents/tools/forbidden-terms.local.txt` à `.gitignore`**, puis committer (`feat(skills): lint des skills`).
 
-### Tâche 2 : Conventions partagées et gabarit
+### Task 2: Conventions partagées et gabarit
 
 **Fichiers :**
 - Créer : `.agents/tools/conventions.md`, `.agents/tools/skill-template.md`
@@ -83,7 +83,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 3 : vérifier que le gabarit, instancié avec un nom et un `evals/scenarios.md` de trois scénarios factices, passe le lint** — créer le skill factice dans un dossier temporaire et lancer `python3 .agents/tools/lint_skills.py --skills-dir <tmp>` ; attendu : code 0.
 - [ ] **Étape 4 : commit** (`docs(skills): conventions partagées et gabarit`).
 
-### Tâche 3 : Contrôle cas d'utilisation ↔ Gherkin
+### Task 3: Contrôle cas d'utilisation ↔ Gherkin
 
 **Fichiers :**
 - Créer : `.agents/skills/ba-sync/scripts/check_uc_links.py`, `.agents/skills/ba-sync/scripts/test_check_uc_links.py`
@@ -110,7 +110,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 4 : lancer et vérifier le succès**.
 - [ ] **Étape 5 : commit** (`feat(skills): contrôle de cohérence cas d'utilisation et Gherkin`).
 
-### Tâche 4 : Skill `ba-entrypoint`
+### Task 4: Skill `ba-entrypoint`
 
 **Fichiers :**
 - Créer : `.agents/skills/ba-entrypoint/SKILL.md`, `.agents/skills/ba-entrypoint/evals/scenarios.md`
@@ -125,7 +125,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 3 : `python3 .agents/tools/lint_skills.py`** ; attendu : conforme.
 - [ ] **Étape 4 : commit** (`feat(skills): ba-entrypoint`).
 
-### Tâche 5 : Skill `ba-source-intake`
+### Task 5: Skill `ba-source-intake`
 
 **Fichiers :** créer `.agents/skills/ba-source-intake/{SKILL.md,evals/scenarios.md}`.
 
@@ -137,7 +137,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — deux documents déposés ; déclaration orale ; **information manquante** : pdf illisible (attendu : enregistré, « contenu non lu », aucune citation) ; `inbox/` vide (attendu : le dit).
 - [ ] **Étape 2 : `SKILL.md`**. **Étape 3 : lint**. **Étape 4 : commit** (`feat(skills): ba-source-intake`).
 
-### Tâche 6 : Skill `ba-elicitation`
+### Task 6: Skill `ba-elicitation`
 
 **Fichiers :** créer `.agents/skills/ba-elicitation/{SKILL.md,evals/scenarios.md}`.
 
@@ -149,7 +149,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — mode interview ; mode notes avec trou de parties prenantes (exploitation absente) ; exigence orientée solution (« je veux un fichier Excel ») ; **information manquante** : notes sans acteur identifié (attendu : question, pas d'acteur inventé).
 - [ ] **Étapes 2 à 4 : `SKILL.md`, lint, commit** (`feat(skills): ba-elicitation`).
 
-### Tâche 7 : Skill `ba-as-is-reading`
+### Task 7: Skill `ba-as-is-reading`
 
 **Fichiers :** créer `.agents/skills/ba-as-is-reading/{SKILL.md,evals/scenarios.md}`.
 
@@ -161,7 +161,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — zone claire ; zone trop large (attendu : demande de la restreindre) ; **information manquante** : règle métier supposée par le code mais non vérifiable (attendu : `[hypothèse]` et question).
 - [ ] **Étapes 2 à 4 :** `SKILL.md`, lint, commit (`feat(skills): ba-as-is-reading`).
 
-### Tâche 8 : Skill `ba-framing`
+### Task 8: Skill `ba-framing`
 
 **Fichiers :** créer `.agents/skills/ba-framing/{SKILL.md,evals/scenarios.md}`.
 
@@ -172,7 +172,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — demande avec solution déjà décrite (attendu : alerte sur l'axe solution) ; cadrage avec cases vides ; **information manquante** : aucun objectif exprimé (attendu : question, aucun `GOAL` inventé).
 - [ ] **Étapes 2 à 4 :** `SKILL.md`, lint, commit (`feat(skills): ba-framing`).
 
-### Tâche 9 : Skill `ba-backlog`
+### Task 9: Skill `ba-backlog`
 
 **Fichiers :** créer `.agents/skills/ba-backlog/{SKILL.md,evals/scenarios.md}`.
 
@@ -184,7 +184,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — création d'un backlog ; ajout d'une US quand `US-007` existe déjà dans un autre Epic (attendu : `US-008`) ; US touchant deux domaines ; **information manquante** : pas de `GOAL` pour une US (attendu : question).
 - [ ] **Étapes 2 à 4 :** `SKILL.md`, lint, commit (`feat(skills): ba-backlog`).
 
-### Tâche 10 : Skill `ba-story-spec`
+### Task 10: Skill `ba-story-spec`
 
 **Fichiers :** créer `.agents/skills/ba-story-spec/{SKILL.md,evals/scenarios.md}`.
 
@@ -196,7 +196,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — US prête ; US avec hypothèses (attendu : questions avant toute spécification) ; **information manquante** : règle de gestion absente (attendu : point ouvert, pas de scénario inventé) ; DoR du projet présent (attendu : il prime).
 - [ ] **Étapes 2 à 4 :** `SKILL.md`, lint, commit (`feat(skills): ba-story-spec`).
 
-### Tâche 11 : Skill `ba-quality-review`
+### Task 11: Skill `ba-quality-review`
 
 **Fichiers :** créer `.agents/skills/ba-quality-review/{SKILL.md,evals/scenarios.md}`.
 
@@ -208,7 +208,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — US avec « rapidement » et « etc. » ; deux US contradictoires ; **information manquante** : terme absent du glossaire (attendu : question, pas de définition inventée) ; US correcte (attendu : « aucun constat », pas de défaut fabriqué).
 - [ ] **Étapes 2 à 4 :** `SKILL.md`, lint, commit (`feat(skills): ba-quality-review`).
 
-### Tâche 12 : Skill `ba-sync`
+### Task 12: Skill `ba-sync`
 
 **Fichiers :** créer `.agents/skills/ba-sync/{SKILL.md,evals/scenarios.md}` (le dossier `scripts/` existe déjà, Tâche 3).
 
@@ -220,7 +220,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 1 : scénarios** — mise à jour nominale ; **information manquante** : aucune convention de test détectée (attendu : question au développeur) ; écart code/US (attendu : signalé, US non « corrigée » à la place du BA) ; script en échec (attendu : « non terminé »).
 - [ ] **Étapes 2 à 4 :** `SKILL.md`, lint, commit (`feat(skills): ba-sync`).
 
-### Tâche 13 : Remplacement du brouillon et points d'entrée
+### Task 13: Remplacement du brouillon et points d'entrée
 
 **Fichiers :**
 - Modifier : `AGENTS.md`
@@ -231,7 +231,7 @@ Entrées ou conditions que le spec implique sans qu'un test d'origine les couvre
 - [ ] **Étape 3 : `python3 .agents/tools/lint_skills.py`** (9 skills conformes) puis `python3 -m pytest .agents -v` ; attendu : tout passe.
 - [ ] **Étape 4 : commit** (`refactor(skills): remplacement du brouillon ireb par la bibliothèque ba-*`).
 
-### Tâche 14 : Banc d'essai biblioCQRS
+### Task 14: Banc d'essai biblioCQRS
 
 **Fichiers :** modifier `docs/requirements/` (migration), créer `docs/requirements/{index.md,sources/,domains/,shared/}` et `docs/superpowers/plans/2026-10-29-ba-skills-validation.md` (compte rendu).
 
