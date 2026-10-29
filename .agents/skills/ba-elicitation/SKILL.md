@@ -45,7 +45,7 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 ## Entrées / Sorties
 
 - Entrées : la demande du BA ; les sources `SRC-nnn` indiquées ou pertinentes (`sources/index.md`) ; `shared/actors.md` et `shared/glossary.md` s'ils existent ; les notes du BA (mode 2).
-- Sorties : `<REQ_DIR>/work/<epic>/elicitation.md`, intitulé `# Élicitation : <epic>`, avec exactement les sections `## Parties prenantes`, `## Besoins`, `## Questions ouvertes`, `## Hypothèses`, `## Conflits`. Chaque ligne de liste commence par `- ` et se termine par un marqueur de provenance. Une section sans contenu contient `- (aucun pour l'instant)`.
+- Sorties : `<REQ_DIR>/work/<epic>/elicitation.md`, intitulé `# Élicitation : <epic>`, avec exactement les sections `## Parties prenantes`, `## Besoins`, `## Questions ouvertes`, `## Hypothèses`, `## Conflits`. Chaque ligne de liste commence par `- `. Les lignes d'assertion (Parties prenantes, Besoins, Hypothèses, Conflits) se terminent par un marqueur de provenance. Les lignes de `## Questions ouvertes` se terminent par leur citation `(vu dans SRC-nnn)` ou `(contrôle de l'IA)`. Une section sans contenu contient `- (aucun pour l'instant)`, qui n'a besoin ni de l'un ni de l'autre.
 
 ## Déroulement
 
@@ -65,22 +65,22 @@ Préparation (communes)
 
 Mode 1 : interview. Une seule question à la fois, attendre la réponse avant la suivante.
 5. Poser les questions de C1 une à une. Consigner chaque réponse `- <rôle> : <intérêt> [hypothèse]`. Une catégorie sans réponse devient une ligne de `## Questions ouvertes` (`(contrôle de l'IA)`). Ne pas inventer de personne.
-6. Poser au moins une question par perspective de C2. Consigner dans `## Besoins`, ligne préfixée `[données]`, `[fonctions]` ou `[comportement]`. Une perspective sans réponse va en `## Questions ouvertes`.
+6. Poser au moins une question par perspective de C2. Consigner dans `## Besoins`, ligne préfixée `[données]`, `[fonctions]` ou `[comportement]` et terminée par `[hypothèse]` (réponse du BA, pas encore confirmée). Une perspective sans réponse va en `## Questions ouvertes`.
 7. C3 : consigner la phrase telle quelle dans `## Besoins` avec `[orientée solution]`, puis demander successivement l'objectif (qu'en attendez-vous ?), le moyen (pourquoi celui-ci ?), la mesure (comment saura-t-on que c'est réussi ?), le risque (que se passe-t-il sinon ?). Si c'est encore flou, jusqu'à 5 « pourquoi », puis les 5 W (qui, quoi, où, quand, pourquoi). Le besoin sous-jacent est ajouté `[hypothèse]` ; la phrase d'origine reste.
 8. C4 : demander « qu'est-ce qui vous semble évident mais n'est écrit nulle part ? », « qu'est-ce qui est supposé sans vérification ? », « qui voudrait autre chose ? ». Suppositions dans `## Hypothèses`, désaccords dans `## Conflits`, trous dans `## Questions ouvertes`.
 9. En fin d'interview, proposer d'enregistrer les réponses clés du BA comme déclaration via `ba-source-intake` (le BA décide). Sans accord, elles restent `[hypothèse]`.
 
 Mode 2 : analyse de notes
-5. Lire les notes en entier. Si elles ne sont pas encore une source `SRC-nnn`, proposer que `ba-source-intake` les enregistre, attendre l'accord du BA, et ne pas les citer en `[source …]` tant qu'aucun numéro n'existe (d'ici là, les affirmations sont `[hypothèse]`).
-6. Consigner chaque affirmation des notes dans la section qui convient, avec `[source SRC-nnn « passage cité »]`.
-7. Passer C1, C2, C3 et C4 en liste de contrôle contre les notes, sans poser de question au BA à ce stade. C3 : marquer `[orientée solution]` les besoins concernés.
-8. Lister les trous constatés : chacun est une ligne de `## Questions ouvertes` avec `(vu dans SRC-nnn)`. Si toutes les catégories sont couvertes par les notes, le dire et ne rien demander de plus (pas de question C4 « de principe »).
-9. Poser alors au BA, une à la fois, les seules questions des trous, et appliquer pour une exigence orientée solution les questions objectif / moyen / mesure / risque de l'étape 7.
+10. Lire les notes en entier. Si elles ne sont pas encore une source `SRC-nnn`, proposer que `ba-source-intake` les enregistre, attendre l'accord du BA, et ne pas les citer en `[source …]` tant qu'aucun numéro n'existe (d'ici là, les affirmations sont `[hypothèse]`).
+11. Consigner chaque affirmation des notes dans la section qui convient, avec `[source SRC-nnn « passage cité »]`.
+12. Passer C1, C2, C3 et C4 en liste de contrôle contre les notes, sans poser de question au BA à ce stade. C3 : marquer `[orientée solution]` les besoins concernés.
+13. Lister les trous constatés : chacun est une ligne de `## Questions ouvertes` avec `(vu dans SRC-nnn)`. Si toutes les catégories sont couvertes par les notes, le dire et ne rien demander de plus (pas de question C4 « de principe »).
+14. Poser alors au BA, une à la fois, les seules questions des trous, et appliquer pour une exigence orientée solution les questions objectif / moyen / mesure / risque de l'étape 7 (mode 1).
 
 Clôture (communes)
-10. Les affirmations du BA dans la conversation restent `[hypothèse]` jusqu'à sa confirmation explicite. Présenter les lignes à valider ; seulement après son « oui » (ligne par ligne ou en bloc), remplacer par `[validée <date du jour>]`. Une reformulation corrigée redevient `[hypothèse]` jusqu'à nouvelle confirmation.
-11. Écrire `work/<epic>/elicitation.md` (créer le dossier au besoin). Relire : toute assertion a son marqueur, toute question sa mention `(vu dans …)` ou `(contrôle de l'IA)`, aucun acteur ni besoin ne vient de nulle part.
-12. Annoncer : le chemin, le nombre de lignes par section, la liste numérotée des questions ouvertes et des lignes `[hypothèse]` à confirmer. Proposer `ba-framing` ; le BA confirme avant tout enchaînement.
+15. Les affirmations du BA dans la conversation restent `[hypothèse]` jusqu'à sa confirmation explicite. Présenter les lignes à valider ; seulement après son « oui » (ligne par ligne ou en bloc), remplacer par `[validée <date du jour>]`. Une reformulation corrigée redevient `[hypothèse]` jusqu'à nouvelle confirmation.
+16. Écrire `work/<epic>/elicitation.md` (créer le dossier au besoin). Relire : toute assertion a son marqueur, toute question sa mention `(vu dans …)` ou `(contrôle de l'IA)`, aucun acteur ni besoin ne vient de nulle part.
+17. Annoncer : le chemin, le nombre de lignes par section, la liste numérotée des questions ouvertes et des lignes `[hypothèse]` à confirmer. Proposer `ba-framing` ; le BA confirme avant tout enchaînement.
 
 ## Exemple : information manquante
 

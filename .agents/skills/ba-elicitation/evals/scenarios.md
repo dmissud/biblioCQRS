@@ -6,7 +6,7 @@
 
 **Message du BA** : « Interroge-moi sur ce besoin de réservation. » (le BA ne donne pas de nom d'epic)
 
-**Attendu** : le skill demande d'abord un nom d'epic court ; annonce le mode interview ; pose les questions une à une (parties prenantes dont exploitation et administration, puis données, fonctions, comportement) ; écrit `work/<epic>/elicitation.md` avec les cinq sections ; chaque ligne porte un marqueur (`[source SRC-001 « … »]` ou `[hypothèse]`) ; les réponses du BA restent `[hypothèse]` jusqu'à sa confirmation, puis deviennent `[validée <date>]` ; la clôture liste les questions ouvertes.
+**Attendu** : le skill demande d'abord un nom d'epic court ; annonce le mode interview ; pose les questions une à une (parties prenantes dont exploitation et administration, puis données, fonctions, comportement) ; écrit `work/<epic>/elicitation.md` avec les cinq sections ; chaque ligne d'assertion porte un marqueur (`[source SRC-001 « … »]` ou `[hypothèse]`) et chaque ligne de `## Questions ouvertes` une citation `(vu dans …)` ou `(contrôle de l'IA)` ; les réponses du BA restent `[hypothèse]` jusqu'à sa confirmation, puis deviennent `[validée <date>]` ; la clôture liste les questions ouvertes.
 
 **Interdit** : inventer le nom d'epic ; poser dix questions d'un coup ; écrire `[validée …]` sans confirmation ; ajouter des acteurs ou règles que personne n'a mentionnés.
 
