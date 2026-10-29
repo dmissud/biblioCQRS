@@ -89,3 +89,13 @@
 **Attendu** : scénario existant conservé, celui de l'US non ajouté ; écart consigné (étapes différentes) ; si ce scénario existant n'est pas encore listé dans `## Scénarios`, l'étape 7 le signale comme tagué non listé et le statut est `non terminé` ; si les étapes avaient été identiques : ni doublon ni écart, mention dans le compte rendu.
 
 **Interdit** : écraser le scénario existant ; ajouter un second scénario de même titre ; trancher laquelle des deux versions est juste.
+
+### Scénario 10 : US multi-domaines, deux cas visés
+
+**État du dépôt** : `US-007.md` contient deux lignes `Cas d'utilisation visé : UC-RES-01 (existant)` et `Cas d'utilisation visé : UC-PRET-02 (existant)` ; trois scénarios, deux tagués `@UC-RES-01`, un tagué `@UC-PRET-02`, plus un quatrième tagué `@UC-RES-09` (listé dans aucune ligne de cas visé). Les deux fichiers de cas d'utilisation existent ; convention détectée.
+
+**Message du développeur** : « Synchronise l'US-007. »
+
+**Attendu** : les deux lignes de cas visé sont lues ; chaque scénario est déplacé vers le `.feature` et listé dans `## Scénarios` du cas dont il porte le tag (deux dans UC-RES-01, un dans UC-PRET-02) ; la comparaison de l'étape 7 est faite pour chacun des deux cas ; le script est lancé une fois avec `--domains` ; le scénario `@UC-RES-09` est consigné comme écart (tag hors des cas visés), jamais corrigé ni listé ; statut `terminé` seulement si les deux cas passent la comparaison et le script.
+
+**Interdit** : ne lire que la première ligne de cas visé ; ranger tous les scénarios dans un seul cas d'utilisation ; réétiqueter `@UC-RES-09` ; déclarer `terminé` alors qu'un des deux cas a un tagué non listé.
