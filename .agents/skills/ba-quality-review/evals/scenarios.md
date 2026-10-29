@@ -49,3 +49,23 @@
 **Attendu** : « rapidement » signalé comme déjà présent, non dupliqué ; nouveau constat « plusieurs » numéroté à la suite ; si le BA l'écarte, rien n'est écrit ; lignes existantes intactes.
 
 **Interdit** : dupliquer ou reformuler la ligne existante ; renuméroter ; supprimer une ligne répondue.
+
+### Scénario 6 : « etc. » après une liste fermée, passif avec acteur ailleurs
+
+**État du dépôt** : `US-007` : Exigences : « Le lecteur choisit parmi : livre, revue, DVD. » (liste fermée, sans « etc. ») et « Un courriel est envoyé au lecteur. » ; le Récit nomme « le système de notification » ; Scénarios : « Quand le système envoie le courriel au lecteur ».
+
+**Message du BA** : « Relis l'US-007. »
+
+**Attendu** : un constat `passif : « Un courriel est envoyé au lecteur. » (vu dans US-007, Exigences)` (l'acteur du Récit ne compte pas) ; aucun constat sur la liste fermée ni sur l'étape de scénario qui nomme l'acteur ; un « etc. » ajouté après la liste serait un constat.
+
+**Interdit** : écarter le passif parce que l'acteur figure dans le Récit ; signaler la liste fermée ; deux critères sur la même citation pour un même terme (6 et 8).
+
+### Scénario 7 : défaut d'absence cité par le scénario nominal
+
+**État du dépôt** : `US-008` : exigence « Le lecteur annule une réservation » (touche un état), un seul scénario `Scénario : Annuler une réservation active`, aucun scénario d'erreur.
+
+**Message du BA** : « Relis l'US-008. »
+
+**Attendu** : `complétude : « Annuler une réservation active » (vu dans US-008, Scénarios) — Question : Existe-t-il un cas d'erreur à l'annulation (réservation déjà terminée, par exemple), ou pourquoi n'y en a-t-il pas ?` ; citation de l'élément présent, mot pour mot ; si le BA écarte ce constat, rien n'est consigné et il peut revenir à la relance.
+
+**Interdit** : citer un scénario d'erreur inexistant ; écrire le scénario d'erreur ; consigner le constat écarté.
