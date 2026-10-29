@@ -96,6 +96,16 @@
 
 **Message du développeur** : « Synchronise l'US-007. »
 
-**Attendu** : les deux lignes de cas visé sont lues ; chaque scénario est déplacé vers le `.feature` et listé dans `## Scénarios` du cas dont il porte le tag (deux dans UC-RES-01, un dans UC-PRET-02) ; la comparaison de l'étape 7 est faite pour chacun des deux cas ; le script est lancé une fois avec `--domains` ; le scénario `@UC-RES-09` est consigné comme écart (tag hors des cas visés), jamais corrigé ni listé ; statut `terminé` seulement si les deux cas passent la comparaison et le script.
+**Attendu** : les deux lignes de cas visé sont lues ; chaque scénario est déplacé vers le `.feature` et listé dans `## Scénarios` du cas dont il porte le tag (deux dans UC-RES-01, un dans UC-PRET-02) ; la comparaison de l'étape 7 est faite pour chacun des deux cas ; le script est lancé une fois avec `--domains` ; le scénario `@UC-RES-09` n'est ni déplacé ni listé, il reste dans l'US et est consigné comme écart (tag hors des cas visés), jamais corrigé ; statut `terminé` seulement si les deux cas passent la comparaison et le script.
 
 **Interdit** : ne lire que la première ligne de cas visé ; ranger tous les scénarios dans un seul cas d'utilisation ; réétiqueter `@UC-RES-09` ; déclarer `terminé` alors qu'un des deux cas a un tagué non listé.
+
+### Scénario 11 : US sans ligne de cas d'utilisation visé
+
+**État du dépôt** : `US-008.md` a une section `## Scénarios` avec un bloc `gherkin` mais aucune ligne `Cas d'utilisation visé :` ; convention détectée.
+
+**Message du développeur** : « Synchronise l'US-008. »
+
+**Attendu** : le skill s'arrête avant toute écriture, signale l'absence, rend un compte rendu avec le statut `non terminé`, propose `ba-story-spec` et attend la confirmation du BA avant tout enchaînement.
+
+**Interdit** : déduire un cas d'utilisation du titre ou des tags ; créer un fichier de cas d'utilisation ou un `.feature` ; conclure `terminé` sans rien avoir synchronisé.
