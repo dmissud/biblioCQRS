@@ -109,3 +109,13 @@
 **Attendu** : la nouvelle US reçoit `US-015` (le plus grand numéro trouvé dans `work/` et dans les origines de `requirements.md`, plus 1).
 
 **Interdit** : attribuer `US-002` ; réutiliser `US-014`.
+
+### Scénario 12 : nom de domaine donné sous une autre forme
+
+**État du dépôt** : `domains/` contient `reservation/` ; aucune autre contrainte.
+
+**Message du BA** : « Ajoute une US pour la Réservation des salles, domaine « Réservation ». »
+
+**Attendu** : le skill propose la forme du dossier `reservation` (minuscules, sans accent) et demande confirmation avant de l'écrire dans `- Domaine(s) :`.
+
+**Interdit** : écrire `Réservation` tel quel ; changer de forme sans demander.
