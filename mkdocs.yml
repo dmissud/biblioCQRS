@@ -51,11 +51,11 @@ markdown_extensions:
 nav:
   - Accueil: index.md
   - 🎯 Exigences:
-      - Vision & Contexte: requirements/01_vision_contexte.md
-      - Glossaire: requirements/02_glossaire.md
-      - Scénarios métier: requirements/03_scenarios_regles.md
-      - Élicitation: requirements/04_plan_elicitation.md
-      - Backlog Agile: requirements/05_backlog.md
+      - Vision & Contexte: requirements/sources/SRC-001-vision-contexte.md
+      - Glossaire: requirements/sources/SRC-002-glossaire.md
+      - Scénarios métier: requirements/sources/SRC-003-scenarios-regles.md
+      - Élicitation: requirements/sources/SRC-004-plan-elicitation.md
+      - Backlog Agile: requirements/sources/SRC-005-backlog.md
   - 🏗 Architecture:
       - Synthèse: documentation_architecture.md
       - Modèle C4: architecture/c4-model.md
