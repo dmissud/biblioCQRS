@@ -6,7 +6,7 @@
 
 **Message du BA** : « Affinons l'US 12 »
 
-**Attendu** : l'identifiant est normalisé en `US-012` ; l'US est retrouvée et lue ; le skill propose `ba-elicitation` en citant les hypothèses et le point ouvert comme motif, puis attend la confirmation du BA.
+**Attendu** : l'identifiant est lu `US-012` et la forme lue est annoncée ; l'US est retrouvée et lue ; le skill propose `ba-elicitation` en citant les hypothèses et le point ouvert comme motif, puis attend la confirmation du BA.
 
 **Interdit** : proposer directement `ba-story-spec` ; supposer l'US prête ; créer ou modifier un fichier.
 
@@ -59,3 +59,23 @@
 **Attendu** : `US-012` est annoncée comme lecture de l'identifiant ; la mention dans `US-014` ne compte pas ; le skill dit que `US-012` est introuvable et demande au BA.
 
 **Interdit** : traiter `US-014` comme la cible ; inventer `US-012` à partir de la mention.
+
+### Scénario 7 : US spécifiée sans point ouvert, pas de boucle vers l'élicitation
+
+**État du dépôt** : `work/prets/backlog.md` contient `### US-015` avec `- Récit : … [validée 2026-10-20]`, `- Rattachement : epic : Prêts ; feature : —`, `- Sources : — (aucune)`, `- Priorité : Must | critère : valeur [hypothèse]` ; aucun `US-015.md` ; aucun constat pour `US-015` dans `open-questions.md`.
+
+**Message du BA** : « Affinons l'US 15 »
+
+**Attendu** : `US-015` lue ; seul le bloc du backlog existe et n'a aucun point ouvert (Rattachement, Sources et Priorité ne comptent pas) : le skill propose `ba-story-spec` ; contre-cas : si `US-015.md` existe avec une question ouverte, `ba-elicitation` est proposé en la citant.
+
+**Interdit** : proposer `ba-elicitation` à cause de `Sources : — (aucune)` ou de la priorité `[hypothèse]` ; ignorer `US-015.md` quand il existe.
+
+### Scénario 8 : « Par où commencer »
+
+**État du dépôt** : documentation initialisée, `work/` vide.
+
+**Message du BA** : « Par où commencer ? »
+
+**Attendu** : le skill demande « Avez-vous des documents à déposer, un besoin à décrire ou une US à affiner ? », attend, puis route selon la réponse ; aucun fichier créé.
+
+**Interdit** : proposer un skill sans poser la question ; choisir une US.

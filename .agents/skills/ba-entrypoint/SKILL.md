@@ -53,19 +53,20 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 ## Déroulement
 
 1. Lire `<REQ_DIR>/index.md`, puis lister `<REQ_DIR>/work/`. Si un pré-requis manque, appliquer `## Pré-requis absents`.
-2. Classer la demande du BA dans l'un des trois cas ci-dessous. Si aucun ne convient, demander au BA ce qu'il veut faire ; ne pas deviner.
+2. Classer la demande du BA dans l'un des quatre cas ci-dessous. Si aucun ne convient, demander au BA ce qu'il veut faire ; ne pas deviner.
 3. Cas A, « Affinons l'US X » :
    1. Normaliser l'identifiant tapé par le BA comme dans les conventions (`US 12`, `us-012`, `US12` donnent `US-012`, forme lue annoncée : « je lis US-012 »). Une forme qui ne se ramène pas à `US` + un nombre de 1 à 3 chiffres (`US-1234`, `US-12a`, `US-A`) est signalée et le BA est interrogé. Un numéro différent n'est jamais une correspondance.
    2. Chercher `US-012` dans `<REQ_DIR>/work/<epic>/` : ne retenir que le fichier dont le nom ou le titre propre est `US-012`. Le titre propre est le titre `### US-012 : <titre>` dans `backlog.md`, ou le premier titre `#` d'un fichier `US-012.md` ; un fichier nommé `US-012-<slug>.md` compte comme correspondance par le nom. Une simple mention dans une autre US (dépendance, lien) ne compte pas.
    3. Introuvable : le dire (« US-012 n'existe pas dans `work/` »), lister les US présentes si le BA le souhaite, et demander laquelle il vise. Ne choisir aucune autre US.
-   4. Trouvée : lire l'US. Si elle contient `[hypothèse]`, un point ouvert ou une provenance manquante, proposer `ba-elicitation` et citer ce qui motive ce choix. Sinon proposer `ba-story-spec`, puis `ba-quality-review` ensuite.
+   4. Trouvée : si `work/<epic>/US-012.md` existe, le LIRE (sinon lire le bloc `### US-012` du `backlog.md`). Proposer `ba-elicitation`, en citant ce qui le motive, SEULEMENT si l'US contient une marque `[hypothèse]`, une question ouverte (sa section `## Questions ouvertes` ou un constat `(vu dans US-012, …)` de `open-questions.md`) ou une ligne d'affirmation sans marqueur dans `US-012.md`. Pour le seul bloc du backlog, ne comptent que les `[hypothèse]` des lignes Récit et Domaine(s) ; les lignes Rattachement, Sources et Priorité ne comptent jamais comme provenance manquante. Aucun point ouvert, ou seul le bloc du backlog existe sans point ouvert : proposer `ba-story-spec`, puis `ba-quality-review` ensuite.
 4. Cas B, « J'ai déposé des documents » : lister `<REQ_DIR>/inbox/`. S'il contient des documents, proposer `ba-source-intake`, puis `ba-elicitation` ensuite. S'il est vide ou absent, le dire et demander où se trouvent les documents.
 5. Cas C, « Affinons le besoin X en US » :
    1. Chercher X dans `<REQ_DIR>/index.md`, `domains/`, `shared/` et `sources/`.
    2. Trouvé : proposer `ba-elicitation` pour le confirmer et le compléter, puis `ba-backlog`, puis `ba-story-spec`.
    3. Absent : le dire, puis proposer d'enregistrer la description du BA comme déclaration (source `SRC-nnn`, avec date et texte) via `ba-source-intake`, puis `ba-elicitation`, `ba-backlog`, `ba-story-spec`. Ne pas inventer le contenu de X.
-6. Annoncer la proposition : « Je propose `<skill>` parce que `<motif>`. On y va ? » Attendre la réponse du BA ; s'il accepte, invoquer le skill.
-7. Le BA peut toujours imposer un autre skill par son nom : l'appliquer.
+6. Cas D, « Par où commencer ? » (aucune cible donnée) : poser la question « Avez-vous des documents à déposer, un besoin à décrire ou une US à affiner ? » et attendre ; classer la réponse dans le cas B, C ou A.
+7. Annoncer la proposition : « Je propose `<skill>` parce que `<motif>`. On y va ? » Attendre la réponse du BA ; s'il accepte, invoquer le skill.
+8. Le BA peut toujours imposer un autre skill par son nom : l'appliquer.
 
 ## Exemple : information manquante
 
