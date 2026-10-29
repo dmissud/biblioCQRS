@@ -79,3 +79,13 @@
 **Attendu** : un constat `complétude : « je veux consulter mon historique de prêts » (vu dans US-009, Récit) — Question : Quelle valeur le lecteur en retire-t-il (le « afin de » manque) ?` ; la citation est celle de l'élément présent le plus proche, mot pour mot, et la valeur manquante est nommée dans la question ; aucun texte de valeur proposé.
 
 **Interdit** : citer une valeur inexistante ; écrire ou suggérer un « afin de » ; citer le mot « afin de » absent du texte ; modifier le Récit.
+
+### Scénario 9 : constat déjà résolu, fichiers voisins d'un Epic
+
+**État du dépôt** : `work/reservation/` contient `backlog.md`, `framing.md`, `elicitation.md`, `US-004.md` et `open-questions.md` ; ce dernier porte `- mots flous : « rapidement » (vu dans US-004, Exigences) — Question : …` ; l'US-004 ne contient plus ce mot (le BA l'a remplacé par « en moins de 2 secondes »).
+
+**Message du BA** : « Fais une revue de qualité de l'Epic réservation. »
+
+**Attendu** : les fichiers voisins ne sont pas signalés comme inattendus ; le constat « rapidement » n'est pas reproposé et est annoncé « résolu » dans le message final, sa ligne restant dans `open-questions.md` ; le message dit que `ba-story-spec` lit ces constats.
+
+**Interdit** : reproposer le constat ; supprimer ou modifier sa ligne ; signaler `backlog.md` ou `framing.md` comme inattendu ; omettre le « résolu ».
