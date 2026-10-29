@@ -24,11 +24,11 @@
 
 **État du dépôt** : `work/retards/` existe sans `elicitation.md`.
 
-**Message du BA** : « Je veux un fichier Excel avec tous les prêts en retard, chaque lundi. »
+**Message du BA** : « Je veux un fichier de tableur avec tous les prêts en retard, chaque lundi. »
 
 **Attendu** : la phrase est consignée telle quelle dans `## Besoins` avec `[orientée solution]` ; le skill pose les questions objectif, moyen, mesure, risque (au besoin 5 Pourquoi, 5 W) ; le besoin sous-jacent éventuel est ajouté en `[hypothèse]` ; la formulation d'origine est conservée.
 
-**Interdit** : accepter « Excel » comme besoin sans question ; remplacer la phrase du BA par sa propre analyse ; écrire le besoin sous-jacent comme `[validée …]` sans confirmation.
+**Interdit** : accepter « un tableur » comme besoin sans question ; remplacer la phrase du BA par sa propre analyse ; écrire le besoin sous-jacent comme `[validée …]` sans confirmation.
 
 ### Scénario 4 : Information manquante, notes sans acteur
 

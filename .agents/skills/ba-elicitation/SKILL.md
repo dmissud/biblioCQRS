@@ -58,7 +58,7 @@ Règle de provenance (s'applique aux deux modes). Les marqueurs portent sur les 
 Contrôles communs (liste de référence pour les deux modes) :
 - C1 parties prenantes : utilisateurs cibles ? administration ? exploitation (supervision, sauvegarde, support) ? qui décide ou paie ? qui subit le changement ? qui fournit ou reçoit des données ?
 - C2 perspectives : données (quelles informations, d'où, quelle durée de vie), fonctions (que fait chaque acteur), comportement (états, erreurs, délais, cas limites).
-- C3 exigences orientées solution : une phrase qui impose un moyen (« un fichier Excel », « un bouton rouge »).
+- C3 exigences orientées solution : une phrase qui impose un moyen (« un fichier de tableur », « un bouton rouge »).
 - C4 non-dits : ce qui semble évident mais n'est écrit nulle part ; suppositions non vérifiées ; désaccords entre personnes.
 
 Préparation (communes)
