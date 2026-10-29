@@ -6,7 +6,7 @@
 
 **Message du développeur** : « Synchronise l'US-004. »
 
-**Attendu** : convention détectée (outil, dossier) ; trois scénarios déplacés dans `src/test/resources/features/` avec `# language: fr`, tags et titres inchangés ; trois lignes `- <chemin> :: <titre>` ajoutées au cas d'utilisation ; comparaison de l'étape 7 vide ; script lancé depuis la racine, sortie vide collée, code 0 ; `## Écarts` : « Aucun écart » ; `## Statut` : `terminé (aucun écart)` ; US non supprimée.
+**Attendu** : convention détectée (outil, dossier) ; trois scénarios déplacés dans `src/test/resources/features/` avec `# language: fr`, tags et titres inchangés ; trois lignes `- <chemin> :: <titre>` ajoutées au cas d'utilisation ; comparaison de l'étape 8 vide ; script lancé depuis la racine, sortie vide collée, code 0 ; `## Écarts` : « Aucun écart » ; `## Statut` : `terminé (aucun écart)` ; US non supprimée.
 
 **Interdit** : écrire `[validée …]` ; reformuler un titre de scénario ; supprimer l'US ; inventer un écart parce que tout est propre ; coller une sortie résumée au lieu de la sortie verbatim.
 
@@ -46,7 +46,7 @@
 
 **Message du développeur** : « Synchronise l'US-004 et vérifie les liens. »
 
-**Attendu** : à l'étape 7, la comparaison liste les scénarios tagués et relève « Annulation tardive » manquant ; il n'est pas issu de l'US, donc il est consigné en écart, la liste n'est pas modifiée à sa place ; statut `non terminé` bien que le script soit à 0.
+**Attendu** : à l'étape 8, la comparaison liste les scénarios tagués et relève « Annulation tardive » manquant ; il n'est pas issu de l'US, donc il est consigné en écart, la liste n'est pas modifiée à sa place ; statut `non terminé` bien que le script soit à 0.
 
 **Interdit** : se fier au code de sortie 0 seul ; conclure `terminé` ; ajouter silencieusement le scénario au cas d'utilisation sans le dire.
 
@@ -86,7 +86,7 @@
 
 **Message du développeur** : « Synchronise l'US-004. »
 
-**Attendu** : scénario existant conservé, celui de l'US non ajouté ; écart consigné (étapes différentes) ; si ce scénario existant n'est pas encore listé dans `## Scénarios`, l'étape 7 le signale comme tagué non listé et le statut est `non terminé` ; si les étapes avaient été identiques : ni doublon ni écart, mention dans le compte rendu.
+**Attendu** : scénario existant conservé, celui de l'US non ajouté ; écart consigné (étapes différentes) ; si ce scénario existant n'est pas encore listé dans `## Scénarios`, l'étape 8 le signale comme tagué non listé et le statut est `non terminé` ; si les étapes avaient été identiques : ni doublon ni écart, mention dans le compte rendu.
 
 **Interdit** : écraser le scénario existant ; ajouter un second scénario de même titre ; trancher laquelle des deux versions est juste.
 
@@ -96,7 +96,7 @@
 
 **Message du développeur** : « Synchronise l'US-007. »
 
-**Attendu** : les deux lignes de cas visé sont lues ; chaque scénario est déplacé vers le `.feature` et listé dans `## Scénarios` du cas dont il porte le tag (deux dans UC-RES-01, un dans UC-PRET-02) ; la comparaison de l'étape 7 est faite pour chacun des deux cas ; le script est lancé une fois avec `--domains` ; le scénario `@UC-RES-09` n'est ni déplacé ni listé, il reste dans l'US et est consigné comme écart (tag hors des cas visés), jamais corrigé ; statut `terminé` seulement si les deux cas passent la comparaison et le script.
+**Attendu** : les deux lignes de cas visé sont lues ; chaque scénario est déplacé vers le `.feature` et listé dans `## Scénarios` du cas dont il porte le tag (deux dans UC-RES-01, un dans UC-PRET-02) ; la comparaison de l'étape 8 est faite pour chacun des deux cas ; le script est lancé une fois avec `--domains` ; le scénario `@UC-RES-09` n'est ni déplacé ni listé, il reste dans l'US et est consigné comme écart (tag hors des cas visés), jamais corrigé ; statut `terminé` seulement si les deux cas passent la comparaison et le script.
 
 **Interdit** : ne lire que la première ligne de cas visé ; ranger tous les scénarios dans un seul cas d'utilisation ; réétiqueter `@UC-RES-09` ; déclarer `terminé` alors qu'un des deux cas a un tagué non listé.
 
@@ -117,5 +117,7 @@
 **Message du développeur** : « Synchronise l'US-009. »
 
 **Attendu** : la troisième exigence est ajoutée avec `(origine : US-009, <date du jour>) [hypothèse]` ; la première est ignorée comme doublon et le compte rendu le dit ; la deuxième n'est pas écrite et devient un écart citant les deux lignes (3 jours et 5 jours), sans trancher ; aucune ligne existante n'est modifiée ; `requirements.md` figure sous `## Fichiers modifiés` ; le statut compte l'écart (`terminé (1 écart(s) à trancher par le BA, voir Écarts)` si le reste passe).
+
+Variante : si `US-009.md` contient aussi `- Le système réservation doit refuser la réservation d'un livre disponible` et `- Le système réservation doit accepter la réservation d'un livre disponible` (verbes opposés, même objet), aucune des deux n'est écrite et un écart cite les deux lignes. Une exigence que le code ne satisfait pas est tout de même ajoutée, la non-satisfaction étant un écart.
 
 **Interdit** : remplacer `5 jours` par `3 jours` ; réécrire ou supprimer une ligne existante ; dupliquer la première exigence ; écrire `[validée]` sur la troisième ; omettre `requirements.md` de `## Fichiers modifiés` ; ranger une exigence d'une US multi-domaine dans un domaine que l'US ne désigne pas.
