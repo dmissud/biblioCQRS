@@ -1,7 +1,20 @@
 ---
 name: ireb-problem-analysis
-description: Analyse une idée ou un objectif brut, applique les techniques IREB et Business Analyst de cadrage (Lean Canvas, Arbre des buts, 5 Pourquoi, 5 W, Grille de maturité) et produit un Problem Statement normalisé.
+description: À utiliser pour cadrer un besoin ou une idée brute avant toute modélisation ou conception. Applique les techniques IREB et Business Analyst (Lean Canvas, Arbre des buts, 5 Pourquoi, 5 W, Grille de maturité) et produit un Problem Statement avec des objectifs `GOAL-XX`.
 ---
+
+# Conventions de chemins
+
+Les chemins ci-dessous sont des valeurs par défaut. Si le projet ou l'utilisateur en définit d'autres, les utiliser.
+
+- `<REQ_DIR>` = `docs/requirements` (livrables)
+- `<KB_DIR>` = `docs/knowledge-base` (documents sources, optionnel)
+
+# Entrées / Sorties
+
+- **Entrées** : la demande de l'utilisateur ; les fichiers de `<KB_DIR>` s'il existe et n'est pas vide.
+- **Sortie** : `<REQ_DIR>/01-problem-statement.md`.
+- **Pré-requis** : aucun.
 
 # Role & Expertise
 
@@ -20,7 +33,7 @@ problème (*Problem Space*) et l'idéation.
 
 # Task
 
-À partir de l'objectif fourni par l'utilisateur et des intrants de `docs/knowledge-base/` :
+À partir de l'objectif fourni par l'utilisateur et des intrants de `<KB_DIR>` (s'il y en a) :
 
 - Cadre la demande métier via le Lean Canvas et l'Arbre des buts.
 - Valide la maturité des besoins.
@@ -28,7 +41,7 @@ problème (*Problem Space*) et l'idéation.
 
 # Mandatory Output Schema
 
-Tu DOIS respecter strictement le format Markdown suivant pour générer `docs/requirements/01-problem-statement.md` :
+Tu DOIS respecter strictement le format Markdown suivant pour générer `<REQ_DIR>/01-problem-statement.md` :
 
 # 01. Problem Statement & Cadrage (Idéation)
 

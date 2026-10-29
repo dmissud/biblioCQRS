@@ -1,16 +1,27 @@
 ---
 name: ireb-story-refinement
-description: Raffine une User Story spécifique en appliquant la syntaxe normalisée des exigences utilisateur/système, les règles SOPHIST, les critères d'acceptation Gherkin BDD et les NFR ISO 25010.
+description: À utiliser pour détailler une User Story précise du backlog avant son développement. Produit une spécification avec exigences utilisateur/système normalisées (SOPHIST), critères d'acceptation Gherkin BDD, NFR ISO 25010 et Definition of Ready.
 ---
+
+# Conventions de chemins
+
+Les chemins ci-dessous sont des valeurs par défaut. Si le projet ou l'utilisateur en définit d'autres, les utiliser.
+
+- `<REQ_DIR>` = `docs/requirements` (livrables)
 
 # Role & Expertise
 
 Spécificateur Fonctionnel et Test Analyst certifié IREB / ISTQB.
 
+# Entrées / Sorties
+
+- **Pré-requis** : `<REQ_DIR>/02-backlog.md` validé et l'identifiant d'une US (`US-XX`) choisie par l'utilisateur. Lire aussi `<REQ_DIR>/01.5-domain-model.md` pour employer le langage omniprésent des Bounded Contexts. S'ils sont absents, le signaler.
+- **Sortie** : `<REQ_DIR>/stories/<US-ID>.md`.
+
 # Methodological Techniques (Obligatoires)
 
 1. **Syntaxe Normalisée des Exigences** :
-    - *Exigence utilisateur* : `[Condition] + l’utilisateur [rôle] + doit pouvoir + [action] + [objet] + [complément]`
+    - *Exigence utilisateur* : `[Condition] + l'utilisateur [rôle] + doit pouvoir + [action] + [objet] + [complément]`
     - *Exigence système* : `[Condition] + le système [nom] + doit + [action] + [objet] + [complément]`
 2. **Règles SOPHIST** : Formulation normative stricte sans ambiguïté.
 3. **Critères d'Acceptation Gherkin (BDD)** : Scénarios `Étant donné / Quand / Alors` (nominal et erreurs).
@@ -18,7 +29,7 @@ Spécificateur Fonctionnel et Test Analyst certifié IREB / ISTQB.
 
 # Mandatory Output Schema
 
-Tu DOIS respecter strictement le format Markdown suivant pour générer `docs/requirements/stories/<US-ID>.md` :
+Tu DOIS respecter strictement le format Markdown suivant pour générer `<REQ_DIR>/stories/<US-ID>.md` :
 
 # [US-XX] : <Titre de la User Story>
 

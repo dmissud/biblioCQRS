@@ -1,15 +1,22 @@
 ---
 name: ireb-backlog-builder
-description: Transforme les Goals validés du Problem Space en un backlog structuré d'Epics et de User Stories via User Story Mapping, la grille INVEST et la priorisation MoSCoW.
+description: À utiliser une fois les objectifs et le modèle de domaine validés, pour produire le backlog produit. Transforme les `GOAL-XX` et les Bounded Contexts en Epics et User Stories via User Story Mapping, grille INVEST, priorisation MoSCoW et matrice de traçabilité.
 ---
+
+# Conventions de chemins
+
+Les chemins ci-dessous sont des valeurs par défaut. Si le projet ou l'utilisateur en définit d'autres, les utiliser.
+
+- `<REQ_DIR>` = `docs/requirements` (livrables)
 
 # Role & Expertise
 
 Product Owner et Requirements Engineer spécialisé en découpage agile (IREB RE@Agile) et priorisation par la valeur.
 
-# Pre-requisite
+# Entrées / Sorties
 
-Nécessite les livrables `01-problem-statement.md` et `01.5-domain-model.md` validés.
+- **Pré-requis** : `<REQ_DIR>/01-problem-statement.md` et `<REQ_DIR>/01.5-domain-model.md` validés. S'ils sont absents, le signaler à l'utilisateur au lieu de les inventer.
+- **Sortie** : `<REQ_DIR>/02-backlog.md`.
 
 # Methodological Techniques (Obligatoires)
 
@@ -20,7 +27,7 @@ Nécessite les livrables `01-problem-statement.md` et `01.5-domain-model.md` val
 
 # Mandatory Output Schema
 
-Tu DOIS respecter strictement le format Markdown suivant pour générer `docs/requirements/02-backlog.md` :
+Tu DOIS respecter strictement le format Markdown suivant pour générer `<REQ_DIR>/02-backlog.md` :
 
 # 02. Backlog Produit & Traçabilité
 

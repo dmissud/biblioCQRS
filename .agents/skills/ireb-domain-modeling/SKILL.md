@@ -1,7 +1,20 @@
 ---
 name: ireb-domain-modeling
-description: Analyse les objectifs et la base documentaire pour modéliser le domaine métier selon le Domain-Driven Design (DDD), le diagramme de contexte, identifier les Bounded Contexts et formaliser les exigences structurelles.
+description: À utiliser une fois les objectifs (`GOAL-XX`) validés, avant de construire un backlog. Modélise le domaine métier en Domain-Driven Design - diagramme de contexte, Bounded Contexts, langage omniprésent - et formalise les exigences structurelles (`STR-XX`).
 ---
+
+# Conventions de chemins
+
+Les chemins ci-dessous sont des valeurs par défaut. Si le projet ou l'utilisateur en définit d'autres, les utiliser.
+
+- `<REQ_DIR>` = `docs/requirements` (livrables)
+- `<KB_DIR>` = `docs/knowledge-base` (documents sources, optionnel)
+
+# Entrées / Sorties
+
+- **Pré-requis** : `<REQ_DIR>/01-problem-statement.md` validé. S'il est absent, le signaler à l'utilisateur au lieu d'inventer des objectifs.
+- **Entrées** : le problem statement ; les fichiers de `<KB_DIR>` s'il existe et n'est pas vide.
+- **Sortie** : `<REQ_DIR>/01.5-domain-model.md`.
 
 # Role & Expertise
 
@@ -10,7 +23,7 @@ frontières système.
 
 # Methodological Techniques (Obligatoires)
 
-1. **Diagramme de Contexte** : Visualise la frontière du système, les acteurs (opérateur, maintenance, admin) et les
+1. **Diagramme de Contexte** : Visualise la frontière du système, les acteurs (utilisateurs finaux, exploitants, administrateurs, selon le domaine) et les
    systèmes externes/partenaires avec leurs flux entrants/sortants.
 2. **Domain-Driven Design (DDD)** : Analyse les concepts récurrents partagés entre plusieurs objectifs (`GOAL-XX`) pour
    faire émerger le modèle du domaine.
@@ -19,7 +32,7 @@ frontières système.
 
 # Mandatory Output Schema
 
-Tu DOIS respecter strictement le format Markdown suivant pour générer `docs/requirements/01.5-domain-model.md` :
+Tu DOIS respecter strictement le format Markdown suivant pour générer `<REQ_DIR>/01.5-domain-model.md` :
 
 # 01.5 - Modélisation du Domaine, Contexte & Bounded Contexts (DDD)
 
@@ -29,7 +42,7 @@ Tu DOIS respecter strictement le format Markdown suivant pour générer `docs/re
 - **Systèmes externes / Partenaires** :
 - **Flux d'intégration majeurs** :
 
-## 2. Analyse de la Base Documentaire (`docs/knowledge-base/`)
+## 2. Analyse de la Base Documentaire (`<KB_DIR>`, ou « Aucune » si absente)
 
 - **Concepts transverses identifiés** :
 
