@@ -53,13 +53,14 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
   - Epic, une ligne : `- EPIC : <titre> | buts : GOAL-nn[, GOAL-nn] <marqueur>`.
   - Feature, une ligne : `- FEATURE : <titre> | epic : <titre de l'Epic> <marqueur>`.
   - Carte (story mapping), une ligne par activité du parcours, dans l'ordre du parcours : `- <activité> : US-nnn[, US-nnn]` (les US d'une activité sont rangées de la plus à la moins prioritaire).
-  - US : un titre `### US-nnn : <titre>` (c'est ce titre que `ba-story-spec` et `ba-entrypoint` cherchent) suivi de six lignes, dans cet ordre :
+  - US : un titre `### US-nnn : <titre>` (c'est ce titre que `ba-story-spec` et `ba-entrypoint` cherchent) suivi de sept lignes, dans cet ordre :
     `- Récit : En tant que <rôle>, je veux <action> afin de <valeur> <marqueur>`
     `- Rattachement : epic : <titre de l'Epic> ; feature : <titre ou —>`
     `- Domaine(s) : <nom>[, <nom>] <marqueur>` (deux noms : ajouter `multi-domaine`)
     `- Buts : GOAL-nn[, GOAL-nn]`
     `- Sources : <marqueur de source copié, un par SRC-nnn>` (sans source : `— (aucune)`)
     `- Priorité : <Must, Should, Could ou Won't> | critère : <une ligne> [hypothèse]` (marqueur `[validée <date>]` seulement après la décision du BA)
+    `- INVEST : <I N V E S T avec ✔ ✖ ou ?>` (six symboles dans l'ordre I, N, V, E, S, T, séparés par des espaces, par exemple `- INVEST : ✔ ✔ ✔ ? ✖ ✔` ; `✔` test réussi, `✖` test non réussi et question posée au BA, US conservée telle quelle sur sa réponse, `?` question posée et pas encore répondue ; aucun marqueur de provenance sur cette ligne, c'est un contrôle de l'IA)
 - Sortie secondaire : `<REQ_DIR>/index.md`, section `## Travaux en cours`, une ligne par epic : `- <epic> : backlog (<n> US, <date>)`, où `<date>` est la date du jour (AAAA-MM-JJ). Ici « epic » (le dossier `work/<epic>/`) n'est pas un « Epic » (une ligne `- EPIC :` de `backlog.md`).
 - Marqueurs : récit, domaine(s), rattachement et priorité sont des assertions et portent un marqueur ; une ligne copiée de `framing.md` ou `elicitation.md` garde le sien ; les lignes de `## Questions ouvertes` citent `(vu dans SRC-nnn)` ou `(contrôle de l'IA)` et n'ont pas de marqueur.
 
@@ -69,7 +70,7 @@ MoSCoW : `Must` (sans elle le besoin n'est pas servi), `Should` (importante, con
 
 ## Déroulement
 
-Chaque contenu est proposé, jamais écrit comme acquis : rien n'est écrit dans un fichier avant l'étape 13. Une question à la fois.
+Chaque contenu est proposé, jamais écrit comme acquis : rien n'est écrit dans un fichier avant l'étape 14. Une question à la fois.
 1. Vérifier `## Pré-requis absents`. Obtenir le nom de l'epic. Si `work/<epic>/backlog.md` existe, le lire : on le complète (ajout d'US ou d'Epic) sans supprimer ni réécrire ses lignes ni dupliquer un titre.
 2. Lire `framing.md`, `elicitation.md`, `actors.md`, `glossary.md` et lister les dossiers de `domains/`. Relever les buts (`GOAL-nn`) et, dans `elicitation.md`, les besoins avec leur marqueur.
 3. Numérotation : relever tous les `US-nnn` de tous les fichiers de `work/` (titres `### US-nnn` et mentions), prendre le plus grand `nnn`, ajouter 1 pour la première nouvelle US (`US-001` si aucun) ; ne jamais réutiliser un numéro, même d'une US supprimée ou d'un autre epic. Un identifiant mal formé (`US-8`, `US-A`) ou un titre `### US-nnn` en double dans un ou plusieurs fichiers est signalé au BA, jamais corrigé ni ignoré en silence.
@@ -80,10 +81,18 @@ Chaque contenu est proposé, jamais écrit comme acquis : rien n'est écrit dans
 8. Seuil Feature, après la rédaction des US : compter, pour chaque Epic, les US déjà présentes dans `backlog.md` plus les US proposées aux étapes 6 et 7. Si un Epic dépasse 8 US et que le niveau Feature n'est pas déjà retenu, poser UNE question « Cet Epic dépasse 8 US : voulez-vous les regrouper en Features ? », ne rien faire d'autre tant que le BA n'a pas répondu, puis suivre sa réponse (oui : retourner aux étapes 6 et 7 pour proposer les Features et le rattachement des US, puis reprendre à l'étape 9, sans poser la question de l'étape 9 avant la fin du regroupement ; non : passer directement à l'étape 9). Sous le seuil, ne rien proposer.
 9. Une US sans `GOAL` : ne lui donner aucun but par défaut. Poser la question « Quel objectif cette US sert-elle ? » (et lister les buts existants), attendre, et laisser l'US hors du backlog écrit tant qu'il n'y a pas de réponse (elle va en `## Questions ouvertes`). Même règle pour un rôle ou un domaine inconnu.
 10. Prioriser : pour chaque US, proposer une classe MoSCoW et son critère unique (section « Critères de priorité »), `[hypothèse]`.
-11. Contrôle de traçabilité : chaque `GOAL-nn` de `framing.md` a-t-il au moins une US ? chaque US a-t-elle un but ? Un but sans US est une question (`(contrôle de l'IA)`). Si tout est couvert, le dire et ne rien ajouter.
-12. Confirmation : présenter Epics, Features, carte, US avec priorités. Demander « Confirmez-vous, ou corrigez-vous, US par US, notamment les priorités ? ». Seulement après un « oui » explicite, mettre `[validée <date du jour>]` sur les lignes confirmées ; une ligne corrigée redevient `[hypothèse]` jusqu'à nouvelle confirmation.
-13. Écrire `work/<epic>/backlog.md` au format de `## Entrées / Sorties`, puis mettre à jour `index.md` (section `## Travaux en cours` : ajouter la ligne de l'epic si aucune ligne `- <epic> :` n'existe, sinon mettre à jour son comptage ; créer la section si elle manque ; ne pas toucher aux autres lignes). Relire : chaque US a son titre `### US-nnn : <titre>`, ses six lignes, un `GOAL`, un critère de priorité ; aucun numéro dupliqué.
-14. Annoncer : le chemin écrit, le nombre d'Epics et d'US, les numéros attribués, les US multi-domaines, les buts sans US, les questions ouvertes et les lignes `[hypothèse]` restantes. Proposer `ba-story-spec` pour détailler une US (elle signalera les hypothèses d'abord) ou `ba-quality-review` pour contrôler le backlog ; le BA décide et confirme avant tout enchaînement. Aucun scénario Gherkin ni exigence détaillée n'est écrite ici.
+11. Contrôle INVEST, pour chaque US proposée (hors US laissées en questions ouvertes à l'étape 9), un test par lettre :
+    - I Indépendante : aucune autre US ne doit être livrée avant elle ; sinon nommer la dépendance et la demander au BA.
+    - N Négociable : le récit décrit un besoin, pas une solution (écran, table, technologie, bouton) ; sinon citer le mot en cause.
+    - V Valorisable : le « afin de » énonce une valeur pour un acteur nommé.
+    - E Estimable : rien d'inconnu ne bloque le dimensionnement par le BA ou l'équipe ; sinon nommer l'inconnu.
+    - S Petite : livrable en un sprint ; plus de 5 scénarios attendus ou plusieurs actions distinctes dans le récit : proposer de la découper, le BA décide.
+    - T Testable : un résultat observable peut être nommé ; sinon demander lequel.
+    Une lettre non réussie devient UNE question au BA (une à la fois, US par US), jamais une réécriture du récit ni une découpe faite en silence. Noter `?` tant que le BA n'a pas répondu ; après sa réponse, le BA corrige le récit (la ligne corrigée redevient `[hypothèse]`) et la lettre devient `✔`, ou il garde l'US telle quelle et la lettre devient `✖`. Montrer le résultat par US sous la forme `US-nnn : I N V E S T` avec ✔, ✖ ou ?. Si tout est réussi, le dire et ne poser aucune question.
+12. Contrôle de traçabilité : chaque `GOAL-nn` de `framing.md` a-t-il au moins une US ? chaque US a-t-elle un but ? Un but sans US est une question (`(contrôle de l'IA)`). Si tout est couvert, le dire et ne rien ajouter.
+13. Confirmation : présenter Epics, Features, carte, US avec priorités et résultat INVEST. Demander « Confirmez-vous, ou corrigez-vous, US par US, notamment les priorités ? ». Seulement après un « oui » explicite, mettre `[validée <date du jour>]` sur les lignes confirmées ; une ligne corrigée redevient `[hypothèse]` jusqu'à nouvelle confirmation.
+14. Écrire `work/<epic>/backlog.md` au format de `## Entrées / Sorties`, puis mettre à jour `index.md` (section `## Travaux en cours` : ajouter la ligne de l'epic si aucune ligne `- <epic> :` n'existe, sinon mettre à jour son comptage ; créer la section si elle manque ; ne pas toucher aux autres lignes). Relire : chaque US a son titre `### US-nnn : <titre>`, ses sept lignes (dont `- INVEST :`), un `GOAL`, un critère de priorité ; aucun numéro dupliqué.
+15. Annoncer : le chemin écrit, le nombre d'Epics et d'US, les numéros attribués, les US multi-domaines, les buts sans US, les questions ouvertes et les lignes `[hypothèse]` restantes. Proposer `ba-story-spec` pour détailler une US (elle signalera les hypothèses d'abord) ou `ba-quality-review` pour contrôler le backlog ; le BA décide et confirme avant tout enchaînement. Aucun scénario Gherkin ni exigence détaillée n'est écrite ici.
 
 ## Exemple : information manquante
 

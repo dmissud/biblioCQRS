@@ -16,7 +16,7 @@
 
 **Message du BA** : « Ajoute une US de réservation : annuler une réservation, pour GOAL-01. »
 
-**Attendu** : la nouvelle US reçoit `US-008` (plus grand numéro de tout `work/`, plus 1) ; les US existantes ne sont ni réécrites ni renumérotées ; elle est ajoutée après confirmation, au format `### US-008 : <titre>` avec ses six lignes, et le comptage de `index.md` est mis à jour.
+**Attendu** : la nouvelle US reçoit `US-008` (plus grand numéro de tout `work/`, plus 1) ; les US existantes ne sont ni réécrites ni renumérotées ; elle est ajoutée après confirmation, au format `### US-008 : <titre>` avec ses sept lignes, et le comptage de `index.md` est mis à jour.
 
 **Interdit** : `US-004` (numérotation limitée à l'epic) ; réutiliser un numéro ; renuméroter une US existante ; ne chercher le numéro que dans `work/reservation/`.
 
@@ -59,3 +59,33 @@
 **Attendu** : après la rédaction des quatre US, le skill compte 6 existantes plus 4 proposées et pose une seule fois la question « Cet Epic dépasse 8 US : voulez-vous les regrouper en Features ? » ; il attend la réponse sans rien écrire ni proposer d'autre ; sur « non », il continue en Epic puis US sans section `## Features`.
 
 **Interdit** : créer des Features sans réponse du BA ; poser la question avant d'avoir rédigé les US ou ne compter que les 4 nouvelles ; reposer la question à chaque étape ; rattacher les US existantes à une Feature de sa propre initiative.
+
+### Scénario 7 : US trop grande (Petite non réussie)
+
+**État du dépôt** : `elicitation.md` contient un besoin « le lecteur réserve, modifie, annule et consulte l'historique de ses réservations » ; l'US rédigée reprend ces quatre actions dans un seul récit.
+
+**Message du BA** : « Construis le backlog de la réservation. »
+
+**Attendu** : au contrôle INVEST, la lettre S n'est pas réussie (plusieurs actions distinctes) ; le skill pose UNE question proposant de découper en quatre US et attend ; la ligne est notée `- INVEST : ✔ ✔ ✔ ✔ ? ✔` tant que le BA n'a pas répondu ; le BA décide (découpe ou conservation, la lettre devient `✔` ou `✖`).
+
+**Interdit** : découper l'US sans réponse du BA ; réécrire le récit à sa place ; écrire `✔` sur S sans réponse ; poser plusieurs questions à la fois.
+
+### Scénario 8 : US qui énonce une solution (Négociable non réussie)
+
+**État du dépôt** : une US proposée dit « je veux cliquer sur le bouton rouge qui insère une ligne dans la table réservation afin de réserver un livre ».
+
+**Message du BA** : « Ajoute cette US au backlog. »
+
+**Attendu** : la lettre N n'est pas réussie ; le skill cite les mots en cause (bouton, table) et demande au BA s'il veut reformuler le besoin ; les autres lettres sont évaluées ; la ligne `- INVEST :` porte `?` en position N jusqu'à la réponse.
+
+**Interdit** : reformuler le récit sans le BA ; ignorer le défaut ; refuser d'ajouter l'US ; marquer `✖` avant d'avoir posé la question.
+
+### Scénario 9 : Contre-cas, US conforme à INVEST
+
+**État du dépôt** : une US proposée « En tant que lecteur, je veux réserver un livre emprunté afin d'être prévenu de son retour » ; aucune dépendance ; une seule action ; résultat observable nommable.
+
+**Message du BA** : « Ajoute cette US. »
+
+**Attendu** : les six tests réussissent, le skill l'affiche (`US-nnn : ✔ ✔ ✔ ✔ ✔ ✔`), ne pose aucune question INVEST et écrit `- INVEST : ✔ ✔ ✔ ✔ ✔ ✔` après confirmation.
+
+**Interdit** : inventer une dépendance ou un défaut pour avoir une question à poser.
