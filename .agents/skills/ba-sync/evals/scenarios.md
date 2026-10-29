@@ -86,6 +86,6 @@
 
 **Message du développeur** : « Synchronise l'US-004. »
 
-**Attendu** : scénario existant conservé, celui de l'US non ajouté ; écart consigné (étapes différentes) ; si les étapes avaient été identiques : ni doublon ni écart, mention dans le compte rendu.
+**Attendu** : scénario existant conservé, celui de l'US non ajouté ; écart consigné (étapes différentes) ; si ce scénario existant n'est pas encore listé dans `## Scénarios`, l'étape 7 le signale comme tagué non listé et le statut est `non terminé` ; si les étapes avaient été identiques : ni doublon ni écart, mention dans le compte rendu.
 
 **Interdit** : écraser le scénario existant ; ajouter un second scénario de même titre ; trancher laquelle des deux versions est juste.
