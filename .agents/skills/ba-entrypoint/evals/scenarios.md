@@ -79,3 +79,13 @@
 **Attendu** : le skill demande « Avez-vous des documents à déposer, un besoin à décrire ou une US à affiner ? », attend, puis route selon la réponse ; aucun fichier créé.
 
 **Interdit** : proposer un skill sans poser la question ; choisir une US.
+
+### Scénario 9 : US spécifiée complète, sections non assertives
+
+**État du dépôt** : `work/prets/US-016.md` existe : `## Récit` et `- Domaine(s) : pret [validée 2026-10-25]` marqués, exigences et exigences non fonctionnelles marquées `[validée …]`, `## État des lieux`, `## DoR`, `Cas d'utilisation visé : UC-PRET-01 (existant)` et un bloc Gherkin sans marqueur ; `open-questions.md` contient un constat `(vu dans US-016, Exigences)` dont le passage cité n'apparaît plus dans `US-016.md`.
+
+**Message du BA** : « Affinons l'US 16 »
+
+**Attendu** : aucune route vers `ba-elicitation` (sections non assertives ignorées, constat résolu non compté) ; le skill propose `ba-quality-review` (ou `ba-story-spec` s'il reste des points) ; contre-cas : une exigence sans marqueur, ou un constat dont le passage est encore présent, mène à `ba-elicitation`.
+
+**Interdit** : proposer `ba-elicitation` parce que le bloc Gherkin, le DoR ou l'état des lieux n'ont pas de marqueur ; compter le constat résolu ; supprimer sa ligne.
