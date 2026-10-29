@@ -65,7 +65,7 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
     `- Priorité : <Must, Should, Could ou Won't> | critère : <une ligne> [hypothèse]` (marqueur `[validée <date>]` seulement après la décision du BA)
     `- INVEST : <I N V E S T avec ✔ ✖ ou ?>` (six symboles dans l'ordre I, N, V, E, S, T, séparés par des espaces, par exemple `- INVEST : ✔ ✔ ✔ ? ✖ ✔` ; `✔` test réussi, `✖` test non réussi et question posée au BA, US conservée telle quelle sur sa réponse, `?` question posée et pas encore répondue ; aucun marqueur de provenance sur cette ligne, c'est un contrôle de l'IA)
 - Sortie secondaire : `<REQ_DIR>/index.md`, section `## Travaux en cours`, une ligne par epic : `- <epic> : backlog (<n> US, <date>)`, où `<date>` est la date du jour (AAAA-MM-JJ). Ici « epic » (le dossier `work/<epic>/`) n'est pas un « Epic » (une ligne `- EPIC :` de `backlog.md`).
-- Marqueurs : récit, domaine(s), rattachement et priorité sont des assertions et portent un marqueur ; une ligne copiée de `framing.md` ou `elicitation.md` garde le sien ; les lignes de `## Questions ouvertes` citent `(vu dans SRC-nnn)` ou `(contrôle de l'IA)` et n'ont pas de marqueur.
+- Marqueurs : récit, domaine(s) et priorité sont des assertions et portent un marqueur ; la ligne `- Rattachement :` est structurelle et n'en porte aucun, tout comme `- Sources : — (aucune)`, valeur valide ; une ligne copiée de `framing.md` ou `elicitation.md` garde le sien ; les lignes de `## Questions ouvertes` citent `(vu dans SRC-nnn)` ou `(contrôle de l'IA)` et n'ont pas de marqueur.
 
 ## Critères de priorité
 
@@ -76,7 +76,7 @@ MoSCoW : `Must` (sans elle le besoin n'est pas servi), `Should` (importante, con
 Chaque contenu est proposé, jamais écrit comme acquis : rien n'est écrit dans un fichier avant l'étape 14. Une question à la fois.
 1. Vérifier `## Pré-requis absents`. Obtenir le nom de l'epic. Si `work/<epic>/backlog.md` existe, le lire : on le complète (ajout d'US ou d'Epic) sans supprimer ni réécrire ses lignes ni dupliquer un titre. Relever les US existantes de l'Epic dont la ligne `- INVEST :` contient `?` ou manque : l'étape 11 les reprend, elles seules.
 2. Lire `framing.md`, `elicitation.md`, `actors.md`, `glossary.md` et lister les dossiers de `domains/`. Relever les buts (`GOAL-nn`) et, dans `elicitation.md`, les besoins avec leur marqueur.
-3. Numérotation : relever tous les `US-nnn` de tous les fichiers de `work/` (titres `### US-nnn` et mentions), prendre le plus grand `nnn`, ajouter 1 pour la première nouvelle US (`US-001` si aucun) ; ne jamais réutiliser un numéro, même d'une US supprimée ou d'un autre epic. Un identifiant mal formé (`US-8`, `US-A`) ou un titre `### US-nnn` en double dans un ou plusieurs fichiers est signalé au BA, jamais corrigé ni ignoré en silence.
+3. Numérotation : relever tous les `US-nnn` de tous les fichiers de `work/` (titres `### US-nnn` et mentions) ET les origines `(origine : US-nnn, …)` des `domains/*/requirements.md`, prendre le plus grand `nnn`, ajouter 1 pour la première nouvelle US (`US-001` si aucun) ; ne jamais réutiliser un numéro, même d'une US supprimée ou d'un autre epic. Un identifiant mal formé (`US-8`, `US-A`) ou un titre `### US-nnn` en double dans un ou plusieurs fichiers est signalé au BA, jamais corrigé ni ignoré en silence.
 4. Niveau Feature : l'utiliser si le BA le demande, à tout moment du déroulement. Sinon : Epic puis US directement (le seuil de l'étape 8 peut le proposer plus tard).
 5. Story mapping : proposer les activités du parcours de l'acteur, dans l'ordre, tirées des besoins de l'élicitation (une activité sans besoin cité est une question, pas une ligne).
 6. Proposer les Epics : regrouper les activités par but (`GOAL-nn`) ; chaque Epic cite ses buts. Si le niveau Feature est retenu, proposer ses Features.
@@ -102,13 +102,3 @@ Chaque contenu est proposé, jamais écrit comme acquis : rien n'est écrit dans
 Le BA dit : « Ajoute au backlog une US pour exporter la liste des retards ». `framing.md` contient `GOAL-01` (réservation) et `GOAL-02` (suivi des prêts), aucun ne parle d'export.
 
 Le skill ne choisit aucun but. Il demande : « Quel objectif cette US sert-elle ? Objectifs existants : GOAL-01 (réservation), GOAL-02 (suivi des prêts), ou un nouvel objectif à cadrer avec `ba-framing`. » Il attend la réponse ; en attendant, l'US n'est pas écrite dans `## User stories` et `## Questions ouvertes` contient : `- Quel objectif sert l'export de la liste des retards ? (contrôle de l'IA)`.
-
-### Scénario 10 : US existante dont la ligne INVEST contient `?`
-
-**État du dépôt** : `work/reservation/backlog.md` contient `US-002` avec `- INVEST : ✔ ✔ ✔ ? ✔ ✔` et `US-003` avec `- INVEST : ✔ ✔ ✔ ✔ ✔ ✔` ; le BA ne demande aucune nouvelle US.
-
-**Message du BA** : « Reprends le backlog de la réservation, il reste une question INVEST. »
-
-**Attendu** : seule `US-002` est reprise par le contrôle INVEST ; le skill pose UNE question sur E (l'inconnu qui bloque l'estimation) ; après la réponse, il met à jour uniquement la ligne `- INVEST :` de `US-002` (`✔` ou `✖` selon le BA) ; `US-003` et le reste du fichier ne changent pas.
-
-**Interdit** : retester `US-003` ; réécrire le récit de `US-002` ; modifier une autre ligne ; laisser `?` après une réponse du BA.

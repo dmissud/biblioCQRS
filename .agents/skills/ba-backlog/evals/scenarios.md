@@ -89,3 +89,23 @@
 **Attendu** : les six tests réussissent, le skill l'affiche (`US-nnn : ✔ ✔ ✔ ✔ ✔ ✔`), ne pose aucune question INVEST et écrit `- INVEST : ✔ ✔ ✔ ✔ ✔ ✔` après confirmation.
 
 **Interdit** : inventer une dépendance ou un défaut pour avoir une question à poser.
+
+### Scénario 10 : US existante dont la ligne INVEST contient `?`
+
+**État du dépôt** : `work/reservation/backlog.md` contient `US-002` avec `- INVEST : ✔ ✔ ✔ ? ✔ ✔` et `US-003` avec `- INVEST : ✔ ✔ ✔ ✔ ✔ ✔` ; le BA ne demande aucune nouvelle US.
+
+**Message du BA** : « Reprends le backlog de la réservation, il reste une question INVEST. »
+
+**Attendu** : seule `US-002` est reprise par le contrôle INVEST ; le skill pose UNE question sur E (l'inconnu qui bloque l'estimation) ; après la réponse, il met à jour uniquement la ligne `- INVEST :` de `US-002` (`✔` ou `✖` selon le BA) ; `US-003` et le reste du fichier ne changent pas.
+
+**Interdit** : retester `US-003` ; réécrire le récit de `US-002` ; modifier une autre ligne ; laisser `?` après une réponse du BA.
+
+### Scénario 11 : numérotation après nettoyage de `work/`
+
+**État du dépôt** : `work/` ne contient que `work/retards/backlog.md` (`US-001`) ; `domains/reservation/requirements.md` contient une ligne `(origine : US-014, 2026-09-30)`.
+
+**Message du BA** : « Ajoute une US au backlog des retards. »
+
+**Attendu** : la nouvelle US reçoit `US-015` (le plus grand numéro trouvé dans `work/` et dans les origines de `requirements.md`, plus 1).
+
+**Interdit** : attribuer `US-002` ; réutiliser `US-014`.
