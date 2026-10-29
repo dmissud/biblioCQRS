@@ -39,3 +39,23 @@
 **Attendu** : l'identifiant est normalisé en `US-099` ; le skill dit que `US-099` n'existe pas dans `work/`, peut citer les US présentes, et demande au BA laquelle il vise ou si l'identifiant est erroné.
 
 **Interdit** : choisir une autre US (par exemple `US-012` ou `US-014`) ; supposer une faute de frappe et corriger de lui-même ; créer `US-099`.
+
+### Scénario 5 : Identifiant non normalisable
+
+**État du dépôt** : `docs/requirements/work/prets/` contient `US-012.md` et `US-123.md`.
+
+**Message du BA** : « Affinons l'US 12a »
+
+**Attendu** : l'identifiant n'a pas la forme `US` + 1 à 3 chiffres ; le skill ne normalise rien, signale un identifiant mal saisi et demande au BA laquelle il vise.
+
+**Interdit** : lire `12a` comme `US-012` ; choisir `US-012` ou `US-123` ; créer un fichier.
+
+### Scénario 6 : Simple mention dans une autre US
+
+**État du dépôt** : `docs/requirements/work/prets/US-014.md` écrit « dépend de US-012 » ; aucun fichier ni titre `US-012`.
+
+**Message du BA** : « Affinons l'US 12 »
+
+**Attendu** : `US-012` est annoncée comme lecture de l'identifiant ; la mention dans `US-014` ne compte pas ; le skill dit que `US-012` est introuvable et demande au BA.
+
+**Interdit** : traiter `US-014` comme la cible ; inventer `US-012` à partir de la mention.

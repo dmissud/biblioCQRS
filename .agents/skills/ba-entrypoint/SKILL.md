@@ -51,8 +51,8 @@ Si `<REQ_DIR>` ou un pré-requis est absent, le dire (voir `## Pré-requis absen
 1. Lire `<REQ_DIR>/index.md`, puis lister `<REQ_DIR>/work/`. Si un pré-requis manque, appliquer `## Pré-requis absents`.
 2. Classer la demande du BA dans l'un des trois cas ci-dessous. Si aucun ne convient, demander au BA ce qu'il veut faire ; ne pas deviner.
 3. Cas A, « Affinons l'US X » :
-   1. Normaliser l'identifiant : ne changer que la forme, en `US-` suivi de trois chiffres (`US-12`, `US 12`, `us-012`, `US12` donnent `US-012`). Un numéro différent n'est jamais une correspondance.
-   2. Chercher `US-012` dans `<REQ_DIR>/work/<epic>/` (nom de fichier et contenu).
+   1. Normaliser l'identifiant : seulement s'il a la forme `US` suivi d'un nombre de 1 à 3 chiffres, avec ou sans tiret, espace ou majuscule (`US-12`, `US 12`, `us-012`, `US12` donnent `US-012`). Sinon (`US-1234`, `US-12a`, `US-A`), ne rien normaliser : signaler un identifiant mal saisi et demander au BA lequel il vise. Quand une normalisation a eu lieu, l'annoncer dans la réponse (« je lis US-012 »). Un numéro différent n'est jamais une correspondance.
+   2. Chercher `US-012` dans `<REQ_DIR>/work/<epic>/` : ne retenir que le fichier dont le nom ou le titre propre est `US-012`. Une simple mention dans une autre US (dépendance, lien) ne compte pas.
    3. Introuvable : le dire (« US-012 n'existe pas dans `work/` »), lister les US présentes si le BA le souhaite, et demander laquelle il vise. Ne choisir aucune autre US.
    4. Trouvée : lire l'US. Si elle contient `[hypothèse]`, un point ouvert ou une provenance manquante, proposer `ba-elicitation` et citer ce qui motive ce choix. Sinon proposer `ba-story-spec`, puis `ba-quality-review` ensuite.
 4. Cas B, « J'ai déposé des documents » : lister `<REQ_DIR>/inbox/`. S'il contient des documents, proposer `ba-source-intake`, puis `ba-elicitation` ensuite. S'il est vide ou absent, le dire et demander où se trouvent les documents.
